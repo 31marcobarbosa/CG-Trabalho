@@ -215,7 +215,7 @@ void cone(double raio, double altura, int camadasV, int camadasH, string nome){
 			double z4 = raio2 * cos(a);
 
 			double x5 = raio1 * sin(a);
-			double y5 = camada;x
+			double y5 = camada;
 			double z5 = raio1 * cos(a);
 
 			double x6 = raio2 * sin(a + espV);
