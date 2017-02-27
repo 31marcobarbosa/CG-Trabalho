@@ -57,7 +57,7 @@ void box(int a, int b, int c, string nome){
 	else z = c/2 + 0.5;
 
 
-	// PARTE DA FRENTE  
+	// PARTE DA FRENTE
 	//Triangulo 1
 	printf("%f %f %f\n", x, -y, z);
 		file << x << "," << -y << "," << z << endl;
@@ -73,7 +73,7 @@ void box(int a, int b, int c, string nome){
 		file << -x << "," << -y << "," << z << endl;
 	printf("%f %f %f\n", x, -y, z);
 		file << x << "," << -y << "," << z << endl;
-	
+
 
 	//PARTE DE TRÁS
 	//Triangulo 1
@@ -110,7 +110,7 @@ void box(int a, int b, int c, string nome){
 	printf("%f %f %f\n", -x, y, z);
 		file << -x << "," << y << "," << z << endl;
 
-	//PARTE DE BAIXO	
+	//PARTE DE BAIXO
 	//Triangulo 1
 	printf("%f %f %f\n", x, -y, -z);
 		file << x << "," << -y << "," << -z << endl;
@@ -164,8 +164,86 @@ void box(int a, int b, int c, string nome){
 }
 
 
+// cone
+void cone(float raio, float altura, float camadasV, float camadasH, string nome){
 
 
+	double dV = (2 * M_PI) / camadasV;
+	double dH = altura / camadasH;
+	double alt = - altura / 2;
+
+	ofstream(nome);
+
+	file << (camadasH) << endl;
+	file << (camadasH) << endl;
+	file << (camadasV) << endl;
+
+// TEREMOS QUE MUDAR PARA SER DESENHADA EM ZERO E NÃO A CENTRAR A FIGURA
+	// a base (desenhado em y = alt = -altura/2)
+	for (double a = 0; a < 2 * M_PI; a += dV){
+
+		double x1 = 0;
+		double y1 = alt;
+		double z1 = 0;
+
+		double x2 = raio * sin(a + dV);
+		double y2 = alt;
+		double z2 = raio * cos(a + dV);
+
+		double x3 = raio * sin(a);
+		double y3 = alt;
+		double z3 = raio * cos(a);
+
+		printf("%f, %f, %f\n", x1, y1, z1); file << x1 << "," << y1 << "," << z1 << endl;
+		printf("%f, %f, %f\n", x2, y2, z2); file << x2 << "," << y2 << "," << z2 << endl;
+		printf("%f, %f, %f\n", x3, y3, z3); file << x3 << "," << y3 << "," << z3 << endl;
+	}
+
+
+// as várias camadas de altura
+	for (int i = 0; i<camadasH; i++){
+
+		for (double a = 0; a < camadasV; a += dV){
+
+			double camada = alt + i*dH;
+			double camadaSeg = alt + (i + 1)*dH;
+
+			double raio1 = raio - (raio*i) / camadasH;
+			double raio2 = raio - (raio*(i + 1)) / camadasH;
+
+			double x4 = raio2 * sin(a);
+			double y4 = camadaSeg;
+			double z4 = raio2 * cos(a);
+
+			double x5 = raio1 * sin(a);
+			double y5 = camada;
+			double z5 = raio1 * cos(a);
+
+			double x6 = raio2 * sin(a + dV);
+			double y6 = camadaSeg;
+			double z6 = raio2 * cos(a + dV);
+
+			printf("%f, %f, %f\n", x4, y4, z4); file << x4 << "," << y4 << "," << z4 << endl;
+			printf("%f, %f, %f\n", x5, y5, z5); file << x5 << "," << y5 << "," << z5 << endl;
+			printf("%f, %f, %f\n", x6, y6, z6); file << x6 << "," << y6 << "," << z6 << endl;
+
+			double x7 = raio1 * sin(a);
+			double y7 = camada;
+			double z7 = raio1 * cos(a);
+
+			double x8 = raio1 * sin(a + dV);
+			double y8 = camada;
+			double z8 = raio1 * cos(a + dV);
+
+			double x9 = raio2 * sin(a + dV);
+			double y9 = camadaSeg;
+			double z9 = raio2 * cos(a + dV);
+
+			printf("%f, %f, %f\n", x7, y7, z7); file << x7 << "," << y7 << "," << z7 << endl;
+			printf("%f, %f, %f\n", x8, y8, z8); file << x8 << "," << y8 << "," << z8 << endl;
+			printf("%f, %f, %f\n", x9, y9, z9); file << x9 << "," << y9 << "," << z9 << endl;
+		}
+	}
 
 
 int main (int argc , int **argv){
