@@ -4,11 +4,20 @@
 #include <GL/glut.h>
 #endif
 
-#define _USE_MATH_DEFINES
+
+#define CONST 0.1f;
+
 #include <math.h>
 
-float size = 1;
-float angle = 1;
+
+float angle = 0.0f;
+float size;
+float xr = 0, yr = 0, zr = 0;
+float camX = 0, camY = 0, camZ = 0;
+int xinicio, yinicio , tracking = 0;
+int k = 5 , alpha = 0 , beta = 0;
+vector<Ponto> vertices; //vetor com os pontos lidos do ficheiro
+
 
 void changeSize(int w, int h) {
 
@@ -44,22 +53,101 @@ void renderScene(void) {
 
 	// set the camera
 	glLoadIdentity();
-	gluLookAt(sin(angle),5.0,5*cos(angle),
+	gluLookAt(camX,camY,camZ,
 		      0.0,0.0,0.0,
 			  0.0f,1.0f,0.0f);
     angle +=0.01;
 
-// put drawing instructions here
+// drawing instructions here
+
+	//glTranslatef(xr, yr, zr);
+	//glRotatef( angle, 0.0f, 1.0f, 0.0f);
 
 
-    glutWireTeapot(size);
-    //size += 0.005;
+	glBegin(GL_TRIANGLES);
+	glColor3f(0.0f, 1.0f, 1.0f);
+
+	for (int i = 0; i < vertices.size(); i++)
+		glVertex3f(vertices[i].x, vertices[i].y, vertices[i].z);
+
+	glEnd();
 
 
-	// End of frame
 	glutSwapBuffers();
 }
 
+
+
+void letrasKeyboard(unsignedchar t , int x , int y) {
+
+	switch (t) {
+		case 'a':
+		case 'A': xr -= CONST;
+			break;
+		case 'd':
+		case 'D': xr += CONST;
+		 	break;
+		case 'w':
+		case 'W': yr += CONST;
+		 	break;
+		case 's':
+		case 'S': yr -= CONST;
+			break;
+		case 'e':
+		case 'E': zr -= CONST;
+			break;
+		case 'q':
+		case 'Q': zr += CONST;
+		 	break;
+	}
+	glutPostRedisplay();
+
+}
+
+
+// setas
+void keyboardspecial(int key, int a, int b) {
+	a = b = 0;
+	switch (key){
+		case(GLUT_KEY_LEFT) : angle -= CONST;
+			break;
+		case(GLUT_KEY_RIGHT): angle += CONST;
+			break;
+	}
+	glutPostRedisplay();
+
+}
+
+
+/*
+// Funções de processamento do rato
+void processMouseButtons(int button, int state, int x, int y)
+{
+	if (state == GLUT_DOWN)  {
+		xinicio = x;
+		yinicio = y;
+		if (button == GLUT_LEFT_BUTTON)
+			tracking = 1;
+		else if (button == GLUT_RIGHT_BUTTON)
+			tracking = 2;
+		else
+			tracking = 0;
+	}
+	else if (state == GLUT_UP) {
+		if (tracking == 1) {
+			alpha += (x - xinicio);
+			beta += (y - yinicio);
+		}
+		else if (tracking == 2) {
+
+			k -= y - yinicio;
+			if (k < 3)
+				k = 3.0;
+		}
+		tracking = 0;
+	}
+}
+*/
 
 
 
