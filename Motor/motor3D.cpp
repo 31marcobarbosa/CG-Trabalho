@@ -119,35 +119,6 @@ void keyboardspecial(int key, int a, int b) {
 }
 
 
-/*
-// Funções de processamento do rato
-void processMouseButtons(int button, int state, int x, int y)
-{
-	if (state == GLUT_DOWN)  {
-		xinicio = x;
-		yinicio = y;
-		if (button == GLUT_LEFT_BUTTON)
-			tracking = 1;
-		else if (button == GLUT_RIGHT_BUTTON)
-			tracking = 2;
-		else
-			tracking = 0;
-	}
-	else if (state == GLUT_UP) {
-		if (tracking == 1) {
-			alpha += (x - xinicio);
-			beta += (y - yinicio);
-		}
-		else if (tracking == 2) {
-
-			k -= y - yinicio;
-			if (k < 3)
-				k = 3.0;
-		}
-		tracking = 0;
-	}
-}
-*/
 
 
 
