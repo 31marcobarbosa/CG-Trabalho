@@ -44,7 +44,7 @@ void plane(int lado, string nome) {
 
 void box(int a, int b, int c, string nome){
 
-	ofstream(nome);
+	ofstream file(nome);
 	double x, y, z;
 
 	if ((a % 2) == 0) x = a/2;
@@ -164,7 +164,7 @@ void box(int a, int b, int c, string nome){
 }
 
 
-void cone(float raio, float altura, float camadasV, float camadasH, string nome){
+void cone(double raio, double altura, int camadasV, int camadasH, string nome){
 
 
 	double espV = (2 * M_PI) / camadasV;
@@ -172,7 +172,7 @@ void cone(float raio, float altura, float camadasV, float camadasH, string nome)
 	double alt = - altura / 2; //faz o cone ficar centrado no referêncial
 
 
-	ofstream(nome);
+	ofstream file(nome);
 	file << (camadasH) << endl;
 	file << (camadasH) << endl;
 	file << (camadasV) << endl;
@@ -242,6 +242,58 @@ void cone(float raio, float altura, float camadasV, float camadasH, string nome)
 			printf("%f, %f, %f\n", x8, y8, z8); file << x8 << "," << y8 << "," << z8 << endl;
 			printf("%f, %f, %f\n", x9, y9, z9); file << x9 << "," << y9 << "," << z9 << endl;
 		}
+	}
+}
+
+
+	void esfera(double raio, int camadasV, int camadasH, string nome) {
+
+		double espV = 2 * M_PI / camadasV;
+		double espH = M_PI / camadasH;
+
+		ofstream file(nome):
+
+		float x1, y1, z1, x2, y2, z2, x3, y3, z3, x4, y4, z4;
+		int a, aux = 0;
+
+		for (int i = 0 ; i < camadasH ; i ++) {
+
+			a = 0;
+
+			for (int j = 0 ; j < camadasV ; j++){
+
+			x1 = raio * sin(aux) * sin(a);
+			y1 = raio * cos(aux);
+			z1 = raio * sin(aux) * cos(a);
+
+			x2 = raio * sin(aux + espH) * sin(a + espV);
+			y2 = raio * cos(aux + espH);
+			z2 = raio * sin(aux + espH) * cos(a + espV);
+
+			x3 = raio * sin(aux + espH) * sin(a);
+			y3 = raio * cos(aux + espH);
+			z3 = raio * sin(aux + espH) * cos(a);
+
+			x4 = raio * sin(aux) * sin(a + espV);
+			y4 = raio * cos(aux);
+			z4 = raio * sin(aux) * cos(a + espV);
+
+
+			printf("%f %f %f\n", x1, y1, z1); file << x1 << "," << y1 << "," << z1 << endl;
+			printf("%f %f %f\n", x2, y2, z2); file << x2 << "," << y2 << "," << z2 << endl;
+			printf("%f %f %f\n", x3, y3, z3); file << x3 << "," << y3 << "," << z3 << endl;
+
+			printf("%f %f %f\n", x1, y1, z1); file << x1 << "," << y1 << "," << z1 << endl;
+			printf("%f %f %f\n", x4, y4, z4); file << x4 << "," << y4 << "," << z4 << endl;
+			printf("%f %f %f\n", x2, y2, z2); file << x2 << "," << y2 << "," << z2 << endl;
+
+			a += espV;
+
+			}
+
+			aux += espH;
+		}
+
 	}
 
 
