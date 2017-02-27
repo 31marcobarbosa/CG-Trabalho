@@ -164,31 +164,30 @@ void box(int a, int b, int c, string nome){
 }
 
 
-// cone
 void cone(float raio, float altura, float camadasV, float camadasH, string nome){
 
 
-	double dV = (2 * M_PI) / camadasV;
-	double dH = altura / camadasH;
-	double alt = - altura / 2;
+	double espV = (2 * M_PI) / camadasV;
+	double espH = altura / camadasH;
+	double alt = - altura / 2; //faz o cone ficar centrado no referêncial
+
 
 	ofstream(nome);
-
 	file << (camadasH) << endl;
 	file << (camadasH) << endl;
 	file << (camadasV) << endl;
 
-// TEREMOS QUE MUDAR PARA SER DESENHADA EM ZERO E NÃO A CENTRAR A FIGURA
+
 	// a base (desenhado em y = alt = -altura/2)
-	for (double a = 0; a < 2 * M_PI; a += dV){
+	for (double a = 0; a < 2 * M_PI; a += espV){
 
 		double x1 = 0;
 		double y1 = alt;
 		double z1 = 0;
 
-		double x2 = raio * sin(a + dV);
+		double x2 = raio * sin(a + espV);
 		double y2 = alt;
-		double z2 = raio * cos(a + dV);
+		double z2 = raio * cos(a + espV);
 
 		double x3 = raio * sin(a);
 		double y3 = alt;
@@ -200,28 +199,28 @@ void cone(float raio, float altura, float camadasV, float camadasH, string nome)
 	}
 
 
-// as várias camadas de altura
+	// as várias camadas de altura
 	for (int i = 0; i<camadasH; i++){
 
-		for (double a = 0; a < camadasV; a += dV){
+		for (double a = 0; a < camadasV; a += espV){
 
-			double camada = alt + i*dH;
-			double camadaSeg = alt + (i + 1)*dH;
+			double camada = alt + i * espH;
+			double camadaAux = alt + (i + 1) * espH;
 
-			double raio1 = raio - (raio*i) / camadasH;
-			double raio2 = raio - (raio*(i + 1)) / camadasH;
+			double raio1 = raio - (raio * i) / camadasH;
+			double raio2 = raio - (raio * (i + 1)) / camadasH;
 
 			double x4 = raio2 * sin(a);
-			double y4 = camadaSeg;
+			double y4 = camadaAux;
 			double z4 = raio2 * cos(a);
 
 			double x5 = raio1 * sin(a);
 			double y5 = camada;
 			double z5 = raio1 * cos(a);
 
-			double x6 = raio2 * sin(a + dV);
-			double y6 = camadaSeg;
-			double z6 = raio2 * cos(a + dV);
+			double x6 = raio2 * sin(a + espV);
+			double y6 = camadaAux;
+			double z6 = raio2 * cos(a + espV);
 
 			printf("%f, %f, %f\n", x4, y4, z4); file << x4 << "," << y4 << "," << z4 << endl;
 			printf("%f, %f, %f\n", x5, y5, z5); file << x5 << "," << y5 << "," << z5 << endl;
@@ -231,13 +230,13 @@ void cone(float raio, float altura, float camadasV, float camadasH, string nome)
 			double y7 = camada;
 			double z7 = raio1 * cos(a);
 
-			double x8 = raio1 * sin(a + dV);
+			double x8 = raio1 * sin(a + espV);
 			double y8 = camada;
-			double z8 = raio1 * cos(a + dV);
+			double z8 = raio1 * cos(a + espV);
 
-			double x9 = raio2 * sin(a + dV);
-			double y9 = camadaSeg;
-			double z9 = raio2 * cos(a + dV);
+			double x9 = raio2 * sin(a + espV);
+			double y9 = camadaAux;
+			double z9 = raio2 * cos(a + espV);
 
 			printf("%f, %f, %f\n", x7, y7, z7); file << x7 << "," << y7 << "," << z7 << endl;
 			printf("%f, %f, %f\n", x8, y8, z8); file << x8 << "," << y8 << "," << z8 << endl;
@@ -246,7 +245,7 @@ void cone(float raio, float altura, float camadasV, float camadasH, string nome)
 	}
 
 
-int main (int argc , int **argv){
+int main (int argc , char **argv){
 
 
 	if( argc > 1) {
@@ -260,7 +259,7 @@ int main (int argc , int **argv){
 
 			}
 			else if (strcmp(argv[1],"Cone") == 0) {
-
+				cone(atoi(argv[2]), atoi(argv[3]), atoi(argv[4]), atoi(argv[5]), argv[6]);
 			}
 			else {
 				printf("FIGURA IMPOSSÍVEL\n");
