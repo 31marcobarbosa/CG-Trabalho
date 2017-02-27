@@ -308,7 +308,7 @@ int main (int argc , char **argv){
 				box(atoi(argv[2]),atoi(argv[3]),atoi(argv[4]),argv[5]);
 			}
 			else if (strcmp(argv[1],"Sphere") == 0) {
-
+				esfera(atoi(argv[2]), atoi(argv[3]), atoi(argv[4]),(argv[5]);
 			}
 			else if (strcmp(argv[1],"Cone") == 0) {
 				cone(atoi(argv[2]), atoi(argv[3]), atoi(argv[4]), atoi(argv[5]), argv[6]);
