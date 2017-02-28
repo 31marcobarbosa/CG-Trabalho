@@ -14,6 +14,11 @@
 #include <stdlib.h>
 #include <fstream>
 #include <iostream>
+#include <Type.h>
+#include <Transformation.h>
+#include <Point.h>
+#include <Model.h>
+
 
 using namespace tinyxml2;
 using namespace std;
@@ -125,12 +130,31 @@ void keyboardspecial(int key, int a, int b) {
 }
 
 
+void lerXML(string ficheiro) {
+	XMLDocument docxml;
+
+	if (!(docxml.LoadFile(ficheiro.c_str()))) {
+
+		XMLElement *root = docxml.RootElement();
+		// guarda em root o valor do 1º filho(scene)
+		XMLElement *elemento;
+		// elemento xml auxiliar que percorre o ficheiro
+		Transformation t = Transformation::Transformation();
+
+		Modelos(root,t);
+	}
+	else {
+		cout << "Ficheiro XML não foi encontrado" << endl;
+	}
+}
+
+
 
 
 
 int main(int argc, char **argv) {
 
-// put GLUT init here
+	// put GLUT init here
 
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
@@ -139,19 +163,26 @@ int main(int argc, char **argv) {
     glutCreateWindow("Projeto de CG");
 
 
-// put callback registration here
+    if(argc > 1){
+		lerXML(argv[1]);
+	}
+
+
+	// put callback registration here
 
     glutDisplayFunc(renderScene);
     glutReshapeFunc(changeSize);
     glutIdleFunc(renderScene);
+    glutSpecialFunc(keyboardspecial);
+    glutKeyboardFunc(letrasKeyboard);
 
-// OpenGL settings
+	// OpenGL settings
 
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	glClearColor(0.0f,0.0f,0.0f,0.0f);
 
-// enter GLUT's main loop
+	// enter GLUT's main loop
 	glutMainLoop();
 
 	return 1;
