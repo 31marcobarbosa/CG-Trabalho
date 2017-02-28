@@ -3,7 +3,7 @@
 
  // meter as variaveis em ING
 
-void plane(int lado, string nome) {
+void plano(int lado, string nome) {
 
 	ofstream file(nome);
 	double x,y,z;
@@ -42,7 +42,7 @@ void plane(int lado, string nome) {
 }
 
 
-void box(int a, int b, int c, string nome){
+void cubo(int a, int b, int c, string nome){
 
 	ofstream file(nome);
 	double x, y, z;
@@ -246,7 +246,7 @@ void cone(double raio, double altura, int camadasV, int camadasH, string nome){
 }
 
 
-	void esfera(double raio, int camadasV, int camadasH, string nome) {
+void esfera(double raio, int camadasV, int camadasH, string nome) {
 
 		double espV = 2 * M_PI / camadasV;
 		double espH = M_PI / camadasH;
@@ -301,11 +301,11 @@ int main (int argc , char **argv){
 
 
 	if( argc > 1) {
-			if (strcmp(argv[1],"Plane") == 0) {
-				plane(atoi(argv[2]),argv[3]);
+			if (strcmp(argv[1],"Plano") == 0) {
+				plano(atoi(argv[2]),argv[3]);
 			}
-			else if (strcmp(argv[1],"Box") == 0) {
-				box(atoi(argv[2]),atoi(argv[3]),atoi(argv[4]),argv[5]);
+			else if (strcmp(argv[1],"Cubo") == 0) {
+				cubo(atoi(argv[2]),atoi(argv[3]),atoi(argv[4]),argv[5]);
 			}
 			else if (strcmp(argv[1],"Sphere") == 0) {
 				esfera(atoi(argv[2]), atoi(argv[3]), atoi(argv[4]),(argv[5]);
