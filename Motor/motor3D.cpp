@@ -8,6 +8,15 @@
 #define CONST 0.1f;
 
 #include <math.h>
+#include "tinyxml.h"
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <fstream>
+#include <iostream>
+
+using namespace tinyxml2;
+using namespace std;
 
 
 float angle = 0.0f;
@@ -58,10 +67,7 @@ void renderScene(void) {
 			  0.0f,1.0f,0.0f);
     angle +=0.01;
 
-// drawing instructions here
-
-	//glTranslatef(xr, yr, zr);
-	//glRotatef( angle, 0.0f, 1.0f, 0.0f);
+	// put drawing instructions here
 
 
 	glBegin(GL_TRIANGLES);
@@ -72,7 +78,7 @@ void renderScene(void) {
 
 	glEnd();
 
-
+	// End of frame
 	glutSwapBuffers();
 }
 

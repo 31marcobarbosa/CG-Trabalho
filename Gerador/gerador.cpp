@@ -166,13 +166,13 @@ void cubo(int a, int b, int c, string nome){
 
 void cone(double raio, double altura, int camadasV, int camadasH, string nome){
 
-
+	ofstream file(nome);
 	double espV = (2 * M_PI) / camadasV;
 	double espH = altura / camadasH;
 	double alt = - altura / 2; //faz o cone ficar centrado no referêncial
 
 
-	ofstream file(nome);
+	
 	file << (camadasH) << endl;
 	file << (camadasH) << endl;
 	file << (camadasV) << endl;
@@ -193,9 +193,12 @@ void cone(double raio, double altura, int camadasV, int camadasH, string nome){
 		double y3 = alt;
 		double z3 = raio * cos(a);
 
-		printf("%f, %f, %f\n", x1, y1, z1); file << x1 << "," << y1 << "," << z1 << endl;
-		printf("%f, %f, %f\n", x2, y2, z2); file << x2 << "," << y2 << "," << z2 << endl;
-		printf("%f, %f, %f\n", x3, y3, z3); file << x3 << "," << y3 << "," << z3 << endl;
+		printf("%f, %f, %f\n", x1, y1, z1); 
+			file << x1 << "," << y1 << "," << z1 << endl;
+		printf("%f, %f, %f\n", x2, y2, z2); 
+			file << x2 << "," << y2 << "," << z2 << endl;
+		printf("%f, %f, %f\n", x3, y3, z3); 
+			file << x3 << "," << y3 << "," << z3 << endl;
 	}
 
 
@@ -222,9 +225,12 @@ void cone(double raio, double altura, int camadasV, int camadasH, string nome){
 			double y6 = camadaAux;
 			double z6 = raio2 * cos(a + espV);
 
-			printf("%f, %f, %f\n", x4, y4, z4); file << x4 << "," << y4 << "," << z4 << endl;
-			printf("%f, %f, %f\n", x5, y5, z5); file << x5 << "," << y5 << "," << z5 << endl;
-			printf("%f, %f, %f\n", x6, y6, z6); file << x6 << "," << y6 << "," << z6 << endl;
+			printf("%f, %f, %f\n", x4, y4, z4); 
+				file << x4 << "," << y4 << "," << z4 << endl;
+			printf("%f, %f, %f\n", x5, y5, z5); 
+				file << x5 << "," << y5 << "," << z5 << endl;
+			printf("%f, %f, %f\n", x6, y6, z6); 
+				file << x6 << "," << y6 << "," << z6 << endl;
 
 			double x7 = raio1 * sin(a);
 			double y7 = camada;
