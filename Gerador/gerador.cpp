@@ -42,10 +42,19 @@ void plano(int lado, string nome) {
 }
 
 
-void cubo(int a, int b, int c, string nome){
+
+void cubo(double a, double b, double c, , int camV, int camH, int camL , string nome){
 
 	ofstream file(nome);
 	double x, y, z;
+	double espX = a / camL;
+	double espY = b / camH;
+	double espZ = c / camV;
+  double xx, yy, zz;
+
+
+	int i,j;
+
 
 	if ((a % 2) == 0) x = a/2;
 	else x = a/2 + 0.5;
@@ -57,112 +66,131 @@ void cubo(int a, int b, int c, string nome){
 	else z = c/2 + 0.5;
 
 
-	// PARTE DA FRENTE
-	//Triangulo 1
-	printf("%f %f %f\n", x, -y, z);
-		file << x << "," << -y << "," << z << endl;
-	printf("%f %f %f\n", x, y, z);
-		file << x << "," << y << "," << z << endl;
+// FRONTAL E TRASEIRA
+  for (i = 0 ; i < camH; i ++) {
+    yy = y + espH * i;
+
+	   for (j = 0 ; j < camV , j++) {
+      zz = z + espZ * j;
+
+          	// PARTE DA FRENTE
+          	printf("%f %f %f\n", x, yy, zz);
+          		file << x << "," << yy << "," << zz << endl;
+          	printf("%f %f %f\n", x, yy + espY, zz + espZ);
+          		file << x << "," << yy + espY << "," << zz + espZ << endl;
+          	printf("%f %f %f\n", x, yy + espY, zz);
+          		file << x << "," << y << "," << z << endl;
+
+          	printf("%f %f %f\n", x, yy, zz);
+          		file << x << "," << yy << "," << zz << endl;
+          	printf("%f %f %f\n", x, yy, zz + espZ);
+          		file << x << "," << yy << "," << zz + espZ << endl;
+          	printf("%f %f %f\n", x, yy + espY, zz + espZ);
+          		file << x << "," << yy + espY << "," << zz + espZ << endl;
+
+
+          	//PARTE DE TRÁS
+          	printf("%f %f %f\n", -x, yy, zz);
+          		file << -x << "," << yy << "," << zz << endl;
+          	printf("%f %f %f\n", -x, yy + espY, zz);
+          		file << -x << "," << yy + espY << "," << zz << endl;
+          	printf("%f %f %f\n", -x, yy + espY, zz + espZ);
+          		file << -x << "," << yy + espY << "," << zz + espZ << endl;
+
+          	printf("%f %f %f\n", -x, yy, zz);
+          		file << -x << "," << yy << "," << zz << endl;
+          	printf("%f %f %f\n", x, y, -z);
+          		file << -x << "," << yy + espY << "," << zz + espZ << endl;
+          	printf("%f %f %f\n", x, -y, -z);
+          		file << -x << "," << yy << "," << zz + espZ << endl;
+
+          }
+  }
+
+
+
+//PARTE DE CIMA E BAIXO
+  for (i = 0; i < camL; i++) {
+    xx = x + espX * i;
+
+    for (j=0; j < camV ; j ++){
+      zz = z + espZ * i;
+
+            // PARTE DE CIMA
+          	printf("%f %f %f\n", xx, y, zz);
+          		file << xx << "," << y << "," << zz << endl;
+          	printf("%f %f %f\n", xx + espX, y, zz);
+          		file << xx + espX << "," << y << "," << zz << endl;
+          	printf("%f %f %f\n", xx , y, zz + espZ);
+          		file << xx << "," << y << "," << zz + espZ << endl;
+
+          	printf("%f %f %f\n", xx, y, zz + espZ);
+          		file << xx << "," << y << "," << zz + espZ << endl;
+          	printf("%f %f %f\n", xx + espX, y, zz);
+          		file << xx + espX << "," << y << "," << zz << endl;
+          	printf("%f %f %f\n", -x, y, z);
+          		file << xx + espX << "," << y << "," << zz + espZ << endl;
+
+
+          	//PARTE DE BAIXO
+          	printf("%f %f %f\n", xx, -y, zz);
+          		file << xx << "," << -y << "," << zz << endl;
+          	printf("%f %f %f\n", xx, -y, z + espZ);
+          		file << xx << "," << -y << "," << zz + espZ << endl;
+          	printf("%f %f %f\n", xx + espX, -y, zz);
+          		file << xx + espX << "," << -y << "," << zz << endl;
+
+          	printf("%f %f %f\n", xx, -y, zz + espZ);
+          		file << xx << "," << -y << "," << zz + espZ << endl;
+          	printf("%f %f %f\n", xx + espX, -y, zz + espZ);
+          		file << xx + espX << "," << -y << "," << zz + espZ << endl;
+          	printf("%f %f %f\n", xx + espX, -y, zz);
+          		file << xx + espX << "," << -y << "," << zz << endl;
+
+
+// LADO DIREITO E ESQUERDO
+
+		 for (i = 0 ; i < camH ; i++) {
+			 yy = y + espY * i;
+
+			 	for (j = 0 ; j < camL ; j++) {
+					xx = x + espX * j;
+
+	// LADO DIREITO
+	printf("%f %f %f\n", xx, yy, z);
+		file << xx << "," << yy << "," << z << endl;
+	printf("%f %f %f\n", xx, yy + espY, z);
+		file << xx << "," << yy + espY << "," << z << endl;
+	printf("%f %f %f\n", xx + espX, yy, z);
+		file << xx + espX << "," << yy << "," << z << endl;
+
+	printf("%f %f %f\n", xx, yy + espY, z);
+		file << xx << "," << yy + espY << "," << z << endl;
+	printf("%f %f %f\n", xx + espX, yy + espY, z);
+		file << xx + espX << "," << yy + espY << "," << z << endl;
 	printf("%f %f %f\n", -x, y, z);
-		file << -x << "," << y << "," << z << endl;
+		file << xx + espX << "," << yy << "," << z << endl;
 
-	//Triangulo 2
-	printf("%f %f %f\n", -x, y, z);
-		file << -x << "," << y << "," << z << endl;
-	printf("%f %f %f\n", -x, -y, z);
-		file << -x << "," << -y << "," << z << endl;
-	printf("%f %f %f\n", x, -y, z);
-		file << x << "," << -y << "," << z << endl;
-
-
-	//PARTE DE TRÁS
-	//Triangulo 1
-	printf("%f %f %f\n", x, -y, -z);
-		file << x << "," << -y << "," << -z << endl;
-	printf("%f %f %f\n", -x, -y, -z);
-		file << -x << "," << -y << "," << -z << endl;
-	printf("%f %f %f\n", -x, y, -z);
-		file << -x << "," << y << "," << -z << endl;
-
-	//Triangulo 2
-	printf("%f %f %f\n", -x, y, -z);
-		file << -x << "," << y << "," << -z << endl;
-	printf("%f %f %f\n", x, y, -z);
-		file << x << "," << y << "," << -z << endl;
-	printf("%f %f %f\n", x, -y, -z);
-		file << x << "," << -y << "," << -z << endl;
-
-
-	//PARTE DE CIMA
-	//Triangulo 1
-	printf("%f %f %f\n", x, y, -z);
-		file << x << "," << y << "," << -z << endl;
-	printf("%f %f %f\n", -x, y, z);
-		file << -x << "," << y << "," << z << endl;
-	printf("%f %f %f\n", x, y, z);
-		file << x << "," << y << "," << z << endl;
-
-	//Triangulo 2
-	printf("%f %f %f\n", x, y, -z);
-		file << x << "," << y << "," << -z << endl;
-	printf("%f %f %f\n", -x, y, -z);
-		file << -x << "," << y << "," << -z << endl;
-	printf("%f %f %f\n", -x, y, z);
-		file << -x << "," << y << "," << z << endl;
-
-	//PARTE DE BAIXO
-	//Triangulo 1
-	printf("%f %f %f\n", x, -y, -z);
-		file << x << "," << -y << "," << -z << endl;
-	printf("%f %f %f\n", x, -y, z);
-		file << x << "," << -y << "," << z << endl;
-	printf("%f %f %f\n", -x, -y, z);
-		file << -x << "," << -y << "," << z << endl;
-
-	//Triangulo 2
-	printf("%f %f %f\n", x, -y, -z);
-		file << x << "," << -y << "," << -z << endl;
-	printf("%f %f %f\n", -x, -y, z);
-		file << -x << "," << -y << "," << z << endl;
-	printf("%f %f %f\n", -x, -y, -z);
-		file << -x << "," << -y << "," << -z << endl;
-
-	//LADO DIREITO
-	//Triangulo 1
-	printf("%f %f %f\n", -x, -y, -z);
-		file << -x << "," << -y << "," << -z << endl;
-	printf("%f %f %f\n", -x, -y, z);
-		file << -x << "," << -y << "," << z << endl;
-	printf("%f %f %f\n", -x, y, -z);
-		file << -x << "," << y << "," << -z << endl;
-
-	//Triangulo 2
-	printf("%f %f %f\n", -x, -y, z);
-		file << -x << "," << -y << "," << z << endl;
-	printf("%f %f %f\n", -x, y, z);
-		file << -x << "," << y << "," << z << endl;
-	printf("%f %f %f\n", -x, y, -z);
-		file << -x << "," << y << "," << -z << endl;
 
 	//LADO ESQUERDO
-	//Triangulo 1
-	printf("%f %f %f\n", x, -y, -z);
-		file << x << "," << -y << "," << -z << endl;
-	printf("%f %f %f\n", x, y, -z);
-		file << x << "," << y << "," << -z << endl;
-	printf("%f %f %f\n", x, y, z);
-		file << x << "," << y << "," << z << endl;
+	printf("%f %f %f\n", xx, yy, -z);
+		file << xx << "," << yy << "," << -z << endl;
+	printf("%f %f %f\n", xx + espX, yy, -z);
+		file << xx + espX << "," << yy << "," << -z << endl;
+	printf("%f %f %f\n", xx, yy + espY, -z);
+		file << xx << "," << yy + espY << "," << z << endl;
 
-	//Triangulo 2
-	printf("%f %f %f\n", x, y, z);
-		file << x << "," << y << "," << z << endl;
-	printf("%f %f %f\n", x, -y, z);
-		file << x << "," << -y << "," << z << endl;
-	printf("%f %f %f\n", x, -y, -z);
-		file << x << "," << -y << "," << -z << endl;
-
+	printf("%f %f %f\n", xx, yy + espY, -z);
+		file << xx << "," << yy + espY << "," << z << endl;
+	printf("%f %f %f\n", xx + espX, yy, -z);
+		file << xx + espX << "," << yy << "," << z << endl;
+	printf("%f %f %f\n", xx + espX, yy + espY, -z);
+		file << xx + espX << "," << yy + espX << "," << -z << endl;
+	}
 }
 
+
+}
 
 void cone(double raio, double altura, int camadasV, int camadasH, string nome){
 
@@ -172,7 +200,7 @@ void cone(double raio, double altura, int camadasV, int camadasH, string nome){
 	double alt = - altura / 2; //faz o cone ficar centrado no referêncial
 
 
-	
+
 	file << (camadasH) << endl;
 	file << (camadasH) << endl;
 	file << (camadasV) << endl;
@@ -193,11 +221,11 @@ void cone(double raio, double altura, int camadasV, int camadasH, string nome){
 		double y3 = alt;
 		double z3 = raio * cos(a);
 
-		printf("%f, %f, %f\n", x1, y1, z1); 
+		printf("%f, %f, %f\n", x1, y1, z1);
 			file << x1 << "," << y1 << "," << z1 << endl;
-		printf("%f, %f, %f\n", x2, y2, z2); 
+		printf("%f, %f, %f\n", x2, y2, z2);
 			file << x2 << "," << y2 << "," << z2 << endl;
-		printf("%f, %f, %f\n", x3, y3, z3); 
+		printf("%f, %f, %f\n", x3, y3, z3);
 			file << x3 << "," << y3 << "," << z3 << endl;
 	}
 
@@ -225,11 +253,11 @@ void cone(double raio, double altura, int camadasV, int camadasH, string nome){
 			double y6 = camadaAux;
 			double z6 = raio2 * cos(a + espV);
 
-			printf("%f, %f, %f\n", x4, y4, z4); 
+			printf("%f, %f, %f\n", x4, y4, z4);
 				file << x4 << "," << y4 << "," << z4 << endl;
-			printf("%f, %f, %f\n", x5, y5, z5); 
+			printf("%f, %f, %f\n", x5, y5, z5);
 				file << x5 << "," << y5 << "," << z5 << endl;
-			printf("%f, %f, %f\n", x6, y6, z6); 
+			printf("%f, %f, %f\n", x6, y6, z6);
 				file << x6 << "," << y6 << "," << z6 << endl;
 
 			double x7 = raio1 * sin(a);
