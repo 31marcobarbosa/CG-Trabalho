@@ -43,7 +43,7 @@ void plano(int lado, string nome) {
 
 
 
-void cubo(double a, double b, double c, , int camV, int camH, int camL , string nome){
+void cubo(float a, float b, float c, , int camV, int camH, int camL , string nome){
 
 	ofstream file(nome);
 	double x, y, z;
@@ -146,6 +146,8 @@ void cubo(double a, double b, double c, , int camV, int camH, int camL , string 
           		file << xx + espX << "," << -y << "," << zz + espZ << endl;
           	printf("%f %f %f\n", xx + espX, -y, zz);
           		file << xx + espX << "," << -y << "," << zz << endl;
+          	}
+          }
 
 
 // LADO DIREITO E ESQUERDO
@@ -186,10 +188,8 @@ void cubo(double a, double b, double c, , int camV, int camH, int camL , string 
 		file << xx + espX << "," << yy << "," << z << endl;
 	printf("%f %f %f\n", xx + espX, yy + espY, -z);
 		file << xx + espX << "," << yy + espX << "," << -z << endl;
+	 }
 	}
-}
-
-
 }
 
 void cone(double raio, double altura, int camadasV, int camadasH, string nome){
@@ -339,9 +339,9 @@ int main (int argc , char **argv){
 				plano(atoi(argv[2]),argv[3]);
 			}
 			else if (strcmp(argv[1],"Cubo") == 0) {
-				cubo(atoi(argv[2]),atoi(argv[3]),atoi(argv[4]),argv[5]);
+				cubo(atof(argv[2]),atof(argv[3]),atof(argv[4]),atoi(argv[5]),atoi(argv[6]),atoi(argv[7]),argv[8]);
 			}
-			else if (strcmp(argv[1],"Sphere") == 0) {
+			else if (strcmp(argv[1],"Esfera") == 0) {
 				esfera(atoi(argv[2]), atoi(argv[3]), atoi(argv[4]),(argv[5]);
 			}
 			else if (strcmp(argv[1],"Cone") == 0) {

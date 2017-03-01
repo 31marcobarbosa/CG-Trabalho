@@ -19,6 +19,13 @@
 #include <Point.h>
 #include <Model.h>
 
+struct Ponto
+{
+	double x;
+	double y;
+	double z;
+};
+
 
 using namespace tinyxml2;
 using namespace std;
@@ -129,19 +136,69 @@ void keyboardspecial(int key, int a, int b) {
 
 }
 
+void menuVisiual(int op) 
+{
+	switch (op) {
+	case 1: glPolygonMode(GL_FRONT, GL_FILL); break;
+	case 2: glPolygonMode(GL_FRONT, GL_LINE); break;
+	case 3: glPolygonMode(GL_FRONT, GL_POINT); break;
+	}
+	glutPostRedisplay();
+}
 
+void lerficheiro(string ficheiro) {
+
+	string linha,token,delimiter = ",";
+	int pos;
+	double a,b,c;
+	Ponto ponto;
+
+	ifstream.file(ficheiro);
+	if (file.is_open()){
+
+		while(getline(ficheiro,linha)){
+
+			pos = linha.find(delimiter);
+			token = linha.substr(0,pos);
+			a = atof(token.c_str());
+			linha.erase(0,pos + delimiter.length());
+			p.x = a;
+
+			pos = linha.find(delimiter);
+			token = linha.substr(0,pos);
+			b = atof(token.c_str());
+			linha.erase(0,pos + delimiter.length());
+			p.y = b;
+
+			pos = linha.find(delimiter);
+			token = linha.substr(0, pos);
+			c = atof(token.c_str());
+			linha.erase(0, pos + delimiter.length());
+			p.z = c;
+
+			pontos.push_back(p);
+		}
+		file.close();			
+	}
+	else {
+		cout << "ERRO AO LER O FICHEIRO" << endl;
+	}
+
+}
+
+
+
+// Leitura do ficheiro XML
 void lerXML(string ficheiro) {
 	XMLDocument docxml;
 
 	if (!(docxml.LoadFile(ficheiro.c_str()))) {
 
-		XMLElement *root = docxml.RootElement();
-		// guarda em root o valor do 1º filho(scene)
-		XMLElement *elemento;
-		// elemento xml auxiliar que percorre o ficheiro
-		Transformation t = Transformation::Transformation();
-
-		Modelos(root,t);
+		for(XMLElement *elemento = root -> FirstChildElement();elemento =! NULL; elemento = elem -> NextSiblingElement()){
+			string fich = elemento -> Attribute("file");
+			cout << "Ficheiro: " << fich << " lido com sucesso " << endl;
+			lerficheiro(file);
+		}		
 	}
 	else {
 		cout << "Ficheiro XML não foi encontrado" << endl;
@@ -175,6 +232,14 @@ int main(int argc, char **argv) {
     glutIdleFunc(renderScene);
     glutSpecialFunc(keyboardspecial);
     glutKeyboardFunc(letrasKeyboard);
+
+    // Criação do Menu
+
+    glutCreateMenu(menu);
+	glutAddMenuEntry("GL_FILL", 1);
+	glutAddMenuEntry("GL_LINE", 2);
+	glutAddMenuEntry("GL_POINT", 3);
+	glutAttachMenu(GLUT_RIGHT_BUTTON);
 
 	// OpenGL settings
 
