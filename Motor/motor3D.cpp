@@ -217,7 +217,7 @@ int main(int argc, char **argv) {
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
     glutInitWindowPosition(100,100);
     glutInitWindowSize(800,800);
-    glutCreateWindow("Projeto de CG");
+    glutCreateWindow("Projeto_de_CG");
 
 
     if(argc > 1){
