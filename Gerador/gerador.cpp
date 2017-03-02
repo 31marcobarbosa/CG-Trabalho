@@ -43,13 +43,13 @@ void plano(int lado, string nome) {
 
 
 
-void cubo(float a, float b, float c, , int camV, int camH, int camL , string nome){
+void cubo(double a, double b, double c, , int camadas, int camadas, int camadas , string nome){
 
 	ofstream file(nome);
 	double x, y, z;
-	double espX = a / camL;
-	double espY = b / camH;
-	double espZ = c / camV;
+	double espX = a / camadas;
+	double espY = b / camadas;
+	double espZ = c / camadas;
   double xx, yy, zz;
 
 
@@ -67,10 +67,10 @@ void cubo(float a, float b, float c, , int camV, int camH, int camL , string nom
 
 
 // FRONTAL E TRASEIRA
-  for (i = 0 ; i < camH; i ++) {
+  for (i = 0 ; i < camadas; i ++) {
     yy = y + espH * i;
 
-	   for (j = 0 ; j < camV , j++) {
+	   for (j = 0 ; j < camadas , j++) {
       zz = z + espZ * j;
 
           	// PARTE DA FRENTE
@@ -110,10 +110,10 @@ void cubo(float a, float b, float c, , int camV, int camH, int camL , string nom
 
 
 //PARTE DE CIMA E BAIXO
-  for (i = 0; i < camL; i++) {
+  for (i = 0; i < camadas; i++) {
     xx = x + espX * i;
 
-    for (j=0; j < camV ; j ++){
+    for (j=0; j < camadas ; j ++){
       zz = z + espZ * i;
 
             // PARTE DE CIMA
@@ -146,16 +146,14 @@ void cubo(float a, float b, float c, , int camV, int camH, int camL , string nom
           		file << xx + espX << "," << -y << "," << zz + espZ << endl;
           	printf("%f %f %f\n", xx + espX, -y, zz);
           		file << xx + espX << "," << -y << "," << zz << endl;
-          	}
-          }
 
 
 // LADO DIREITO E ESQUERDO
 
-		 for (i = 0 ; i < camH ; i++) {
+		 for (i = 0 ; i < camadas ; i++) {
 			 yy = y + espY * i;
 
-			 	for (j = 0 ; j < camL ; j++) {
+			 	for (j = 0 ; j < camadas ; j++) {
 					xx = x + espX * j;
 
 	// LADO DIREITO
@@ -188,9 +186,12 @@ void cubo(float a, float b, float c, , int camV, int camH, int camL , string nom
 		file << xx + espX << "," << yy << "," << z << endl;
 	printf("%f %f %f\n", xx + espX, yy + espY, -z);
 		file << xx + espX << "," << yy + espX << "," << -z << endl;
-	 }
 	}
 }
+
+
+}
+
 
 void cone(double raio, double altura, int camadasV, int camadasH, string nome){
 
