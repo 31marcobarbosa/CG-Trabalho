@@ -8,16 +8,18 @@
 #define CONST 0.1f;
 
 #include <math.h>
-#include "tinyxml.h"
+#include "tinyxml2.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <fstream>
+#include <string>
 #include <iostream>
-#include <Type.h>
-#include <Transformation.h>
-#include <Point.h>
-#include <Model.h>
+#include <vector>
+//#include <Type.h>
+//#include <Transformation.h>
+//#include <Point.h>
+//#include <Model.h>
 
 struct Ponto
 {
@@ -38,7 +40,6 @@ float camX = 0, camY = 0, camZ = 0;
 int xinicio, yinicio , tracking = 0;
 int k = 5 , alpha = 0 , beta = 0;
 vector<Ponto> vertices; //vetor com os pontos lidos do ficheiro
-
 
 void changeSize(int w, int h) {
 
@@ -144,19 +145,19 @@ void menuVisiual(int op)
 	case 3: glPolygonMode(GL_FRONT, GL_POINT); break;
 	}
 	glutPostRedisplay();
-}
+} 
 
 void lerficheiro(string ficheiro) {
 
 	string linha,token,delimiter = ",";
 	int pos;
 	double a,b,c;
-	Ponto ponto;
+	Ponto p;
 
-	ifstream.file(ficheiro);
+	ifstream file(ficheiro);
 	if (file.is_open()){
 
-		while(getline(ficheiro,linha)){
+		while(getline(file,linha)){
 
 			pos = linha.find(delimiter);
 			token = linha.substr(0,pos);
@@ -176,7 +177,8 @@ void lerficheiro(string ficheiro) {
 			linha.erase(0, pos + delimiter.length());
 			p.z = c;
 
-			pontos.push_back(p);
+			cout << p.x << " " << p.y << " " << p.z << endl;
+			vertices.push_back(p);
 		}
 		file.close();			
 	}
@@ -193,11 +195,11 @@ void lerXML(string ficheiro) {
 	XMLDocument docxml;
 
 	if (!(docxml.LoadFile(ficheiro.c_str()))) {
-
-		for(XMLElement *elemento = root -> FirstChildElement();elemento =! NULL; elemento = elem -> NextSiblingElement()){
+		XMLElement* root = docxml.FirstChildElement();
+		for(XMLElement *elemento = root -> FirstChildElement();elemento != NULL; elemento = elemento -> NextSiblingElement()){
 			string fich = elemento -> Attribute("file");
 			cout << "Ficheiro: " << fich << " lido com sucesso " << endl;
-			lerficheiro(file);
+			lerficheiro(fich);
 		}		
 	}
 	else {
@@ -217,7 +219,7 @@ int main(int argc, char **argv) {
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
     glutInitWindowPosition(100,100);
     glutInitWindowSize(800,800);
-    glutCreateWindow("Projeto_de_CG");
+    glutCreateWindow("Projeto_de_CG"); 
 
 
     if(argc > 1){
@@ -248,7 +250,7 @@ int main(int argc, char **argv) {
 	glClearColor(0.0f,0.0f,0.0f,0.0f);
 
 	// enter GLUT's main loop
-	glutMainLoop();
+	glutMainLoop(); 
 
 	return 1;
 }

@@ -5,7 +5,7 @@
 
 #include <math.h>
 #include <stdio.h>
-#include <string>
+#include <string.h>
 #include <iostream>
 #include <fstream>
 #include <GL/glut.h>

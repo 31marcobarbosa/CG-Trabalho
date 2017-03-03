@@ -43,7 +43,7 @@ void plano(int lado, string nome) {
 
 
 
-void cubo(double a, double b, double c, , int camadas, int camadas, int camadas , string nome){
+void cubo(double a, double b, double c, int camadas, string nome){
 
 	ofstream file(nome);
 	double x, y, z;
@@ -56,21 +56,21 @@ void cubo(double a, double b, double c, , int camadas, int camadas, int camadas 
 	int i,j;
 
 
-	if ((a % 2) == 0) x = a/2;
+	if (((int)a % 2) == 0) x = a/2;
 	else x = a/2 + 0.5;
 
-	if ((b % 2) == 0) y = b/2;
+	if (((int)b % 2) == 0) y = b/2;
 	else y = b/2 + 0.5;
 
-	if ((c % 2) == 0) z = c/2;
+	if (((int)c % 2) == 0) z = c/2;
 	else z = c/2 + 0.5;
 
 
 // FRONTAL E TRASEIRA
   for (i = 0 ; i < camadas; i ++) {
-    yy = y + espH * i;
+    yy = y + espY * i;
 
-	   for (j = 0 ; j < camadas , j++) {
+	   for (j = 0 ; j < camadas ; j++) {
       zz = z + espZ * j;
 
           	// PARTE DA FRENTE
@@ -147,7 +147,8 @@ void cubo(double a, double b, double c, , int camadas, int camadas, int camadas 
           	printf("%f %f %f\n", xx + espX, -y, zz);
           		file << xx + espX << "," << -y << "," << zz << endl;
 
-
+}
+}
 // LADO DIREITO E ESQUERDO
 
 		 for (i = 0 ; i < camadas ; i++) {
@@ -191,6 +192,7 @@ void cubo(double a, double b, double c, , int camadas, int camadas, int camadas 
 
 
 }
+
 
 
 void cone(double raio, double altura, int camadasV, int camadasH, string nome){
@@ -286,7 +288,7 @@ void esfera(double raio, int camadasV, int camadasH, string nome) {
 		double espV = 2 * M_PI / camadasV;
 		double espH = M_PI / camadasH;
 
-		ofstream file(nome):
+		ofstream file(nome);
 
 		float x1, y1, z1, x2, y2, z2, x3, y3, z3, x4, y4, z4;
 		int a, aux = 0;
@@ -340,10 +342,10 @@ int main (int argc , char **argv){
 				plano(atoi(argv[2]),argv[3]);
 			}
 			else if (strcmp(argv[1],"Cubo") == 0) {
-				cubo(atof(argv[2]),atof(argv[3]),atof(argv[4]),atoi(argv[5]),atoi(argv[6]),atoi(argv[7]),argv[8]);
+				cubo(atof(argv[2]),atof(argv[3]),atof(argv[4]),atoi(argv[5]),argv[6]);
 			}
 			else if (strcmp(argv[1],"Esfera") == 0) {
-				esfera(atoi(argv[2]), atoi(argv[3]), atoi(argv[4]),(argv[5]);
+				esfera(atoi(argv[2]), atoi(argv[3]), atoi(argv[4]),argv[5]);
 			}
 			else if (strcmp(argv[1],"Cone") == 0) {
 				cone(atoi(argv[2]), atoi(argv[3]), atoi(argv[4]), atoi(argv[5]), argv[6]);
@@ -354,7 +356,7 @@ int main (int argc , char **argv){
 
 	}
 	else {
-		printf("ARGUMENTOS INSUFICIENTES\n", );
+		printf("ARGUMENTOS INSUFICIENTES\n");
 	}
 
 	return 0;
