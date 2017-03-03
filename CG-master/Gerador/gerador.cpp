@@ -207,7 +207,7 @@ void cone(double raio, double altura, int camadasV, int camadasH, string nome){
 	double x,y,z;
 	double xx,yy,zz;
 	double xxx,yyy,zzz;
-	double x1, x2, x3, y1, y2, z1, z2, z3, x4, z4;
+	double x1, x2, x3, y1, y2, y3, z1, z2, z3, x4, z4;
 	double beta, betaprox;
 	double dif;
 	double raioNovo;
@@ -217,7 +217,7 @@ void cone(double raio, double altura, int camadasV, int camadasH, string nome){
 	for (a = 0; a < camadasV; a ++){
 
 		beta = espV*a; //angulo da camada;
-		betaprox = espV * (a+1) //angulo da prox camada
+		betaprox = espV * (a+1); //angulo da prox camada
 
 		//coordenadas da camada atual e da próxima
 		xx = raio*sin(beta);
@@ -255,11 +255,11 @@ void cone(double raio, double altura, int camadasV, int camadasH, string nome){
 			z2 = raio * cos(betaprox);
 
 			x3 = raioNovo *sin(beta);
-			y2 = y + espa;
+			y2 = y + espH;
 			z3 = raioNovo * cos(beta);
 
 			x4 = raioNovo * sin(betaprox);
-			y2 = y + espa;
+			y2 = y + espH;
 			z4 = raioNovo * cos(betaprox);
 
 			printf("%f, %f, %f\n", x1, y1, z1); file << x1 << "," << y1 << "," << z1 << endl;
@@ -272,13 +272,13 @@ void cone(double raio, double altura, int camadasV, int camadasH, string nome){
 		}
 
 		raio = raio - dif;//atualiza o raio
-		y = y + espa; //passa para a proxima camada
+		y = y + espH; //passa para a proxima camada
 	}
 		y = alt / 2; // a altura maxima da coordenada do y
 
-		for (i = 0; i <= camadasV; i++){
-		beta = espV*i;//angulo atual
-		betaprox = espV * (j + 1);//angulo na proxima camada
+		for (a = 0; a <= camadasV; a++){
+		beta = espV*a;//angulo atual
+		betaprox = espV * (b + 1);//angulo na proxima camada
 
 		x1 = raioNovo *sin(beta);
 		z1 = raioNovo * cos(beta);
@@ -294,6 +294,7 @@ void cone(double raio, double altura, int camadasV, int camadasH, string nome){
 
 	file.close();
 }
+
 
 void esfera(double raio, int camadasV, int camadasH, string nome) {
 
