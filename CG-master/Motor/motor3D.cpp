@@ -97,7 +97,7 @@ void renderScene(void) {
 
 
 
-void letrasKeyboard(unsignedchar t , int x , int y) {
+void letrasKeyboard(unsigned char t , int x , int y) {
 
 	switch (t) {
 		case 'a':
@@ -237,7 +237,7 @@ int main(int argc, char **argv) {
 
     // Criação do Menu
 
-    glutCreateMenu(menu);
+    glutCreateMenu(menuVisiual);
 	glutAddMenuEntry("GL_FILL", 1);
 	glutAddMenuEntry("GL_LINE", 2);
 	glutAddMenuEntry("GL_POINT", 3);
