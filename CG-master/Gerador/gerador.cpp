@@ -43,154 +43,123 @@ void plano(int lado, string nome) {
 
 
 
-void cubo(double a, double b, double c, int camadas, string nome){
-
+void cubo(double comp, double larg, double alt, int camadas, string nome){
+	double x, y, z, xx, yy, zz; //variaveis que variam ao longo dos eixos
+	double espc, espl, espal; //espaçamento entre as camadas de comprimento, largura e 
+	int i, j; //variáveis que serão usadas nos ciclos
 	ofstream file(nome);
-	double x, y, z;
-	double espX = a / camadas;
-	double espY = b / camadas;
-	double espZ = c / camadas;
-  double xx, yy, zz;
 
+	//Espaçamentos
+	espc = comp / camadas; 
+	espl = larg / camadas; 
+	espal = alt / camadas; 
 
-	int i,j;
+	/*
+	 * FACES DE CIMA E DE BAIXO
+	 */
+	y = alt / 2; yy = -y; //y é usado para indicar a altura da face de cima e yy é a altura a que a base de baixo se encontrará
+	z = larg / 2;		 //a variável z assume metade do valor da largura, ficando o poligono centrado no eixo do z
 
+	for (i = 0; i < camadas; i++){
+		x = -(comp / 2);  //a variável x assume metade do valor do comprimento, ficando o poligono centrado no eixo do x
+		xx = x + espc;   //incrementa também o xx, para andar sempre à frente do x, para fazer o triângulo
+ 		zz = z - espl;  //decrementa o z, pois temos o z com o seu valor maximo positivo e para o plano ficar centrado temos que ir tirando o espaçamento entre as camadas de largura
+		for (j = 0; j < camadas; j++){
 
-	if (((int)a % 2) == 0) x = a/2;
-	else x = a/2 + 0.5;
+			
+			printf("%f %f %f\n", x, y, z); file <<  x << "," << y << "," << z << endl;
+			printf("%f %f %f\n", xx, y, z); file << xx << "," << y << "," << z << endl;
+			printf("%f %f %f\n", x, y, zz); file << x << "," << y << "," << zz << endl;
+			
+			printf("%f %f %f\n", xx, y, z); file << xx << "," << y << "," << z << endl;
+			printf("%f %f %f\n", xx, y, zz); file << xx << "," << y << "," << zz << endl;
+			printf("%f %f %f\n", x, y, zz); file << x << "," << y << "," << zz << endl;
 
-	if (((int)b % 2) == 0) y = b/2;
-	else y = b/2 + 0.5;
+			printf("%f %f %f\n", x, yy, z); file << x << "," << yy << "," << z << endl;
+			printf("%f %f %f\n", x, yy, zz); file << x << "," << yy << "," << zz << endl;
+			printf("%f %f %f\n", xx, yy, z); file << xx << "," << yy << "," << z << endl;
+			
+			printf("%f %f %f\n", xx, yy, z); file << xx << "," << yy << "," << z << endl;
+			printf("%f %f %f\n", x, yy, zz); file << x << "," << yy << "," << zz << endl;
+			printf("%f %f %f\n", xx, yy, zz); file << xx << "," << yy << "," << zz << endl;
 
-	if (((int)c % 2) == 0) z = c/2;
-	else z = c/2 + 0.5;
-
-
-// FRONTAL E TRASEIRA
-  for (i = 0 ; i < camadas; i ++) {
-    yy = y + espY * i;
-
-	   for (j = 0 ; j < camadas ; j++) {
-      zz = z + espZ * j;
-
-          	// PARTE DA FRENTE
-          	printf("%f %f %f\n", x, yy, zz);
-          		file << x << "," << yy << "," << zz << endl;
-          	printf("%f %f %f\n", x, yy + espY, zz + espZ);
-          		file << x << "," << yy + espY << "," << zz + espZ << endl;
-          	printf("%f %f %f\n", x, yy + espY, zz);
-          		file << x << "," << y << "," << z << endl;
-
-          	printf("%f %f %f\n", x, yy, zz);
-          		file << x << "," << yy << "," << zz << endl;
-          	printf("%f %f %f\n", x, yy, zz + espZ);
-          		file << x << "," << yy << "," << zz + espZ << endl;
-          	printf("%f %f %f\n", x, yy + espY, zz + espZ);
-          		file << x << "," << yy + espY << "," << zz + espZ << endl;
-
-
-          	//PARTE DE TRÁS
-          	printf("%f %f %f\n", -x, yy, zz);
-          		file << -x << "," << yy << "," << zz << endl;
-          	printf("%f %f %f\n", -x, yy + espY, zz);
-          		file << -x << "," << yy + espY << "," << zz << endl;
-          	printf("%f %f %f\n", -x, yy + espY, zz + espZ);
-          		file << -x << "," << yy + espY << "," << zz + espZ << endl;
-
-          	printf("%f %f %f\n", -x, yy, zz);
-          		file << -x << "," << yy << "," << zz << endl;
-          	printf("%f %f %f\n", x, y, -z);
-          		file << -x << "," << yy + espY << "," << zz + espZ << endl;
-          	printf("%f %f %f\n", x, -y, -z);
-          		file << -x << "," << yy << "," << zz + espZ << endl;
-
-          }
-  }
-
-
-
-//PARTE DE CIMA E BAIXO
-  for (i = 0; i < camadas; i++) {
-    xx = x + espX * i;
-
-    for (j=0; j < camadas ; j ++){
-      zz = z + espZ * i;
-
-            // PARTE DE CIMA
-          	printf("%f %f %f\n", xx, y, zz);
-          		file << xx << "," << y << "," << zz << endl;
-          	printf("%f %f %f\n", xx + espX, y, zz);
-          		file << xx + espX << "," << y << "," << zz << endl;
-          	printf("%f %f %f\n", xx , y, zz + espZ);
-          		file << xx << "," << y << "," << zz + espZ << endl;
-
-          	printf("%f %f %f\n", xx, y, zz + espZ);
-          		file << xx << "," << y << "," << zz + espZ << endl;
-          	printf("%f %f %f\n", xx + espX, y, zz);
-          		file << xx + espX << "," << y << "," << zz << endl;
-          	printf("%f %f %f\n", -x, y, z);
-          		file << xx + espX << "," << y << "," << zz + espZ << endl;
-
-
-          	//PARTE DE BAIXO
-          	printf("%f %f %f\n", xx, -y, zz);
-          		file << xx << "," << -y << "," << zz << endl;
-          	printf("%f %f %f\n", xx, -y, z + espZ);
-          		file << xx << "," << -y << "," << zz + espZ << endl;
-          	printf("%f %f %f\n", xx + espX, -y, zz);
-          		file << xx + espX << "," << -y << "," << zz << endl;
-
-          	printf("%f %f %f\n", xx, -y, zz + espZ);
-          		file << xx << "," << -y << "," << zz + espZ << endl;
-          	printf("%f %f %f\n", xx + espX, -y, zz + espZ);
-          		file << xx + espX << "," << -y << "," << zz + espZ << endl;
-          	printf("%f %f %f\n", xx + espX, -y, zz);
-          		file << xx + espX << "," << -y << "," << zz << endl;
-
-}
-}
-// LADO DIREITO E ESQUERDO
-
-		 for (i = 0 ; i < camadas ; i++) {
-			 yy = y + espY * i;
-
-			 	for (j = 0 ; j < camadas ; j++) {
-					xx = x + espX * j;
-
-	// LADO DIREITO
-	printf("%f %f %f\n", xx, yy, z);
-		file << xx << "," << yy << "," << z << endl;
-	printf("%f %f %f\n", xx, yy + espY, z);
-		file << xx << "," << yy + espY << "," << z << endl;
-	printf("%f %f %f\n", xx + espX, yy, z);
-		file << xx + espX << "," << yy << "," << z << endl;
-
-	printf("%f %f %f\n", xx, yy + espY, z);
-		file << xx << "," << yy + espY << "," << z << endl;
-	printf("%f %f %f\n", xx + espX, yy + espY, z);
-		file << xx + espX << "," << yy + espY << "," << z << endl;
-	printf("%f %f %f\n", -x, y, z);
-		file << xx + espX << "," << yy << "," << z << endl;
-
-
-	//LADO ESQUERDO
-	printf("%f %f %f\n", xx, yy, -z);
-		file << xx << "," << yy << "," << -z << endl;
-	printf("%f %f %f\n", xx + espX, yy, -z);
-		file << xx + espX << "," << yy << "," << -z << endl;
-	printf("%f %f %f\n", xx, yy + espY, -z);
-		file << xx << "," << yy + espY << "," << z << endl;
-
-	printf("%f %f %f\n", xx, yy + espY, -z);
-		file << xx << "," << yy + espY << "," << z << endl;
-	printf("%f %f %f\n", xx + espX, yy, -z);
-		file << xx + espX << "," << yy << "," << z << endl;
-	printf("%f %f %f\n", xx + espX, yy + espY, -z);
-		file << xx + espX << "," << yy + espX << "," << -z << endl;
+			x = x + espc;   //incrementa o x, sendo o x assumindo o valor na proxima camada
+			xx = xx + espc;//incrementa também o xx, para andar sempre à frente do x, para fazer o triângulo
+		}
+		z = z - espl;// z vai decrementando sempre o valor do espaçamento lateral, para ficar com as camadas certas na largura
 	}
-}
 
 
+	
+	x = -(comp / 2); // face da esqueda
+	xx = -x; // face da direita
+	y = -(alt / 2);//a altura onde se iniciam as faces laterais
+
+	for (i = 0; i < camadas; i++){
+		z = larg / 2;    //a variável z assume metade do valor da largura, ficando o poligono centrado no eixo do z
+		zz = z - espl;  //decrementa o z, pois temos o z com o seu valor maximo positivo e para o plano ficar centrado temos que ir tirando o espaçamento entre as camadas de largura
+		yy = y + espal;//para o poligono ficar centrado, começamos com y negativo, sendo o seu valor metade da altura
+
+		for (j = 0; j < camadas; j++){
+			
+			printf("%f %f %f\n", x, y, z); file << x << "," << y << "," << z << endl;
+			printf("%f %f %f\n", x, yy, z); file << x << "," << yy << "," << z << endl;
+			printf("%f %f %f\n", x, yy, zz); file << x << "," << yy << "," << zz << endl;
+
+			printf("%f %f %f\n", x, y, zz); file << x << "," << y << "," << zz << endl;
+			printf("%f %f %f\n", x, y, z); file << x << "," << y << "," << z << endl;
+			printf("%f %f %f\n", x, yy, zz); file << x << "," << yy << "," << zz << endl;
+
+			
+			printf("%f %f %f\n", xx, y, z); file << xx << "," << y << "," << z << endl;
+			printf("%f %f %f\n", xx, y, zz); file << xx << "," << y << "," << zz << endl;
+			printf("%f %f %f\n", xx, yy, zz); file << xx << "," << yy << "," << zz << endl;
+
+			printf("%f %f %f\n", xx, y, z); file << xx << "," << y << "," << z << endl;
+			printf("%f %f %f\n", xx, yy, zz); file << xx << "," << yy << "," << zz << endl;
+			printf("%f %f %f\n", xx, yy, z); file << xx << "," << yy << "," << z << endl;
+
+			z = z - espl;   // z vai decrementando sempre o valor do espaçamento lateral, para ficar com as camadas certas na largura
+			zz = zz - espl;//decrementa o z, pois temos o z com o seu valor maximo positivo e para o plano ficar centrado temos que ir tirando o espaçamento entre as camadas de largura
+		}
+		y = y + espal;//incrementar na altura o valor do espaçamento, para obter nessa altura as camadas indicadas	
+	}
+
+	
+
+	z = larg / 2; //Face da frente
+	zz = -z; // Face trás
+	y = -(alt / 2); //altura que se inicia as camadas frente e trás
+
+	for (i = 0; i < camadas; i++){
+		x = -(comp / 2);  //valor da coordenada x, onde se começam a desenhar os triângulos
+		xx = x + espc;   //valor do x na proxima camada de comprimento
+		yy = y + espal; //valor do y na proxima camada de altura
+
+		for (j = 0; j < camadas; j++){
+			
+			printf("%f %f %f\n", x, y, z); file << x << "," << y << "," << z << endl;
+			printf("%f %f %f\n", xx, y, z); file << xx << "," << y << "," << z << endl;
+			printf("%f %f %f\n", x, yy, z); file << x << "," << yy << "," << z << endl;
+
+			printf("%f %f %f\n", xx, y, z); file << xx << "," << y << "," << z << endl;
+			printf("%f %f %f\n", xx, yy, z); file << xx << "," << yy << "," << z << endl;
+			printf("%f %f %f\n", x, yy, z); file << x << "," << yy << "," << z << endl;
+
+			printf("%f %f %f\n", x, y, zz); file << x << "," << y << "," << zz << endl;
+			printf("%f %f %f\n", x, yy, zz); file << x << "," << yy << "," << zz << endl;
+			printf("%f %f %f\n", xx, y, zz); file << xx << "," << y << "," << zz << endl;
+
+			printf("%f %f %f\n", xx, y, zz); file << xx << "," << y << "," << zz << endl;
+			printf("%f %f %f\n", x, yy, zz); file << x << "," << yy << "," << zz << endl;
+			printf("%f %f %f\n", xx, yy, zz); file << xx << "," << yy << "," << zz << endl;
+
+			x = x + espc;    //x vai incrementando o valor do espaçamento do comprimento, para ficar com as camadas indicadas
+			xx = xx + espc; //xx também incrementa o valor do espaçamento do comprimento, para ficar sempre na proxima camada no eixo do x	
+		}
+		y = y + espal; //incrementar na altura o valor do espaçamento, para obter nessa altura as camadas indicadas	
+	}
+	file.close();
 }
 
 
