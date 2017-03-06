@@ -298,6 +298,78 @@ void esfera(float raio, int camadasV, int camadasH, string nome) {
 	
 }
 
+void cilindro(float raio, float altura, int camadasH, int camadasV,string nome){
+
+	ofstream file(nome);
+	float espV = 2 * M_PI / camadasV;
+	float espH = altura / camadasH;
+	float ang = 0;
+	float ang1 = espV;
+	altura =  -(altura/2);
+	int i,j;
+	float x1,x2,z1,z2,x3,z3;
+
+
+
+	//BASES
+	for(int i=0;i<=camadasV;i++){
+		x1 = raio*sin(ang);
+		x2 = raio*sin(ang1);
+		z1 = raio*cos(ang);
+		z2 = raio*cos(ang1);
+
+		printf("%f %f %f\n",x1,altura,z1);
+			file << x1 << "," << altura << "," << z1 << endl;
+		printf("0 %f 0\n",altura);
+			file << 0 << "," << altura << "," << 0 << endl;
+		printf("%f %f %f\n",x2,altura,z2);
+			file << x2 << "," << altura << "," << z2 << endl;
+
+
+		printf("%f %f %f\n",x1,-altura,z1);
+			file << x1 << "," << -altura << "," << z1 << endl;
+		printf("%f %f %f\n",x2,-altura,z2);
+			file << x2 << "," << -altura << "," << z2 << endl;
+		printf("0 %f 0\n",-altura);
+			file << 0 << "," << -altura << "," << 0 << endl;
+
+	
+			ang = espV*(i+1);
+			ang1 = espV*(i+2);
+
+	}
+
+	for(i=0; i < camadasH ; i++){
+		for(j=0; j < camadasV; j++){
+
+		  ang += espV;
+
+		  x1 = raio*sin(ang);
+		  x2 = raio*sin(ang1);
+		  x3 = raio*sin(ang + ang1);
+		  z1 = raio*cos(ang);
+		  z2 = raio*cos(ang1);
+		  z3 = raio*cos(ang + ang1);
+
+		  printf("%f %f %f\n",x1,altura,z1);
+		  	file << x1 << "," << altura << "," << z1 << endl;
+		  printf("%f %f %f\n",x3,altura,z3);
+		  	file << x3 << "," << altura << "," << z3 << endl;
+		  printf("%f %f %f\n",x1,altura+espH,z1);
+		  	file << x1 << "," << altura+espH  << "," << z1 << endl;
+
+
+		  printf("%f %f %f\n",x3,altura,z3);
+		  	file << x3 << "," << altura << "," << z3 << endl;
+		  printf("%f %f %f\n",x3,altura+espH,z3);
+		  	file << x3 << "," << altura+espH << "," << z3 << endl;
+		  printf("%f %f %f\n",x1,altura+espH,z1);
+		  	file << x1 << "," << altura+espH  << "," << z1 << endl;
+		}
+		altura = altura + espH;
+	}
+
+}
 void menu() {
 
 	cout <<" ---------------------> MENU DE AJUDA <---------------------"<< endl;
@@ -378,6 +450,9 @@ int main (int argc , char **argv){
 			}
 			else if (strcmp(argv[1],"Cone") == 0) {
 				cone(atoi(argv[2]), atoi(argv[3]), atoi(argv[4]), atoi(argv[5]), argv[6]);
+			}
+			else if (strcmp(argv[1],"Cilindro") == 0) {
+				cilindro(atoi(argv[2]), atoi(argv[3]), atoi(argv[4]), atoi(argv[5]), argv[6]);
 			}
 			else {
 				printf("FIGURA IMPOSSÍVEL\n");
