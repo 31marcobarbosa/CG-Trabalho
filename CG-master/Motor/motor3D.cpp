@@ -5,7 +5,7 @@
 #endif
 
 
-#define CONST 0.1f;
+#define CONST 3.0;
 
 #include <math.h>
 #include "tinyxml2.h"
@@ -34,12 +34,15 @@ using namespace std;
 
 
 float angle = 0.0f;
+float angle2 = 0.0f;
 float size;
 float xr = 0, yr = 0, zr = 0;
 float camX = 0, camY = 0, camZ = 0;
 int xinicio, yinicio , tracking = 0;
 int k = 5 , alpha = 0 , beta = 0;
 vector<Ponto> vertices; //vetor com os pontos lidos do ficheiro
+int linha = GL_LINE;
+
 
 void changeSize(int w, int h) {
 
@@ -75,16 +78,17 @@ void renderScene(void) {
 
 	// set the camera
 	glLoadIdentity();
-	gluLookAt(camX,camY,camZ,
+	gluLookAt(5.0,5.0,5.0,
 		      0.0,0.0,0.0,
 			  0.0f,1.0f,0.0f);
-    angle +=0.01;
+   
 
 	// put drawing instructions here
-
-
+    glPolygonMode(GL_FRONT_AND_BACK,linha);
+    glRotatef(angle,0,1,0);
+    glRotatef(angle2,0,0,1);
 	glBegin(GL_TRIANGLES);
-	glColor3f(0.0f, 1.0f, 1.0f);
+	glColor3f(1,1,1);
 
 	for (int i = 0; i < vertices.size(); i++)
 		glVertex3f(vertices[i].x, vertices[i].y, vertices[i].z);
@@ -118,6 +122,12 @@ void letrasKeyboard(unsigned char t , int x , int y) {
 		case 'q':
 		case 'Q': zr += CONST;
 		 	break;
+		case 'p': linha = GL_POINT;
+			break;
+		case 'l': linha = GL_LINE;
+	   	    break;
+		case 'o': linha = GL_FILL;
+			break;
 	}
 	glutPostRedisplay();
 
@@ -128,24 +138,20 @@ void letrasKeyboard(unsigned char t , int x , int y) {
 void keyboardspecial(int key, int a, int b) {
 	a = b = 0;
 	switch (key){
-		case(GLUT_KEY_LEFT) : angle -= CONST;
+		case GLUT_KEY_LEFT : angle -= CONST;
 			break;
-		case(GLUT_KEY_RIGHT): angle += CONST;
+		case GLUT_KEY_RIGHT: angle += CONST;
+			break;
+		case GLUT_KEY_UP : angle2 -= CONST;
+			break;
+		case GLUT_KEY_DOWN: angle2 += CONST;
 			break;
 	}
 	glutPostRedisplay();
 
 }
 
-void menuVisiual(int op) 
-{
-	switch (op) {
-	case 1: glPolygonMode(GL_FRONT, GL_FILL); break;
-	case 2: glPolygonMode(GL_FRONT, GL_LINE); break;
-	case 3: glPolygonMode(GL_FRONT, GL_POINT); break;
-	}
-	glutPostRedisplay();
-} 
+
 
 void lerficheiro(string ficheiro) {
 
@@ -177,7 +183,7 @@ void lerficheiro(string ficheiro) {
 			linha.erase(0, pos + delimiter.length());
 			p.z = c;
 
-			cout << p.x << " " << p.y << " " << p.z << endl;
+			//cout << p.x << " " << p.y << " " << p.z << endl;
 			vertices.push_back(p);
 		}
 		file.close();			
@@ -185,6 +191,7 @@ void lerficheiro(string ficheiro) {
 	else {
 		cout << "ERRO AO LER O FICHEIRO" << endl;
 	}
+
 
 }
 
@@ -213,6 +220,10 @@ void lerXML(string ficheiro) {
 
 int main(int argc, char **argv) {
 
+    if(argc > 1){
+		lerXML(argv[1]);
+	}
+
 	// put GLUT init here
 
     glutInit(&argc, argv);
@@ -222,33 +233,18 @@ int main(int argc, char **argv) {
     glutCreateWindow("Projeto_de_CG"); 
 
 
-    if(argc > 1){
-		lerXML(argv[1]);
-	}
-
-
 	// put callback registration here
 
     glutDisplayFunc(renderScene);
     glutReshapeFunc(changeSize);
-    glutIdleFunc(renderScene);
     glutSpecialFunc(keyboardspecial);
     glutKeyboardFunc(letrasKeyboard);
-
-    // Criação do Menu
-
-    glutCreateMenu(menuVisiual);
-	glutAddMenuEntry("GL_FILL", 1);
-	glutAddMenuEntry("GL_LINE", 2);
-	glutAddMenuEntry("GL_POINT", 3);
-	glutAttachMenu(GLUT_RIGHT_BUTTON);
-
+    
 	// OpenGL settings
 
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
-	glClearColor(0.0f,0.0f,0.0f,0.0f);
-
+	
 	// enter GLUT's main loop
 	glutMainLoop(); 
 

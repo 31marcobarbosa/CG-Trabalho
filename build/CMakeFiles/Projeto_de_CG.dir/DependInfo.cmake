@@ -5,7 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/marco/Desktop/CG/projeto/CG-master/Motor/motor3D.cpp" "/home/marco/Desktop/CG/projeto/build/CMakeFiles/Projeto_de_CG.dir/motor3D.cpp.o"
-  "/home/marco/Desktop/CG/projeto/CG-master/Motor/tinyxml.cpp" "/home/marco/Desktop/CG/projeto/build/CMakeFiles/Projeto_de_CG.dir/tinyxml.cpp.o"
+  "/home/marco/Desktop/CG/projeto/CG-master/Motor/tinyxml2.cpp" "/home/marco/Desktop/CG/projeto/build/CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

@@ -150,32 +150,32 @@ motor3D.cpp.s:
 	$(MAKE) -f CMakeFiles/Projeto_de_CG.dir/build.make CMakeFiles/Projeto_de_CG.dir/motor3D.cpp.s
 .PHONY : motor3D.cpp.s
 
-tinyxml.o: tinyxml.cpp.o
+tinyxml2.o: tinyxml2.cpp.o
 
-.PHONY : tinyxml.o
+.PHONY : tinyxml2.o
 
 # target to build an object file
-tinyxml.cpp.o:
-	$(MAKE) -f CMakeFiles/Projeto_de_CG.dir/build.make CMakeFiles/Projeto_de_CG.dir/tinyxml.cpp.o
-.PHONY : tinyxml.cpp.o
+tinyxml2.cpp.o:
+	$(MAKE) -f CMakeFiles/Projeto_de_CG.dir/build.make CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.o
+.PHONY : tinyxml2.cpp.o
 
-tinyxml.i: tinyxml.cpp.i
+tinyxml2.i: tinyxml2.cpp.i
 
-.PHONY : tinyxml.i
+.PHONY : tinyxml2.i
 
 # target to preprocess a source file
-tinyxml.cpp.i:
-	$(MAKE) -f CMakeFiles/Projeto_de_CG.dir/build.make CMakeFiles/Projeto_de_CG.dir/tinyxml.cpp.i
-.PHONY : tinyxml.cpp.i
+tinyxml2.cpp.i:
+	$(MAKE) -f CMakeFiles/Projeto_de_CG.dir/build.make CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.i
+.PHONY : tinyxml2.cpp.i
 
-tinyxml.s: tinyxml.cpp.s
+tinyxml2.s: tinyxml2.cpp.s
 
-.PHONY : tinyxml.s
+.PHONY : tinyxml2.s
 
 # target to generate assembly for a file
-tinyxml.cpp.s:
-	$(MAKE) -f CMakeFiles/Projeto_de_CG.dir/build.make CMakeFiles/Projeto_de_CG.dir/tinyxml.cpp.s
-.PHONY : tinyxml.cpp.s
+tinyxml2.cpp.s:
+	$(MAKE) -f CMakeFiles/Projeto_de_CG.dir/build.make CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.s
+.PHONY : tinyxml2.cpp.s
 
 # Help Target
 help:
@@ -189,9 +189,9 @@ help:
 	@echo "... motor3D.o"
 	@echo "... motor3D.i"
 	@echo "... motor3D.s"
-	@echo "... tinyxml.o"
-	@echo "... tinyxml.i"
-	@echo "... tinyxml.s"
+	@echo "... tinyxml2.o"
+	@echo "... tinyxml2.i"
+	@echo "... tinyxml2.s"
 .PHONY : help
 
 

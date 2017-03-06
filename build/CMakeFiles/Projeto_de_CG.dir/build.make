@@ -81,40 +81,40 @@ CMakeFiles/Projeto_de_CG.dir/motor3D.cpp.o.provides: CMakeFiles/Projeto_de_CG.di
 CMakeFiles/Projeto_de_CG.dir/motor3D.cpp.o.provides.build: CMakeFiles/Projeto_de_CG.dir/motor3D.cpp.o
 
 
-CMakeFiles/Projeto_de_CG.dir/tinyxml.cpp.o: CMakeFiles/Projeto_de_CG.dir/flags.make
-CMakeFiles/Projeto_de_CG.dir/tinyxml.cpp.o: /home/marco/Desktop/CG/projeto/CG-master/Motor/tinyxml.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/marco/Desktop/CG/projeto/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Projeto_de_CG.dir/tinyxml.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Projeto_de_CG.dir/tinyxml.cpp.o -c /home/marco/Desktop/CG/projeto/CG-master/Motor/tinyxml.cpp
+CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.o: CMakeFiles/Projeto_de_CG.dir/flags.make
+CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.o: /home/marco/Desktop/CG/projeto/CG-master/Motor/tinyxml2.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/marco/Desktop/CG/projeto/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.o -c /home/marco/Desktop/CG/projeto/CG-master/Motor/tinyxml2.cpp
 
-CMakeFiles/Projeto_de_CG.dir/tinyxml.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Projeto_de_CG.dir/tinyxml.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/marco/Desktop/CG/projeto/CG-master/Motor/tinyxml.cpp > CMakeFiles/Projeto_de_CG.dir/tinyxml.cpp.i
+CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/marco/Desktop/CG/projeto/CG-master/Motor/tinyxml2.cpp > CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.i
 
-CMakeFiles/Projeto_de_CG.dir/tinyxml.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Projeto_de_CG.dir/tinyxml.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/marco/Desktop/CG/projeto/CG-master/Motor/tinyxml.cpp -o CMakeFiles/Projeto_de_CG.dir/tinyxml.cpp.s
+CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/marco/Desktop/CG/projeto/CG-master/Motor/tinyxml2.cpp -o CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.s
 
-CMakeFiles/Projeto_de_CG.dir/tinyxml.cpp.o.requires:
+CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.o.requires:
 
-.PHONY : CMakeFiles/Projeto_de_CG.dir/tinyxml.cpp.o.requires
+.PHONY : CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.o.requires
 
-CMakeFiles/Projeto_de_CG.dir/tinyxml.cpp.o.provides: CMakeFiles/Projeto_de_CG.dir/tinyxml.cpp.o.requires
-	$(MAKE) -f CMakeFiles/Projeto_de_CG.dir/build.make CMakeFiles/Projeto_de_CG.dir/tinyxml.cpp.o.provides.build
-.PHONY : CMakeFiles/Projeto_de_CG.dir/tinyxml.cpp.o.provides
+CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.o.provides: CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Projeto_de_CG.dir/build.make CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.o.provides.build
+.PHONY : CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.o.provides
 
-CMakeFiles/Projeto_de_CG.dir/tinyxml.cpp.o.provides.build: CMakeFiles/Projeto_de_CG.dir/tinyxml.cpp.o
+CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.o.provides.build: CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.o
 
 
 # Object files for target Projeto_de_CG
 Projeto_de_CG_OBJECTS = \
 "CMakeFiles/Projeto_de_CG.dir/motor3D.cpp.o" \
-"CMakeFiles/Projeto_de_CG.dir/tinyxml.cpp.o"
+"CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.o"
 
 # External object files for target Projeto_de_CG
 Projeto_de_CG_EXTERNAL_OBJECTS =
 
 Projeto_de_CG: CMakeFiles/Projeto_de_CG.dir/motor3D.cpp.o
-Projeto_de_CG: CMakeFiles/Projeto_de_CG.dir/tinyxml.cpp.o
+Projeto_de_CG: CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.o
 Projeto_de_CG: CMakeFiles/Projeto_de_CG.dir/build.make
 Projeto_de_CG: /usr/lib64/libGLU.so
 Projeto_de_CG: /usr/lib64/libGL.so
@@ -131,7 +131,7 @@ CMakeFiles/Projeto_de_CG.dir/build: Projeto_de_CG
 .PHONY : CMakeFiles/Projeto_de_CG.dir/build
 
 CMakeFiles/Projeto_de_CG.dir/requires: CMakeFiles/Projeto_de_CG.dir/motor3D.cpp.o.requires
-CMakeFiles/Projeto_de_CG.dir/requires: CMakeFiles/Projeto_de_CG.dir/tinyxml.cpp.o.requires
+CMakeFiles/Projeto_de_CG.dir/requires: CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.o.requires
 
 .PHONY : CMakeFiles/Projeto_de_CG.dir/requires
 

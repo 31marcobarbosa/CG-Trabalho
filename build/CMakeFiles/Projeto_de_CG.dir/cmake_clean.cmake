@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Projeto_de_CG.dir/motor3D.cpp.o"
-  "CMakeFiles/Projeto_de_CG.dir/tinyxml.cpp.o"
+  "CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.o"
   "Projeto_de_CG.pdb"
   "Projeto_de_CG"
 )

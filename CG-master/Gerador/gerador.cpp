@@ -6,17 +6,17 @@
 void plano(int lado, string nome) {
 
 	ofstream file(nome);
-	double x,y,z;
+	float x,y,z;
 	y=0;
 
 	//posicionamento do plano centrado com o eixo
 	if ((lado % 2) == 0) {
-		x = lado / 2;
-		z = lado / 2;
+		x = (float)lado / 2;
+		z = (float)lado / 2;
 	}
 	else {
-		x = lado / 2 + 0.5;
-		z = lado / 2 + 0.5;
+		x = (float)lado / 2 + 0.5;
+		z = (float)lado / 2 + 0.5;
 	}
 
 
@@ -164,116 +164,103 @@ void cubo(double comp, double larg, double alt, int camadas, string nome){
 
 
 
-void cone(double raio, double altura, int camadasV, int camadasH, string nome){
+void cone(float raio, float altura, int camadasV, int camadasH, string nome){
 
 	ofstream file(nome);
-	double espV = (2 * M_PI) / camadasV;
-	double espH = altura / camadasH;
-	double alt = - altura / 2; //faz o cone ficar centrado no referêncial
+	float espV = (2 * M_PI) / camadasV;
+	float espH = altura / camadasH;
+	float alt = - altura / 2; //faz o cone ficar centrado no referêncial
 
-	int a,b;
 
-	double x,y,z;
-	double xx,yy,zz;
-	double xxx,yyy,zzz;
-	double x1, x2, x3, y1, y2, y3, z1, z2, z3, x4, z4;
-	double beta, betaprox;
-	double dif;
-	double raioNovo;
-
+	/*
+	file << (camadasH) << endl;
+	file << (camadasH) << endl;
+	file << (camadasV) << endl;
+*/
 
 	// a base (desenhado em y = alt = -altura/2)
-	for (a = 0; a < camadasV; a ++){
+	for (float a = 0; a < 2 * M_PI; a += espV){
 
-		beta = espV*a; //angulo da camada;
-		betaprox = espV * (a+1); //angulo da prox camada
+		float x1 = 0;
+		float y1 = alt;
+		float z1 = 0;
 
-		//coordenadas da camada atual e da próxima
-		xx = raio*sin(beta);
-		zz = raio*cos(beta);
-		xxx = raio*sin(betaprox);
-		zzz = raio*cos(betaprox);
+		float x2 = raio * sin(a + espV);
+		float y2 = alt;
+		float z2 = raio * cos(a + espV);
 
-		printf("%f, %f, %f\n", xx, yy, zz);
-			file << xx << "," << y << "," << zz << endl;
+		float x3 = raio * sin(a);
+		float y3 = alt;
+		float z3 = raio * cos(a);
+
+		printf("%f, %f, %f\n", x1, y1, z1);
+			file << x1 << "," << y1 << "," << z1 << endl;
 		printf("%f, %f, %f\n", x2, y2, z2);
-			file << x << "," << y << "," << z << endl;
+			file << x2 << "," << y2 << "," << z2 << endl;
 		printf("%f, %f, %f\n", x3, y3, z3);
-			file << xxx << "," << yyy << "," << zzz << endl;
+			file << x3 << "," << y3 << "," << z3 << endl;
 	}
 
-	//valor retirada por cada novo raio;
-	dif = raio / camadasH;
 
 	// as várias camadas de altura
-	for (int i = 0; i<camadasH - 1; i++){
+	for (int i = 0; i<camadasH; i++){
 
-		for (b = 0; b <= camadasV; b++){
+		for (float a = 0; a < camadasV; a += espV){
 
-			beta = espV*b;
-			betaprox = espV*(b+1);
+			float camada = alt + i * espH;
+			float camadaAux = alt + (i + 1) * espH;
 
-			raioNovo = raio - dif;
+			float raio1 = raio - (raio * i) / camadasH;
+			float raio2 = raio - (raio * (i + 1)) / camadasH;
 
-			x1 = raio*sin(beta);
-			y1 = y;
-			z1 = raio*cos(beta);
+			float x4 = raio2 * sin(a);
+			float y4 = camadaAux;
+			float z4 = raio2 * cos(a);
 
-			x2 = raio * sin(betaprox);
-			y1 = y;
-			z2 = raio * cos(betaprox);
+			float x5 = raio1 * sin(a);
+			float y5 = camada;
+			float z5 = raio1 * cos(a);
 
-			x3 = raioNovo *sin(beta);
-			y2 = y + espH;
-			z3 = raioNovo * cos(beta);
+			float x6 = raio2 * sin(a + espV);
+			float y6 = camadaAux;
+			float z6 = raio2 * cos(a + espV);
 
-			x4 = raioNovo * sin(betaprox);
-			y2 = y + espH;
-			z4 = raioNovo * cos(betaprox);
+			printf("%f, %f, %f\n", x4, y4, z4);
+				file << x4 << "," << y4 << "," << z4 << endl;
+			printf("%f, %f, %f\n", x5, y5, z5);
+				file << x5 << "," << y5 << "," << z5 << endl;
+			printf("%f, %f, %f\n", x6, y6, z6);
+				file << x6 << "," << y6 << "," << z6 << endl;
 
-			printf("%f, %f, %f\n", x1, y1, z1); file << x1 << "," << y1 << "," << z1 << endl;
-			printf("%f, %f, %f\n", x2, y1, z2);	file << x2 << "," << y1 << "," << z2 << endl;
-			printf("%f, %f, %f\n", x3, y2, z3);	file << x3 << "," << y2 << "," << z3 << endl;
+			float x7 = raio1 * sin(a);
+			float y7 = camada;
+			float z7 = raio1 * cos(a);
 
-			printf("%f, %f, %f\n", x2, y1, z2); file << x2 << "," << y1 << "," << z2 << endl;
-			printf("%f, %f, %f\n", x4, y2, z4); file << x4 << "," << y2 << "," << z4 << endl;
-			printf("%f, %f, %f\n", x3, y2, z3); file << x3 << "," << y2 << "," << z2 << endl;
+			float x8 = raio1 * sin(a + espV);
+			float y8 = camada;
+			float z8 = raio1 * cos(a + espV);
+
+			float x9 = raio2 * sin(a + espV);
+			float y9 = camadaAux;
+			float z9 = raio2 * cos(a + espV);
+
+			printf("%f, %f, %f\n", x7, y7, z7); file << x7 << "," << y7 << "," << z7 << endl;
+			printf("%f, %f, %f\n", x8, y8, z8); file << x8 << "," << y8 << "," << z8 << endl;
+			printf("%f, %f, %f\n", x9, y9, z9); file << x9 << "," << y9 << "," << z9 << endl;
 		}
-
-		raio = raio - dif;//atualiza o raio
-		y = y + espH; //passa para a proxima camada
 	}
-		y = alt / 2; // a altura maxima da coordenada do y
-
-		for (a = 0; a <= camadasV; a++){
-		beta = espV*a;//angulo atual
-		betaprox = espV * (b + 1);//angulo na proxima camada
-
-		x1 = raioNovo *sin(beta);
-		z1 = raioNovo * cos(beta);
-
-		x2 = raioNovo * sin(betaprox);
-		z2 = raioNovo * cos(betaprox);
-
-		printf("%f %f %f\n", 0, y, 0); file << 0 << "," << y1 << "," << 0 << endl;
-		printf("%f %f %f\n", x1, y2, z1); file << x1 << "," << y2 << "," << z1 << endl;
-		printf("%f %f %f\n", x2, y2, z2); file << x2 << "," << y2 << "," << z2 << endl;
-	}
-
-
-	file.close();
 }
 
 
-void esfera(double raio, int camadasV, int camadasH, string nome) {
+void esfera(float raio, int camadasV, int camadasH, string nome) {
 
-		double espV = 2 * M_PI / camadasV;
-		double espH = M_PI / camadasH;
+		float espV = 2 * M_PI / camadasV;
+		float espH = M_PI / camadasH;
 
 		ofstream file(nome);
 
 		float x1, y1, z1, x2, y2, z2, x3, y3, z3, x4, y4, z4;
-		int a, aux = 0;
+		float a, aux = 0;
 
 		for (int i = 0 ; i < camadasH ; i ++) {
 
