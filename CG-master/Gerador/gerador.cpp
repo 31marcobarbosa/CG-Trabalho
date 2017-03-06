@@ -172,11 +172,6 @@ void cone(float raio, float altura, int camadasV, int camadasH, string nome){
 	float alt = - altura / 2; //faz o cone ficar centrado no referêncial
 
 
-	/*
-	file << (camadasH) << endl;
-	file << (camadasH) << endl;
-	file << (camadasV) << endl;
-*/
 
 	// a base (desenhado em y = alt = -altura/2)
 	for (float a = 0; a < 2 * M_PI; a += espV){
@@ -300,14 +295,79 @@ void esfera(float raio, int camadasV, int camadasH, string nome) {
 			aux += espH;
 		}
 
-	}
+	
+}
 
+void menu() {
+
+	cout <<" ---------------------> MENU DE AJUDA <---------------------"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|       GERADOR:                                            |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|       $ g++ gerador.cpp -o gen                            |"<< endl;
+	cout <<"|       $ ./gen Figura [Parâmetros] figura.3d               |"<< endl;
+	cout <<"|       $ mv figura.3d diretoria/Motor                      |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|       MOTOR:                                              |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|       [build]$ make                                       |"<< endl;
+	cout <<"|       $ ./Projecto_de_CG ../CG-master/Motor/figura.xml    |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|------------------------> FIGURA <-------------------------|"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|       * Plano lado                                        |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|       * Cubo comp larg alt camadas                        |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|       * Cone raio altura camadasV camadasH                |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|       * Esfera raio camadasV camadasH                     |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|---------------------> Controlos 3D <----------------------|"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|       * TRANSLAÇÃO: Seta cima, baixo, esquerda, direita   |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|       * ROTAÇÃO: w, a, s, d  | W, A, S, D                 |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|       * ZOOM: + | -                                       |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|       * COR:                                              |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|           - adicionar Vermelho: r | R                     |"<< endl;
+	cout <<"|           - remover Vermelho: t | T                       |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|           - adicionar Verde: g | G                        |"<< endl;
+	cout <<"|           - remover Verde: h | H                          |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|           - adicionar Azul: b | B                         |"<< endl;
+	cout <<"|           - remover Azul: n | N                           |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|       * REPRESENTAÇÃO DO SÓLIDO:                          |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|           - por linhas: l | L                             |"<< endl;
+	cout <<"|           - por pontos: p | P                             |"<< endl;
+	cout <<"|           - preenchido: o | O                             |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|       * RESET: c | C                                      |"<< endl;
+	cout <<" ------------------------------><---------------------------"<< endl;
+
+
+}
 
 int main (int argc , char **argv){
 
 
 	if( argc > 1) {
-			if (strcmp(argv[1],"Plano") == 0) {
+			if (strcmp(argv[1],"Menu") == 0) {
+				menu();
+
+			}
+			else if (strcmp(argv[1],"Plano") == 0) {
 				plano(atoi(argv[2]),argv[3]);
 			}
 			else if (strcmp(argv[1],"Cubo") == 0) {
