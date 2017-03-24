@@ -61,16 +61,41 @@ void renderScene(void) {
 	// put drawing instructions here
     glPolygonMode(GL_FRONT_AND_BACK,linha);
     glTranslatef(camX,camY,camZ);
-    glRotatef(a,0,1,0);
-    glRotatef(w,1,0,0);
-
-
-
+    glRotatef(a,0.0,1.0,0.0);
+    glRotatef(w,1.0,0.0,0.0);
 	glBegin(GL_TRIANGLES);
-	glColor3f(R,G,B);
 
-	for (int i = 0; i < vertices.size(); i++)
-		glVertex3f(vertices[i].x, vertices[i].y, vertices[i].z);
+	int inicia = 1;
+	int j;
+
+	for(j = 0; j < aplicacao.size(); j++){
+
+		glPushMatrix();
+		Transformacao t = aplicacao[j].primitivas[j].getTransformacao();
+
+		//glRotatef();
+		glTranslatef(t.getTranslacao().getTX(),t.getTranslacao().getTY(),t.getTranslacao().getZY());
+		glScalef(t.getEscala().getEX(),t.getEscala().getEY(), t.getEscala().getEZ());
+		pontos.clear();
+		pontos = aplicacao[j].getPontos();
+		glBegin(GL_TRIANGLES);
+
+		if (inicia) {
+			glColor3f(1.0f,1.0f,0.0f);
+			inicia = 0;
+		} else {
+			glColor3f(0.0f,0.9f,1.0f);
+		}
+
+		for (int i = 0; i < pontos.size(); i++){
+			glVertex3f(pontos[i].getX(), pontos[i].getY(), pontos[i].getZ());
+		}
+
+		glEnd();
+		glPopMatrix();
+
+
+	}
 
 	glEnd();
 
@@ -243,8 +268,8 @@ void parseNivelado(XMLElement *grupo , Transformacao t){
 
 		 	}
 		 
-		 // ver inclusão de rotações
-		 if (strcmp(transformacao->Value(), "rotacao") == 0){
+		 /*
+		  if (strcmp(transformacao->Value(), "rotacao") == 0){
 		 		if (transformacao->Attribute("angulo")) ang1 = stof(transformacao->Attribute("angulo"));
 				else ang1 = 0;
 				if (transformacao->Attribute("eixoX")) rotX = stof(transformacao->Attribute("eixoX"));
@@ -256,8 +281,9 @@ void parseNivelado(XMLElement *grupo , Transformacao t){
 				ro = Rotacao::Rotacao(ang1, rotX, rotY, rotZ);
 				// stof -> 
 
-		 	}
-		 
+		 	}		 
+			*/
+
 		 if (strcmp(transformacao->Value(), "escala") == 0){
 				if (transformacao->Attribute("X")) escX = stof(transformacao->Attribute("X"));
 				else escX = 1;
@@ -267,20 +293,49 @@ void parseNivelado(XMLElement *grupo , Transformacao t){
 				else escZ = 1;
 				esc.setX(escX);
 				esc.setY(escY);
-				esc.setZ(escZ);		 	
+				esc.setZ(escZ);	
+				// stof -> 	 	
 		 	}
 	}
 
 
 	tr.setTX(tr.getTX() + t.getTranslacao().getTX());
-	// fazer coord y
-	// fazer coord z
+	tr.setTY(tr.getTY() + t.getTranslacao().getTY());
+	tr.setTZ(tr.getTZ() + t.getTranslacao().getTZ());
 	esc.setEX(esc.getEX() * t.getEscala().getEX());
-	// fazer coord y
-	// fazer coord z
-	trans = Transformacao::Transformacao(tr,es);
+	esc.setEY(esc.getEY() * t.getEscala().getEY());
+	esc.setEZ(esc.getEZ() * t.getEscala().getEZ());
+	trans = Transformacao::Transformacao(tr,esc);
 
+	// Modelos(ficheiros) que vão ser transformados
 
+	for(XMLElement *modelo = grupo -> FirstChildElement("modelos") -> FirstChildElement("modelo");modelo; modelo = modelo -> NextSiblingElement()){
+
+		Aplicacao a;
+		a.setNome(modelo->Attribute("ficheiro"));
+		cout << a.getNome() << endl;
+		lerficheiro(a.getNome());
+		a.setPontos(pontos);
+		pontos.clear();
+
+		a.setTransformacao(trans);
+
+		cout << "TRANSLACAO:" << trans.getTranslacao().getTX() << "<->" << trans.getTranslacao().getTY() << "<->" << trans.getTranslacao().getTZ() << endl;
+		cout << "ESCALA:"<< trans.getEscala().getEX() << "<->" << trans.getEscala().getEY() << "<->" << trans.getEscala().getEZ() << endl;
+
+		aplicacao.push_back(a);
+
+	   }
+
+	 // verifica os filhos
+	 if( grupo -> FirstChildElement("grupo")) {
+	 	 parseNivelado(grupo -> FirstChildElement("grupo"),t);
+	 }
+
+	 // verifica os irmãos
+	 if( grupo -> NextSiblingElement("grupo")) {
+	 	 parseNivelado(grupo -> NextSiblingElement("grupo"),t);
+	 }
 
 }
 
