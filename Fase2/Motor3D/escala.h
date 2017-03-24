@@ -10,12 +10,12 @@ class Escala{
 public: 
 	Escala();
 	Escala(float x, float y, float z);
-	float getX() { return x; }
-	float getY() { return y; }
-	float getZ() { return z; }
-	void setX( float a) {  x = a; }
-	void setY( float a) {  y = a; }
-	void setZ( float a) {  z = a; }
+	float getEX() { return x; }
+	float getEY() { return y; }
+	float getEZ() { return z; }
+	void setEX( float a) {  x = a; }
+	void setEY( float a) {  y = a; }
+	void setEZ( float a) {  z = a; }
 
 
 };

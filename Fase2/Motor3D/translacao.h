@@ -10,12 +10,12 @@ class Translacao{
 public: 
 	Translacao();
 	Translacao(float x, float y, float z);
-	float getX() { return x; }
-	float getY() { return y; }
-	float getZ() { return z; }
-	void setX( float a) {  x = a; }
-	void setY( float a) {  y = a; }
-	void setZ( float a) {  z = a; }
+	float getTX() { return x; }
+	float getTY() { return y; }
+	float getTZ() { return z; }
+	void setTX( float a) {  x = a; }
+	void setTY( float a) {  y = a; }
+	void setTZ( float a) {  z = a; }
 
 
 };

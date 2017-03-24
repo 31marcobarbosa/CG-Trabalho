@@ -1,30 +1,11 @@
-#ifdef __APPLE__
-#include <GLUT/glut.h>
-#else
-#include <GL/glut.h>
-#endif
-
-#include <math.h>
-#include "tinyxml2.h"
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <fstream>
-#include <string>
-#include <iostream>
-#include <vector>
+#include "motor3D.h"
 
 
-struct Ponto
-{
-	double x;
-	double y;
-	double z;
-};
+//vetor com os pontos lidos do ficheiro
+vector<Ponto> vertices; 
 
+vector<Aplicacao> aplicacao;
 
-using namespace tinyxml2;
-using namespace std;
 
 float R = 1, G = 1, B = 1;
 float size;
@@ -33,7 +14,6 @@ float camX = 0, camY = 0, camZ = 0;
 float zx = 6, zy = 6, zz = 6;
 int xinicio, yinicio , tracking = 0;
 int k = 5 , alpha = 0 , beta = 0;
-vector<Ponto> vertices; //vetor com os pontos lidos do ficheiro
 int linha = GL_LINE;
 
 
@@ -233,6 +213,76 @@ void lerficheiro(string ficheiro) {
 
 }
 
+// Parse do xml que está em níveis hirarquicos
+void parseNivelado(XMLElement *grupo , Transformacao t){
+	Transformacao trans;
+	Translacao tr;
+	Rotacao ro;
+	Escala esc = Escala::Escala(1,1,1);
+	float ang1, rotX, rotY, rotZ, transX, transZ, escX, escY, escZ;
+	ang1 = rotX = rotY = rotZ = transX = transZ = escX = escY = escZ = 1;
+
+	if(strcmp(grupo->FirstChildElement()->Value(),"grupo")==0) {
+			grupo = grupo -> FirstChildElement();
+	}
+
+
+	XMLElement * transformacao = grupo -> FirstChildElement();
+
+	for(transformacao;(strcmp(transformacao->Value(),"modelos")!=0);transformacao = transformacao -> NextSiblingElement()) {
+
+		 if (strcmp(transformacao->Value(), "translacao") == 0){
+		 		if(transformacao->Attribute("X")) transX = stof(transformacao->Attribute("X"));
+				else transX = 0;
+				if (transformacao->Attribute("Y")) transY = stof(transformacao->Attribute("Y"));
+				else transY = 0;
+				if (transformacao->Attribute("Z")) transZ = stof(transformacao->Attribute("Z"));
+				else transZ = 0;
+				tr = Translacao::Translacao(transX, transY, transZ);
+				// stof -> 
+
+		 	}
+		 
+		 // ver inclusão de rotações
+		 if (strcmp(transformacao->Value(), "rotacao") == 0){
+		 		if (transformacao->Attribute("angulo")) ang1 = stof(transformacao->Attribute("angulo"));
+				else ang1 = 0;
+				if (transformacao->Attribute("eixoX")) rotX = stof(transformacao->Attribute("eixoX"));
+				else rotX = 0;
+				if (transformacao->Attribute("eixoY")) rotY = stof(transformacao->Attribute("eixoY"));
+				else rotY = 0;
+				if (transformacao->Attribute("eixoZ")) rotZ = stof(transformacao->Attribute("eixoZ"));
+				else rotZ = 0;
+				ro = Rotacao::Rotacao(ang1, rotX, rotY, rotZ);
+				// stof -> 
+
+		 	}
+		 
+		 if (strcmp(transformacao->Value(), "escala") == 0){
+				if (transformacao->Attribute("X")) escX = stof(transformacao->Attribute("X"));
+				else escX = 1;
+				if (transformacao->Attribute("Y")) escY = stof(transformacao->Attribute("Y"));
+				else escY = 1;
+				if (transformacao->Attribute("Z")) escZ = stof(transformacao->Attribute("Z"));
+				else escZ = 1;
+				esc.setX(escX);
+				esc.setY(escY);
+				esc.setZ(escZ);		 	
+		 	}
+	}
+
+
+	tr.setTX(tr.getTX() + t.getTranslacao().getTX());
+	// fazer coord y
+	// fazer coord z
+	esc.setEX(esc.getEX() * t.getEscala().getEX());
+	// fazer coord y
+	// fazer coord z
+	trans = Transformacao::Transformacao(tr,es);
+
+
+
+}
 
 
 // Leitura do ficheiro XML
@@ -240,12 +290,14 @@ void lerXML(string ficheiro) {
 	XMLDocument docxml;
 
 	if (!(docxml.LoadFile(ficheiro.c_str()))) {
-		XMLElement* root = docxml.FirstChildElement();
-		for(XMLElement *elemento = root -> FirstChildElement();elemento != NULL; elemento = elemento -> NextSiblingElement()){
-			string fich = elemento -> Attribute("file");
-			cout << "Ficheiro: " << fich << " lido com sucesso " << endl;
-			lerficheiro(fich);
-		}		
+		XMLElement * cena = docxml.FirstChildElement("cena");
+		XMLElement * grupo = cena -> FirstChildElement("grupo");
+
+		Transformacao trans = Transformacao::Transformacao();
+		Escala esc;
+		esc = Escala::Escala(1,1,1);
+		trans.setEscala(esc);
+		parseNivelado(grupo, trans);
 	}
 	else {
 		cout << "Ficheiro XML não foi encontrado" << endl;
@@ -259,8 +311,8 @@ void lerXML(string ficheiro) {
 int main(int argc, char **argv) {
 
     if(argc > 1){
-		lerXML(argv[1]);
-	}
+		
+	
 
 	// put GLUT init here
 
@@ -270,6 +322,8 @@ int main(int argc, char **argv) {
     glutInitWindowSize(800,800);
     glutCreateWindow("Projeto_de_CG"); 
 
+    // leitura do ficheiro xml
+    lerXML(argv[1]);
 
 	// put callback registration here
 
@@ -285,6 +339,6 @@ int main(int argc, char **argv) {
 	
 	// enter GLUT's main loop
 	glutMainLoop(); 
-
+   }
 	return 1;
 }
