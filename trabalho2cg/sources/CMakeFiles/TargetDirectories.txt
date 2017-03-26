@@ -1,0 +1,3 @@
+/home/marco/Desktop/CG/projeto/trabalho2cg/sources/CMakeFiles/edit_cache.dir
+/home/marco/Desktop/CG/projeto/trabalho2cg/sources/CMakeFiles/rebuild_cache.dir
+/home/marco/Desktop/CG/projeto/trabalho2cg/sources/CMakeFiles/Projeto_de_CG.dir
