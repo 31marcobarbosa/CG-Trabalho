@@ -1,6 +1,6 @@
 #include "escala.h"
 
-Escala :: Escala() {
+Escala::Escala() {
 	x = 0;
 	y = 0;
 	z = 0;
