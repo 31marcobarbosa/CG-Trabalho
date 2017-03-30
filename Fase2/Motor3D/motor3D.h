@@ -1,5 +1,4 @@
-//#ifndef _MAIN
-//#define _MAIN
+#pragma once
 
 
 #ifdef __APPLE__
@@ -24,5 +23,3 @@
 using namespace tinyxml2;
 using namespace std;
 
-
-//#endif

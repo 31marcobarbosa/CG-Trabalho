@@ -1,5 +1,4 @@
-//#ifndef _MAIN
-//#define _MAIN
+#pragma once
 
 class Ponto{
 	float x;
@@ -19,5 +18,3 @@ public:
 
 
 };
-
-//#endif

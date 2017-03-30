@@ -79,6 +79,7 @@ void renderScene(void) {
 		glRotatef(t.getRotacao().getAngulo(), t.getRotacao().geteixoX(), t.getRotacao().geteixoY(), t.getRotacao().geteixoZ());
 		glTranslatef(t.getTranslacao().getX(), t.getTranslacao().getY(), t.getTranslacao().getZ());
 		glScalef(t.getEscala().getX(), aplicacoes[j].getTransformacao().getEscala().getY(), aplicacoes[j].getTransformacao().getEscala().getZ());
+		glColor3f(t.getCor().getR(), t.getCor().getG(), t.getCor().getB());
 		pontos.clear();
 		pontos = aplicacoes[j].getPontos();
 
@@ -88,7 +89,7 @@ void renderScene(void) {
 			glColor3f(1.0f,1.0f,0.0f);
 			inicia = 0;
 		} else {
-			glColor3f(0.0f,0.9f,1.0f);
+			glColor3f(t.getCor().getR(), t.getCor().getG(), t.getCor().getB());
 		}
 
 		for (int i = 0; i < pontos.size(); i++){
@@ -242,7 +243,7 @@ void lerficheiro(string ficheiro) {
 
 
 
-Transformacao alteracaoValores(Translacao tr , Escala es , Rotacao ro , Transformacao transf){
+Transformacao alteracaoValores(Translacao tr , Escala es , Rotacao ro , Cor cr, Transformacao transf){
 
 
 	Transformacao valores;
@@ -257,7 +258,11 @@ Transformacao alteracaoValores(Translacao tr , Escala es , Rotacao ro , Transfor
 	es.setX(es.getX() * transf.getEscala().getX());
 	es.setY(es.getY() * transf.getEscala().getY());
 	es.setZ(es.getZ() * transf.getEscala().getZ());
-	valores = Transformacao::Transformacao(tr,ro,es);
+	cr.setR(cr.getR());
+	cr.setG(cr.getG());
+	cr.setB(cr.getB());
+
+	valores = Transformacao::Transformacao(tr,ro,es,cr);
 
 	return valores;
 }
@@ -272,7 +277,8 @@ void parseNivelado(XMLElement *grupo , Transformacao transf){
 	Translacao tr;
 	Rotacao ro;
 	Escala es = Escala::Escala(1,1,1);
-	float ang, rotX, rotY, rotZ, transX, transY, transZ, escX, escY, escZ;
+	Cor cr;
+	float ang, rotX, rotY, rotZ, transX, transY, transZ, escX, escY, escZ, tx, ty, tz;
 	ang = rotX = rotY = rotZ = transX = transY = transZ = escX = escY = escZ = 1;
 
 	if (strcmp(grupo->FirstChildElement()->Value(), "grupo") == 0)
@@ -324,10 +330,25 @@ void parseNivelado(XMLElement *grupo , Transformacao transf){
 			es.setY(escY);
 			es.setZ(escZ);
 		}
+		if (strcmp(transformacao->Value(), "cor") == 0) {
+			if (transformacao->Attribute("R"))
+				tx = stof(transformacao->Attribute("R"));
+			else tx = 0;
+			if (transformacao->Attribute("G"))
+				ty = stof(transformacao->Attribute("G"));
+			else ty = 0;
+			if (transformacao->Attribute("B"))
+				tz = stof(transformacao->Attribute("B"));
+			else tz = 0;
+			cr.setR(tx);
+			cr.setG(ty);
+			cr.setB(tz);
+		}
+			
 	}
 	
 
-	trans = alteracaoValores(tr, es, ro, transf);
+	trans = alteracaoValores(tr, es, ro, cr, transf);
 
 	//para o mesmo grupo, quais os modelos(ficheiros) que recebem as transformações
 	for (XMLElement* modelo = grupo->FirstChildElement("modelos")->FirstChildElement("modelo"); modelo; modelo = modelo->NextSiblingElement("modelo")) {
@@ -344,6 +365,7 @@ void parseNivelado(XMLElement *grupo , Transformacao transf){
 		cout << "Translacao: " << trans.getTranslacao().getX() << " - " << trans.getTranslacao().getY() << " - " << trans.getTranslacao().getZ() << endl;
 		cout << "Rotacao   : " << trans.getRotacao().getAngulo() << " - " << trans.getRotacao().geteixoX() << " - " << trans.getRotacao().geteixoY() << " - " << trans.getRotacao().geteixoZ() << endl;
 		cout << "Escala    : " << trans.getEscala().getX() << " - " << trans.getEscala().getY() << " - " << trans.getEscala().getZ() << endl;
+		cout << "Cor       : " << trans.getCor().getR() << " - " << trans.getCor().getG() << " - " << trans.getCor().getB() << endl;
 
 		aplicacoes.push_back(app);
 	}
@@ -372,7 +394,7 @@ void lerXML(string ficheiro) {
 
 	
 		Transformacao t = Transformacao::Transformacao();
-		Escala esc = Escala::Escala(1,1,1);
+		Escala esc = Escala::Escala(0.6,0.6,0.6);
 		t.setEscala(esc);
 		parseNivelado(grupo, t);
 	}

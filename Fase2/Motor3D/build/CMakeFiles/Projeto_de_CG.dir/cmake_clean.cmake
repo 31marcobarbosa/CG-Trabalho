@@ -7,6 +7,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Projeto_de_CG.dir/rotacao.cpp.o"
   "CMakeFiles/Projeto_de_CG.dir/transformacao.cpp.o"
   "CMakeFiles/Projeto_de_CG.dir/translacao.cpp.o"
+  "CMakeFiles/Projeto_de_CG.dir/cor.cpp.o"
   "Projeto_de_CG.pdb"
   "Projeto_de_CG"
 )

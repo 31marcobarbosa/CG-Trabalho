@@ -1,5 +1,6 @@
-//#ifndef _MAIN
-//#define _MAIN
+#pragma once
+
+#define _MAIN
 
 #include <vector>
 //#include "ponto.h"
@@ -22,5 +23,3 @@ public:
 
 
 };
-
-//#endif

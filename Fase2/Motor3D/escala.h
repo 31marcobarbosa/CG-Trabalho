@@ -1,5 +1,4 @@
-//#ifndef _ESCALA_H
-//#define _ESCALA_H
+#pragma once
 
 class Escala{
 	float x;
@@ -20,4 +19,3 @@ public:
 
 };
 
-//#endif

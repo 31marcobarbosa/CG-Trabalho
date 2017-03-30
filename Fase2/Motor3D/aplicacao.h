@@ -1,5 +1,4 @@
-//#ifndef _MAIN
-//#define _MAIN
+#pragma once
 
 #include <vector>
 #ifdef __APPLE__
@@ -62,5 +61,3 @@ public:
 		*/
 
 };
-
-//#endif

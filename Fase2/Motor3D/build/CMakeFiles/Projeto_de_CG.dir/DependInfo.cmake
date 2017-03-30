@@ -4,20 +4,20 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/josebastos/UM/3ano/CG/trabalho/Motor3D/aplicacao.cpp" "/Users/josebastos/UM/3ano/CG/trabalho/Motor3D/build/CMakeFiles/Projeto_de_CG.dir/aplicacao.cpp.o"
-  "/Users/josebastos/UM/3ano/CG/trabalho/Motor3D/escala.cpp" "/Users/josebastos/UM/3ano/CG/trabalho/Motor3D/build/CMakeFiles/Projeto_de_CG.dir/escala.cpp.o"
-  "/Users/josebastos/UM/3ano/CG/trabalho/Motor3D/motor3D.cpp" "/Users/josebastos/UM/3ano/CG/trabalho/Motor3D/build/CMakeFiles/Projeto_de_CG.dir/motor3D.cpp.o"
-  "/Users/josebastos/UM/3ano/CG/trabalho/Motor3D/ponto.cpp" "/Users/josebastos/UM/3ano/CG/trabalho/Motor3D/build/CMakeFiles/Projeto_de_CG.dir/ponto.cpp.o"
-  "/Users/josebastos/UM/3ano/CG/trabalho/Motor3D/rotacao.cpp" "/Users/josebastos/UM/3ano/CG/trabalho/Motor3D/build/CMakeFiles/Projeto_de_CG.dir/rotacao.cpp.o"
-  "/Users/josebastos/UM/3ano/CG/trabalho/Motor3D/tinyxml2.cpp" "/Users/josebastos/UM/3ano/CG/trabalho/Motor3D/build/CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.o"
-  "/Users/josebastos/UM/3ano/CG/trabalho/Motor3D/transformacao.cpp" "/Users/josebastos/UM/3ano/CG/trabalho/Motor3D/build/CMakeFiles/Projeto_de_CG.dir/transformacao.cpp.o"
-  "/Users/josebastos/UM/3ano/CG/trabalho/Motor3D/translacao.cpp" "/Users/josebastos/UM/3ano/CG/trabalho/Motor3D/build/CMakeFiles/Projeto_de_CG.dir/translacao.cpp.o"
+  "/home/marco/Desktop/CG/projeto/CG-Trabalho/Fase2/Motor3D/aplicacao.cpp" "/home/marco/Desktop/CG/projeto/CG-Trabalho/Fase2/Motor3D/build/CMakeFiles/Projeto_de_CG.dir/aplicacao.cpp.o"
+  "/home/marco/Desktop/CG/projeto/CG-Trabalho/Fase2/Motor3D/cor.cpp" "/home/marco/Desktop/CG/projeto/CG-Trabalho/Fase2/Motor3D/build/CMakeFiles/Projeto_de_CG.dir/cor.cpp.o"
+  "/home/marco/Desktop/CG/projeto/CG-Trabalho/Fase2/Motor3D/escala.cpp" "/home/marco/Desktop/CG/projeto/CG-Trabalho/Fase2/Motor3D/build/CMakeFiles/Projeto_de_CG.dir/escala.cpp.o"
+  "/home/marco/Desktop/CG/projeto/CG-Trabalho/Fase2/Motor3D/motor3D.cpp" "/home/marco/Desktop/CG/projeto/CG-Trabalho/Fase2/Motor3D/build/CMakeFiles/Projeto_de_CG.dir/motor3D.cpp.o"
+  "/home/marco/Desktop/CG/projeto/CG-Trabalho/Fase2/Motor3D/ponto.cpp" "/home/marco/Desktop/CG/projeto/CG-Trabalho/Fase2/Motor3D/build/CMakeFiles/Projeto_de_CG.dir/ponto.cpp.o"
+  "/home/marco/Desktop/CG/projeto/CG-Trabalho/Fase2/Motor3D/rotacao.cpp" "/home/marco/Desktop/CG/projeto/CG-Trabalho/Fase2/Motor3D/build/CMakeFiles/Projeto_de_CG.dir/rotacao.cpp.o"
+  "/home/marco/Desktop/CG/projeto/CG-Trabalho/Fase2/Motor3D/tinyxml2.cpp" "/home/marco/Desktop/CG/projeto/CG-Trabalho/Fase2/Motor3D/build/CMakeFiles/Projeto_de_CG.dir/tinyxml2.cpp.o"
+  "/home/marco/Desktop/CG/projeto/CG-Trabalho/Fase2/Motor3D/transformacao.cpp" "/home/marco/Desktop/CG/projeto/CG-Trabalho/Fase2/Motor3D/build/CMakeFiles/Projeto_de_CG.dir/transformacao.cpp.o"
+  "/home/marco/Desktop/CG/projeto/CG-Trabalho/Fase2/Motor3D/translacao.cpp" "/home/marco/Desktop/CG/projeto/CG-Trabalho/Fase2/Motor3D/build/CMakeFiles/Projeto_de_CG.dir/translacao.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "Clang")
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/GLUT.framework/Headers"
   )
 
 # Targets to which this target links.

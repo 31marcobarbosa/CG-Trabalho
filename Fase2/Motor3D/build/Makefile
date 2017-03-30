@@ -39,38 +39,27 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Applications/CMake.app/Contents/bin/cmake
+CMAKE_COMMAND = /usr/bin/cmake
 
 # The command to remove a file.
-RM = /Applications/CMake.app/Contents/bin/cmake -E remove -f
+RM = /usr/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/josebastos/UM/3ano/CG/trabalho/Motor3D
+CMAKE_SOURCE_DIR = /home/marco/Desktop/CG/projeto/CG-Trabalho/Fase2/Motor3D
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/josebastos/UM/3ano/CG/trabalho/Motor3D/build
+CMAKE_BINARY_DIR = /home/marco/Desktop/CG/projeto/CG-Trabalho/Fase2/Motor3D/build
 
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/Applications/CMake.app/Contents/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/Applications/CMake.app/Contents/bin/cmake-gui -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/usr/bin/cmake-gui -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -78,11 +67,22 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/josebastos/UM/3ano/CG/trabalho/Motor3D/build/CMakeFiles /Users/josebastos/UM/3ano/CG/trabalho/Motor3D/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/marco/Desktop/CG/projeto/CG-Trabalho/Fase2/Motor3D/build/CMakeFiles /home/marco/Desktop/CG/projeto/CG-Trabalho/Fase2/Motor3D/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/josebastos/UM/3ano/CG/trabalho/Motor3D/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/marco/Desktop/CG/projeto/CG-Trabalho/Fase2/Motor3D/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -149,6 +149,33 @@ aplicacao.s: aplicacao.cpp.s
 aplicacao.cpp.s:
 	$(MAKE) -f CMakeFiles/Projeto_de_CG.dir/build.make CMakeFiles/Projeto_de_CG.dir/aplicacao.cpp.s
 .PHONY : aplicacao.cpp.s
+
+cor.o: cor.cpp.o
+
+.PHONY : cor.o
+
+# target to build an object file
+cor.cpp.o:
+	$(MAKE) -f CMakeFiles/Projeto_de_CG.dir/build.make CMakeFiles/Projeto_de_CG.dir/cor.cpp.o
+.PHONY : cor.cpp.o
+
+cor.i: cor.cpp.i
+
+.PHONY : cor.i
+
+# target to preprocess a source file
+cor.cpp.i:
+	$(MAKE) -f CMakeFiles/Projeto_de_CG.dir/build.make CMakeFiles/Projeto_de_CG.dir/cor.cpp.i
+.PHONY : cor.cpp.i
+
+cor.s: cor.cpp.s
+
+.PHONY : cor.s
+
+# target to generate assembly for a file
+cor.cpp.s:
+	$(MAKE) -f CMakeFiles/Projeto_de_CG.dir/build.make CMakeFiles/Projeto_de_CG.dir/cor.cpp.s
+.PHONY : cor.cpp.s
 
 escala.o: escala.cpp.o
 
@@ -345,12 +372,15 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... rebuild_cache"
 	@echo "... Projeto_de_CG"
 	@echo "... aplicacao.o"
 	@echo "... aplicacao.i"
 	@echo "... aplicacao.s"
+	@echo "... cor.o"
+	@echo "... cor.i"
+	@echo "... cor.s"
 	@echo "... escala.o"
 	@echo "... escala.i"
 	@echo "... escala.s"

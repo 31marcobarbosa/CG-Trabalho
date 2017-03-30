@@ -1,8 +1,8 @@
 #include "aplicacao.h"
 
 Aplicacao::Aplicacao( ){
-	nome = "";
 	transformacao = Transformacao::Transformacao();
+	nome = "";
 	filhos = vector<Aplicacao>();
 	pontos = vector<Ponto>();
 }

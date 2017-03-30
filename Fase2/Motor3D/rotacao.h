@@ -1,5 +1,4 @@
-//#ifndef _MAIN
-//#define _MAIN
+#pragma once
 
 class Rotacao{
 	float angulo;
@@ -21,4 +20,3 @@ public:
 
 };
 
-//#endif
