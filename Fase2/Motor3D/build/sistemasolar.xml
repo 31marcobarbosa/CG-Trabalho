@@ -1,0 +1,161 @@
+<cena>
+
+	<grupo>
+
+		<!-- SOL -->
+		<grupo>
+			<escala X="1.0" Y="1.0" Z="1.0"/>
+			<modelos>
+				<modelo ficheiro = "esfera.3d"/>
+			</modelos>
+		</grupo>
+
+		<!--MERCÚRIO-->
+		<grupo>
+			<escala X="0.3" Y="0.3" Z="0.3"/>
+			<translacao X="8.0" Y="0" Z="0"/>
+			<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
+			<modelos>
+				<modelo ficheiro = "esfera.3d"/>
+			</modelos>
+		</grupo>
+
+		<!--VÉNUS-->
+		<grupo>
+			<escala X="0.32" Y="0.32" Z="0.32"/>
+			<translacao X="18.0" Y="0" Z="0"/>
+			<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
+			<modelos>
+				<modelo ficheiro = "esfera.3d"/>
+			</modelos>
+		</grupo>
+
+		<!--TERRA-->
+		<grupo>
+			<escala X="0.35" Y="0.35" Z="0.35"/>
+			<translacao X="25.0" Y="0" Z="0"/>
+			<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
+			<modelos>
+				<modelo ficheiro = "esfera.3d"/>
+			</modelos>
+				<!--LUA-->
+				<grupo>
+						<escala X="0.15" Y="0.15" Z="0.15"/>
+						<translacao X="1.2" Y="0" Z="0"/>
+						<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
+						<modelos>
+							<modelo ficheiro = "esfera.3d"/>
+						</modelos>
+				</grupo>
+		</grupo>
+
+		<!--MARTE-->
+		<grupo>
+			<escala X="0.31" Y="0.31" Z="0.31"/>
+			<translacao X="45.0" Y="0" Z="0"/>
+			<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
+			<modelos>
+				<modelo ficheiro = "esfera.3d"/>
+			</modelos>
+		</grupo>
+
+		<!--JÚPITER-->
+		<grupo>
+			<escala X="0.6" Y="0.6" Z="0.6"/>
+			<translacao X="65.0" Y="0" Z="0"/>
+			<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
+			<modelos>
+				<modelo ficheiro = "esfera.3d"/>
+			</modelos>
+
+				<grupo>
+						<escala X="0.15" Y="0.15" Z="0.15"/>
+						<translacao X="3.4" Y="0" Z="0"/>
+						<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
+						<modelos>
+							<modelo ficheiro = "esfera.3d"/>
+						</modelos>
+				</grupo>
+				<grupo>
+						<escala X="0.15" Y="0.15" Z="0.15"/>
+						<translacao X="1.8" Y="0" Z="0"/>
+						<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
+						<modelos>
+							<modelo ficheiro = "esfera.3d"/>
+						</modelos>
+				</grupo>
+				<grupo>
+						<escala X="0.15" Y="0.15" Z="0.15"/>
+						<translacao X="2.3" Y="0" Z="0"/>
+						<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
+						<modelos>
+							<modelo ficheiro = "esfera.3d"/>
+						</modelos>
+				</grupo>
+				<grupo>
+						<escala X="0.15" Y="0.15" Z="0.15"/>
+						<translacao X="2.8" Y="0" Z="0"/>
+						<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
+						<modelos>
+							<modelo ficheiro = "esfera.3d"/>
+						</modelos>
+				</grupo>
+		</grupo>
+
+		<!--SATURNO-->
+		<grupo>
+			<escala X="0.55" Y="0.55" Z="0.55"/>
+			<translacao X="85.0" Y="0" Z="0"/>
+			<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
+			<modelos>
+				<modelo ficheiro = "esfera.3d"/>
+			</modelos>
+
+			<!--SATÉLITE NALTURAL-->
+				<grupo>
+						<escala X="0.16" Y="0.16" Z="0.16"/>
+						<translacao X="2" Y="0" Z="1.2"/>
+						<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
+						<modelos>
+							<modelo ficheiro = "esfera.3d"/>
+						</modelos>
+				</grupo>
+		</grupo>
+
+
+		<!--URANO-->
+		<grupo>
+			<escala X="0.4" Y="0.4" Z="0.4"/>
+			<translacao X="95.0" Y="0" Z="0"/>
+			<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
+			<modelos>
+				<modelo ficheiro = "esfera.3d"/>
+			</modelos>
+		</grupo>
+
+		<!--NEPTUNO-->
+		<grupo>
+			<escala X="0.33" Y="0.32" Z="0.32"/>
+			<translacao X="105.0" Y="0" Z="0"/>
+			<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
+			<modelos>
+				<modelo ficheiro = "esfera.3d"/>
+			</modelos>
+
+				<!--SATÉLITE NALTURAL-->
+				<grupo>
+						<escala X="0.1" Y="0.1" Z="0.1"/>
+						<translacao X="0" Y="0" Z="1.2"/>
+						<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
+						<modelos>
+							<modelo ficheiro = "esfera.3d"/>
+						</modelos>
+				</grupo>
+		</grupo>
+				
+
+
+
+	</grupo>
+
+</cena>
