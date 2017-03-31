@@ -385,7 +385,7 @@ void menu() {
 	cout <<"|       MOTOR:                                              |"<< endl;
 	cout <<"|                                                           |"<< endl;
 	cout <<"|       [build]$ make                                       |"<< endl;
-	cout <<"|       $ ./Projecto_de_CG ../CG-master/Motor/figura.xml    |"<< endl;
+	cout <<"|       $ ./Projecto_de_CG sistemasolar.xml                 |"<< endl;
 	cout <<"|                                                           |"<< endl;
 	cout <<"|                                                           |"<< endl;
 	cout <<"|------------------------> FIGURA <-------------------------|"<< endl;
@@ -408,24 +408,7 @@ void menu() {
 	cout <<"|                                                           |"<< endl;
 	cout <<"|       * ZOOM: + | -                                       |"<< endl;
 	cout <<"|                                                           |"<< endl;
-	cout <<"|       * COR:                                              |"<< endl;
 	cout <<"|                                                           |"<< endl;
-	cout <<"|           - adicionar Vermelho: r | R                     |"<< endl;
-	cout <<"|           - remover Vermelho: t | T                       |"<< endl;
-	cout <<"|                                                           |"<< endl;
-	cout <<"|           - adicionar Verde: g | G                        |"<< endl;
-	cout <<"|           - remover Verde: h | H                          |"<< endl;
-	cout <<"|                                                           |"<< endl;
-	cout <<"|           - adicionar Azul: b | B                         |"<< endl;
-	cout <<"|           - remover Azul: n | N                           |"<< endl;
-	cout <<"|                                                           |"<< endl;
-	cout <<"|       * REPRESENTAÇÃO DO SÓLIDO:                          |"<< endl;
-	cout <<"|                                                           |"<< endl;
-	cout <<"|           - por linhas: l | L                             |"<< endl;
-	cout <<"|           - por pontos: p | P                             |"<< endl;
-	cout <<"|           - preenchido: o | O                             |"<< endl;
-	cout <<"|                                                           |"<< endl;
-	cout <<"|       * RESET: c | C                                      |"<< endl;
 	cout <<" ------------------------------><---------------------------"<< endl;
 
 
