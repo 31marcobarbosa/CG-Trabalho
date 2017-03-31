@@ -12,12 +12,14 @@ vector<Aplicacao> aplicacoes;
 
 float R = 1, G = 1, B = 1;
 float size;
-float a = 1, w = 1;
-float camX = 0, camY = 0, camZ = 0;
-float zx = 6, zy = 6, zz = 6;
-int xinicio, yinicio , tracking = 0;
-int k = 5 , alpha = 0 , beta = 0;
-int linha = GL_LINE;
+float w = 1;
+float xrot= 0, yrot = 0, zpos = 30, xpos = 0;
+float zx = 6, zy = 6, zz = -4;
+
+
+
+
+
 
 
 void changeSize(int w, int h) {
@@ -45,31 +47,279 @@ void changeSize(int w, int h) {
 	glMatrixMode(GL_MODELVIEW);
 }
 
+void enable (void) {
+    glEnable (GL_DEPTH_TEST); //enable the depth testing
+    glShadeModel (GL_SMOOTH); //set the shader to smooth shader
+}
+
+void defineShip(){
+	glPushMatrix();
+	glScalef(0.2,0.2,0.2);
+
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    //1
+    glColor3f(0.0f,1.0f,0.0f);
+    glScalef(0.3, 0.3, 0.3);
+    glutSolidCone(1,1,10,10);
+    glColor3f(0.0f,1.0f,0.0f);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    //2
+    glPushMatrix();
+    glTranslated(0,0,0);
+    glScalef(5.0,0.15,0);
+    glutSolidCube(2);
+    glPopMatrix();
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    //3
+    glColor3f(0.25f,0.25f,0.25f);
+    glPushMatrix();
+        glScalef(0.35,0.35,0.35);
+        glTranslated(-3,-1,4);
+        glutWireSphere(2,50,50);
+    glPopMatrix();
+    //13
+    glColor3f(1.0f,0.0f,0.0f);
+    glPushMatrix();
+        glScalef(0.55,0.55,0.55);
+        glTranslated(-1.79,-0.15,5);
+        glutWireSphere(1,50,50);
+    glPopMatrix();
+    
+    
+    //14
+    glColor3f(1.0f,0.6f,0.0f);
+    glPushMatrix();
+        glScalef(0.42,0.42,0.42);
+        glTranslated(-2.26,0.14,8.5);
+        glutWireSphere(1,50,50);
+    glPopMatrix();
+    
+    
+    //15
+    glColor3f(1.0f,1.0f,0.0f);
+    glPushMatrix();
+        glScalef(0.32,0.32,0.32);
+        glTranslated(-2.84,0.6,13.5);
+        glutWireSphere(1,50,50);
+    glPopMatrix();
+    
+    //16
+    glColor3f(0.87f,0.87f,0.87f);
+    glPushMatrix();
+        glScalef(0.22,0.22,0.22);
+        glTranslated(-4.0,1.5,23.5);
+        glutWireSphere(1,50,50);
+    glPopMatrix();
+    
+    
+   //4
+    glColor3f(0.25f,0.25f,0.25f);
+    glPushMatrix();
+        glScalef(0.35,0.35,0.35);
+        glTranslated(3,-1,4);
+        glutWireSphere(2,50,50);
+    glPopMatrix();
+    //9
+    glColor3f(1.0f,0.0f,0.0f);
+    glPushMatrix();
+        glScalef(0.55,0.55,0.55);
+        glTranslated(1.79,-0.15,5);
+        glutWireSphere(1,50,50);
+    glPopMatrix();
+    
+   
+    //10
+    glColor3f(1.0f,0.6f,0.0f);
+    glPushMatrix();
+        glScalef(0.42,0.42,0.42);
+        glTranslated(2.26,0.14,8.5);
+        glutWireSphere(1,50,50);
+    glPopMatrix();
+       
+    //11
+    glColor3f(1.0f,1.0f,0.0f);
+    glPushMatrix();
+        glScalef(0.32,0.32,0.32);
+        glTranslated(2.84,0.6,13.5);
+        glutWireSphere(1,50,50);
+    glPopMatrix();
+    
+    //12
+    glColor3f(0.87f,0.87f,0.87f);
+    glPushMatrix();
+        glScalef(0.22,0.22,0.22);
+        glTranslated(4.0,1.5,23.5);
+        glutWireSphere(1,50,50);
+    glPopMatrix();
+    
+    //5
+    glColor3f(0.25f,0.25f,0.25f);
+    glPushMatrix();
+        glScalef(0.19,0.19,0.19);
+        glTranslated(-25,-1,4);
+        glutWireSphere(2,50,50);
+    glPopMatrix();
+    
+    //17
+    glColor3f(1.0f,0.0f,0.0f);
+    glPushMatrix();
+        glScalef(0.3,0.3,0.3);
+        glTranslated(-14.73,0.17,7);
+        glutWireSphere(1,50,50);
+    glPopMatrix();
+    
+    //18
+    glColor3f(1.0f,0.6f,0.0f);
+    glPushMatrix();
+        glScalef(0.25,0.25,0.25);
+        glTranslated(-17.3,0.46,10);
+        glutWireSphere(1,50,50);
+    glPopMatrix();
+    
+    //19
+    glColor3f(1.0f,1.0f,0.0f);
+    glPushMatrix();
+        glScalef(0.2,0.2,0.2);
+        glTranslated(-21.5,0.63,13);
+        glutWireSphere(1,50,50);
+    glPopMatrix();
+    
+    //20
+    glColor3f(0.87f,0.87f,0.87f);
+    glPushMatrix();
+        glScalef(0.15,0.15,0.15);
+        glTranslated(-28.5,0.79,18);
+        glutWireSphere(1,50,50);
+    glPopMatrix();
+    
+    //6
+    glColor3f(0.25f,0.25f,0.25f);
+    glPushMatrix();
+        glScalef(0.15,0.15,0.15);
+        glTranslated(-27,-2,4);
+        glutWireSphere(2,50,50);
+    glPopMatrix();
+    
+    //21
+    glColor3f(1.0f,0.0f,0.0f);
+    glPushMatrix();
+        glScalef(0.23,0.23,0.23);
+        glTranslated(-16.7,-0.53,7);
+        glutWireSphere(1,50,50);
+    glPopMatrix();
+    
+    //22
+    glColor3f(1.0f,0.6f,0.0f);
+    glPushMatrix();
+        glScalef(0.17,0.17,0.17);
+        glTranslated(-22.1,-0.3,12);
+        glutWireSphere(1,50,50);
+    glPopMatrix();
+    
+    //23
+    glColor3f(1.0f,1.0f,0.0f);
+    glPushMatrix();
+        glScalef(0.13,0.13,0.13);
+        glTranslated(-28.5,-0.01,18);
+        glutWireSphere(1,50,50);
+    glPopMatrix();
+    
+    //8
+    glColor3f(0.25f,0.25f,0.25f);
+    glPushMatrix();
+        glScalef(0.15,0.15,0.15);
+        glTranslated(27,-2,4);
+        glutWireSphere(2,50,50);
+    glPopMatrix();
+    
+    //24
+    glColor3f(1.0f,0.0f,0.0f);
+    glPushMatrix();
+        glScalef(0.23,0.23,0.23);
+        glTranslated(16.7,-0.53,7);
+        glutWireSphere(1,50,50);
+    glPopMatrix();
+    
+    //25
+    glColor3f(1.0f,0.6f,0.0f);
+    glPushMatrix();
+        glScalef(0.17,0.17,0.17);
+        glTranslated(22.1,-0.3,12);
+        glutWireSphere(1,50,50);
+    glPopMatrix();
+    
+    //26
+    glColor3f(1.0f,1.0f,0.0f);
+    glPushMatrix();
+        glScalef(0.13,0.13,0.13);
+        glTranslated(28.5,-0.01,18);
+        glutWireSphere(1,50,50);
+    glPopMatrix();
+    
+    //7
+    glColor3f(0.25f,0.25f,0.25f);
+    glPushMatrix();
+        glScalef(0.19,0.19,0.19);
+        glTranslated(25,-1,4);
+        glutWireSphere(2,50,50);
+    glPopMatrix();
+    
+    //27
+    glColor3f(1.0f,0.0f,0.0f);
+    glPushMatrix();
+        glScalef(0.3,0.3,0.3);
+        glTranslated(14.73,0.17,7);
+        glutWireSphere(1,50,50);
+    glPopMatrix();
+    
+    //28
+    glColor3f(1.0f,0.6f,0.0f);
+    glPushMatrix();
+        glScalef(0.25,0.25,0.25);
+        glTranslated(17.3,0.46,10);
+        glutWireSphere(1,50,50);
+    glPopMatrix();
+    
+    //29
+    glColor3f(1.0f,1.0f,0.0f);
+    glPushMatrix();
+        glScalef(0.2,0.2,0.2);
+        glTranslated(21.5,0.63,13);
+        glutWireSphere(1,50,50);
+    glPopMatrix();
+    
+    //30
+    glColor3f(0.87f,0.87f,0.87f);
+    glPushMatrix();
+        glScalef(0.15,0.15,0.15);
+        glTranslated(28.5,0.79,18);
+        glutWireSphere(1,50,50);
+    glPopMatrix();
+    
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glPopMatrix();
+}
 
 
 void renderScene(void) {
-
-	
 	// clear buffers
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    enable();
+    
+    // set the camera
+    glLoadIdentity();
+    glTranslatef(0, -1, zz);
+    
+    //define ship
+	defineShip();
+    
 
-	// set the camera
-	glLoadIdentity();
-	
-
-	gluLookAt(zx,zy,zz,
-		      0.0,0.0,0.0,
-			  0.0f,1.0f,0.0f);
-   
-
-	// put drawing instructions here
-    glPolygonMode(GL_FRONT_AND_BACK,linha);
-    glTranslatef(camX,camY,camZ);
-    glRotatef(a,0.0,1.0,0.0);
-    glRotatef(w,1.0,0.0,0.0);
+    glRotatef(xrot,1.0,0.0,0.0);
+    glRotatef(yrot,0.0,1.0,0.0);
+    glTranslated(-xpos,0,-zpos);
+    
 	glBegin(GL_TRIANGLES);
 
-	int inicia = 1;
 	int j;
 
 	for(j = 0; j < aplicacoes.size(); j++){
@@ -86,12 +336,8 @@ void renderScene(void) {
 
 		glBegin(GL_TRIANGLES);
 
-		if (inicia) {
-			glColor3f(1.0f,1.0f,0.0f);
-			inicia = 0;
-		} else {
-			glColor3f(t.getCor().getR(), t.getCor().getG(), t.getCor().getB());
-		}
+	
+		glColor3f(t.getCor().getR(), t.getCor().getG(), t.getCor().getB());
 
 		for (int i = 0; i < pontos.size(); i++){
 			glVertex3f(pontos[i].getX(), pontos[i].getY(), pontos[i].getZ());
@@ -112,89 +358,48 @@ void renderScene(void) {
 
 void keyboardspecial(int key_code, int x , int y){
 	switch(key_code){
-		case GLUT_KEY_UP: 	camY+=1;
-						 	break;
-		case GLUT_KEY_DOWN:	camY-=1;
-							break;
-		case GLUT_KEY_LEFT: camX-=1;
-							break;
-		case GLUT_KEY_RIGHT:camX+=1; 
-							break;
+		case GLUT_KEY_UP: 	if(xrot > -45) xrot-=5;
+                  			if (xrot < -360) xrot += 360;
+                  			break;
+		case GLUT_KEY_DOWN:	if(xrot < 45) xrot +=5;
+                  			if (xrot >360) xrot -= 360;
+                  			break;
+		case GLUT_KEY_LEFT: yrot-=5;
+                  			if (yrot < -360) yrot += 360;
+                  			break;
+		case GLUT_KEY_RIGHT:yrot +=5;
+                  			if (yrot >360) yrot -= 360;
+                  			break;
 	}
 	glutPostRedisplay();
 }
 
 void letrasKeyboard(unsigned char key, int x, int y){
 	switch (key) {
-		
-		case 'a':	
-		case 'A': a+=3;
-			break;
-	
-		case 'd':
-		case 'D': a-=3;
-			break;
+        case'a':
+        case'A': xpos -=cos(yrot /180 * 3.141592653589793);
+                 zpos -=sin(yrot /180 * 3.141592653589793);
+                 break;
 
-		case 'w': 
-		case 'W': w+=3;
-			break;
+        case'd':
+        case'D': xpos +=cos(yrot /180 * 3.141592653589793);
+                 zpos +=sin(yrot /180 * 3.141592653589793);
+                 break;
 
-		case 's':
-		case 'S': w-=3;
-			break;
+        case'w':
+        case'W': zpos -=cos(yrot /180 * 3.141592653589793);
+                 xpos +=sin(yrot /180 * 3.141592653589793);
+                 break;
 
-		case 'p':
-		case 'P': linha = GL_POINT;
-			break;
+        case's':
+        case'S': zpos +=1 * cos(yrot /180 * 3.141592653589793);
+                 xpos -=1 * sin(yrot /180 * 3.141592653589793);
+                 break;
 
-		case 'l':
-		case 'L': linha = GL_LINE;
-	   	    break;
-
-		case 'o':
-		case 'O': linha = GL_FILL;
+		case '+': glTranslatef(zx+=1, zy+=1, zz+=1);
 			break;
 
-		case '-': gluLookAt(zx+=2,zy+=2,zz+=2,0.0,0.0,0.0,0.0f,1.0f,0.0f);
-			break;
-
-		case '+': gluLookAt(zx-=2,zy-=2,zz-=2,0.0,0.0,0.0,0.0f,1.0f,0.0f);
-			break;
-
-		case 'r':
-		case 'R': glColor3f(R,G-=0.05,B-= 0.05);
-			break;
-
-		case 't':
-		case 'T': glColor3f(R,G+=0.05,B+= 0.05);
-			break;
-
-		case 'g':
-		case 'G': glColor3f(R-=0.05,G,B-=0.05);
-			break;
-
-		case 'h':
-		case 'H': glColor3f(R+=0.05,G,B+=0.05);
-			break;
-
-		case 'b':
-		case 'B': glColor3f(R-=0.05,G-=0.05,B);
-			break;
-
-		case 'n':
-		case 'N': glColor3f(R+=0.05,G+=0.05,B);
-			break;
-
-		case 'c':
-		case 'C':{
-					glColor3f(R=1,G=1,B=1); 
-					gluLookAt(zx=6,zy=6,zz=6,0.0,0.0,0.0,0.0f,1.0f,0.0f);
-					glTranslatef(camX=0 ,camY=0,camZ=0);
-					glRotatef(a=1,0,1,0);
-    				glRotatef(w=1,1,0,0);
-    				linha = GL_LINE;
-
-				 }
+		case '-': 	glTranslatef(zx-=1, zy-=1, zz-=1);
 			break;	
 	}
 
@@ -276,7 +481,7 @@ void parseNivelado(XMLElement *grupo , Transformacao transf){
 	Transformacao trans;
 	Translacao tr;
 	Rotacao ro;
-	Escala es = Escala::Escala(1,1,1);
+	Escala es;
 	Cor cr;
 	float ang, rotX, rotY, rotZ, transX, transY, transZ, escX, escY, escZ, tx, ty, tz;
 	ang = rotX = rotY = rotZ = transX = transY = transZ = escX = escY = escZ = 1;
@@ -394,7 +599,7 @@ void lerXML(string ficheiro) {
 
 	
 		Transformacao t = Transformacao::Transformacao();
-		Escala esc = Escala::Escala(0.4,0.4,0.4);
+		Escala esc = Escala::Escala(0.5,0.5,0.5);
 		t.setEscala(esc);
 		parseNivelado(grupo, t);
 	}
@@ -435,8 +640,7 @@ int main(int argc, char **argv) {
     
 	// OpenGL settings
 
-	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
+	enable();
 	
 	// enter GLUT's main loop
 	glutMainLoop(); 

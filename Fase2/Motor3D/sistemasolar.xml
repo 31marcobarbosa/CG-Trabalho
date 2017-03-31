@@ -4,7 +4,7 @@
 
 		<!-- SOL -->
 		<grupo>
-			<escala X="1.0" Y="1.0" Z="1.0"/>
+			<!-- <escala X="1.0" Y="1.0" Z="1.0"/> -->
 			<modelos>
 				<modelo ficheiro = "esfera.3d"/>
 			</modelos>
