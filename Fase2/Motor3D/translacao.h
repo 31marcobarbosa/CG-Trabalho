@@ -3,7 +3,7 @@
 #define _MAIN
 
 #include <vector>
-//#include "ponto.h"
+
 
 class Translacao{
 	float x;

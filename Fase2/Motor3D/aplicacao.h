@@ -36,28 +36,4 @@ public:
 		void setFilhos(vector<Aplicacao> f) {filhos=f;}
 		void setTransformacao(Transformacao t) { transformacao = t;}
 
-		/*
-		void printapp() {
-
-			cout << "############################################################" << endl;
-			cout << "NOME: " << id << endl;
-
-			Escala* app = transformacao->getEscala();
-			Translacao* ttr = transformacao->getTranslacao();
-			Rotacao* r = transformacao->getRotacao();
-
-			//for(int i = 0 ; app.size() ; i++){
-				cout << "X: " << app->getEX() << "! Y: " << app->getEY() << "! Z: " << app->getEZ() << endl;
-				cout << "Xtrans: " << ttr->getTX() << "! Ytrans: " << ttr->getTY() << "! Ztrans: " << ttr->getTZ() << endl;
-				cout << "Angulo: " << r->getAngulo() << " | X: " << r->geteixoX() << "| Y: " << r->geteixoY() << "| Z: " << r->geteixoZ() << endl;
-			//}
-
-			cout << "FILHOS: ";
-			for(int i=0; i<filhos.size(); i++){
-				cout << filhos[i]->getId() << " | " << endl;
-			}
-			cout << "############################################################" << endl;
-		}
-		*/
-
 };

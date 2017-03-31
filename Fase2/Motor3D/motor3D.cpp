@@ -4,6 +4,7 @@
 //vetor com os pontos lidos do ficheiro
 vector<Ponto> pontos;
 
+// vetor de aplicacoes
 vector<Aplicacao> aplicacoes;
 
 
@@ -200,7 +201,7 @@ void letrasKeyboard(unsigned char key, int x, int y){
 	glutPostRedisplay();
 }
 
-// vector<Ponto*> lerficheiro(string ficheiro)
+
 void lerficheiro(string ficheiro) {
 
 	string linha,token,delimiter = ",";
@@ -247,7 +248,6 @@ Transformacao alteracaoValores(Translacao tr , Escala es , Rotacao ro , Cor cr, 
 
 
 	Transformacao valores;
-	//Actualizacao dos valores em relação ao nodo pai
 	tr.setX(tr.getX() + transf.getTranslacao().getX());
 	tr.setY(tr.getY() + transf.getTranslacao().getY());
 	tr.setZ(tr.getZ() + transf.getTranslacao().getZ());
@@ -270,7 +270,7 @@ Transformacao alteracaoValores(Translacao tr , Escala es , Rotacao ro , Cor cr, 
 
 
 
-// Parse do xml que está em níveis hirarquicos
+// Parse do xml tendo em conta os níveis hirarquicos
 void parseNivelado(XMLElement *grupo , Transformacao transf){
 	
 	Transformacao trans;
@@ -350,7 +350,6 @@ void parseNivelado(XMLElement *grupo , Transformacao transf){
 
 	trans = alteracaoValores(tr, es, ro, cr, transf);
 
-	//para o mesmo grupo, quais os modelos(ficheiros) que recebem as transformações
 	for (XMLElement* modelo = grupo->FirstChildElement("modelos")->FirstChildElement("modelo"); modelo; modelo = modelo->NextSiblingElement("modelo")) {
 		
 		Aplicacao app;
@@ -362,6 +361,7 @@ void parseNivelado(XMLElement *grupo , Transformacao transf){
 
 		app.setTransformacao(trans);
 
+
 		cout << "Translacao: " << trans.getTranslacao().getX() << " - " << trans.getTranslacao().getY() << " - " << trans.getTranslacao().getZ() << endl;
 		cout << "Rotacao   : " << trans.getRotacao().getAngulo() << " - " << trans.getRotacao().geteixoX() << " - " << trans.getRotacao().geteixoY() << " - " << trans.getRotacao().geteixoZ() << endl;
 		cout << "Escala    : " << trans.getEscala().getX() << " - " << trans.getEscala().getY() << " - " << trans.getEscala().getZ() << endl;
@@ -370,12 +370,12 @@ void parseNivelado(XMLElement *grupo , Transformacao transf){
 		aplicacoes.push_back(app);
 	}
 
-	//faz o mesmo de cima para grupos filhos
+	//verifica os grupos dos filhos
 	if (grupo->FirstChildElement("grupo")) {
 		parseNivelado(grupo->FirstChildElement("grupo"), trans);
 	}
 
-	//faz o mesmo de cima para grupos irmãos
+	//verifica os grupos dos irmãos
 	if (grupo->NextSiblingElement("grupo")) {
 		parseNivelado(grupo->NextSiblingElement("grupo"), transf);
 	}
