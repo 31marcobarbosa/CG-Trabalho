@@ -350,6 +350,15 @@ void renderScene(void) {
 
 	glEnd();
 
+
+    glColor3f(0.4f,0.21f,0.0f);
+    glPushMatrix();
+        glScalef(1.8,0.5,1.8);
+        glTranslated(52.7,0,0);
+        glRotatef(120.0, 1.0, 0.0, 0.0);
+        glutWireTorus(0.25,1.75,28,28);
+    glPopMatrix();
+
 	// End of frame
 	glutSwapBuffers();
 }
