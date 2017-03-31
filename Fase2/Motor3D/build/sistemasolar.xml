@@ -16,7 +16,7 @@
 			<escala X="0.3" Y="0.3" Z="0.3"/>
 			<translacao X="8.0" Y="0" Z="0"/>
 			<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
-			<cor R="1" G="0" B="0.3"/>
+			<cor R="9.6" G="0.4" B="0.3"/>
 			<modelos>
 				<modelo ficheiro = "esfera.3d"/>
 			</modelos>
@@ -38,14 +38,14 @@
 			<escala X="0.35" Y="0.35" Z="0.35"/>
 			<translacao X="25.0" Y="0" Z="0"/>
 			<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
-			<cor R="0" G="1" B="0"/>
+			<cor R="0" G="0" B="3.3"/>
 			<modelos>
 				<modelo ficheiro = "esfera.3d"/>
 			</modelos>
 				<!--LUA-->
 				<grupo>
 						<escala X="0.15" Y="0.15" Z="0.15"/>
-						<translacao X="1.2" Y="0" Z="0"/>
+						<translacao X="0" Y="1.2" Z="0"/>
 						<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
 						<cor R="1" G="2" B="24"/>
 						<modelos>
@@ -59,7 +59,7 @@
 			<escala X="0.31" Y="0.31" Z="0.31"/>
 			<translacao X="45.0" Y="0" Z="0"/>
 			<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
-			<cor R="9.6" G="0.4" B="0.3"/>
+			<cor R="1" G="0" B="0.3"/>
 			<modelos>
 				<modelo ficheiro = "esfera.3d"/>
 			</modelos>
@@ -67,7 +67,7 @@
 
 		<!--JÚPITER-->
 		<grupo>
-			<escala X="0.6" Y="0.6" Z="0.6"/>
+			<escala X="2.3" Y="2.3" Z="2.3"/>
 			<translacao X="65.0" Y="0" Z="0"/>
 			<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
 			<cor R="3.6" G="0.4" B="0.0"/>
@@ -77,7 +77,7 @@
 				<!--JÚPITER_Ganymede-->
 				<grupo>
 						<escala X="0.15" Y="0.15" Z="0.15"/>
-						<translacao X="3.4" Y="0" Z="0"/>
+						<translacao X="2.9" Y="0.5" Z="0.2"/>
 						<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
 						<modelos>
 							<modelo ficheiro = "esfera.3d"/>
@@ -86,7 +86,7 @@
 				<!--JÚPITER_Callisto-->
 				<grupo>
 						<escala X="0.15" Y="0.15" Z="0.15"/>
-						<translacao X="1.8" Y="0" Z="0"/>
+						<translacao X="2.8" Y="2.5" Z="0"/>
 						<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
 						<modelos>
 							<modelo ficheiro = "esfera.3d"/>
@@ -95,7 +95,7 @@
 				<!--JÚPITER_Io-->
 				<grupo>
 						<escala X="0.15" Y="0.15" Z="0.15"/>
-						<translacao X="2.3" Y="0" Z="0"/>
+						<translacao X="-3.8" Y="-1.2" Z="0"/>
 						<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
 						<modelos>
 							<modelo ficheiro = "esfera.3d"/>
@@ -104,7 +104,7 @@
 				<!--JÚPITER_Europa-->
 				<grupo>
 						<escala X="0.15" Y="0.15" Z="0.15"/>
-						<translacao X="2.8" Y="0" Z="0"/>
+						<translacao X="-1.8" Y="1.30" Z="-2.0"/>
 						<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
 						<modelos>
 							<modelo ficheiro = "esfera.3d"/>
@@ -114,10 +114,10 @@
 
 		<!--SATURNO-->
 		<grupo>
-			<escala X="0.55" Y="0.55" Z="0.55"/>
+			<escala X="1.9" Y="1.9" Z="1.9"/>
 			<translacao X="85.0" Y="0" Z="0"/>
 			<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
-			<cor R="0.6" G="6.4" B="0.1"/>
+			<cor R="1.0" G="0.8" B="0.7"/>
 			<modelos>
 				<modelo ficheiro = "esfera.3d"/>
 			</modelos>
@@ -125,7 +125,7 @@
 			<!--SATURNO_Titan-->
 				<grupo>
 						<escala X="0.16" Y="0.16" Z="0.16"/>
-						<translacao X="2" Y="0" Z="1.2"/>
+						<translacao X="2.9" Y="1" Z="0.4"/>
 						<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
 						<modelos>
 							<modelo ficheiro = "esfera.3d"/>
@@ -134,7 +134,7 @@
 			<!--SATURNO_Rhea-->
 				<grupo>
 						<escala X="0.16" Y="0.16" Z="0.16"/>
-						<translacao X="3" Y="0" Z="1.2"/>
+						<translacao X="1.8" Y="-1.5" Z="-1"/>
 						<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
 						<modelos>
 							<modelo ficheiro = "esfera.3d"/>
@@ -143,7 +143,7 @@
 			<!--SATURNO_Kapetus-->
 				<grupo>
 						<escala X="0.16" Y="0.16" Z="0.16"/>
-						<translacao X="4" Y="0" Z="1.2"/>
+						<translacao X="-1.9" Y="0" Z="-2"/>
 						<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
 						<modelos>
 							<modelo ficheiro = "esfera.3d"/>
@@ -152,7 +152,7 @@
 			<!--SATURNO_Dione-->
 				<grupo>
 						<escala X="0.16" Y="0.16" Z="0.16"/>
-						<translacao X="5" Y="0" Z="1.2"/>
+						<translacao X="-2.9" Y="0" Z="1.2"/>
 						<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
 						<modelos>
 							<modelo ficheiro = "esfera.3d"/>
@@ -163,10 +163,10 @@
 
 		<!--URANO-->
 		<grupo>
-			<escala X="0.4" Y="0.4" Z="0.4"/>
+			<escala X="0.9" Y="0.9" Z="0.9"/>
 			<translacao X="95.0" Y="0" Z="0"/>
 			<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
-			<cor R="3.6" G="3.4" B="0.3"/>
+			<cor R="0.3" G="2.4" B="3.3"/>
 			<modelos>
 				<modelo ficheiro = "esfera.3d"/>
 			</modelos>
@@ -174,10 +174,10 @@
 
 		<!--NEPTUNO-->
 		<grupo>
-			<escala X="0.33" Y="0.32" Z="0.32"/>
+			<escala X="0.7" Y="0.7" Z="0.7"/>
 			<translacao X="105.0" Y="0" Z="0"/>
 			<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
-			<cor R="0.6" G="3.4" B="3.3"/>
+			<cor R="0.3" G="0.3" B="3.3"/>
 			<modelos>
 				<modelo ficheiro = "esfera.3d"/>
 			</modelos>
@@ -185,7 +185,7 @@
 				<!--NEPTUNO_Tritão-->
 				<grupo>
 						<escala X="0.1" Y="0.1" Z="0.1"/>
-						<translacao X="0" Y="0" Z="1.2"/>
+						<translacao X="0" Y="-0.5" Z="1.2"/>
 						<rotacao angulo="45" eixoX="0" eixoY="0" eixoZ="0"/>
 						<modelos>
 							<modelo ficheiro = "esfera.3d"/>

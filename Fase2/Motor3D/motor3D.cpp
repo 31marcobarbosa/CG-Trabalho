@@ -394,7 +394,7 @@ void lerXML(string ficheiro) {
 
 	
 		Transformacao t = Transformacao::Transformacao();
-		Escala esc = Escala::Escala(0.6,0.6,0.6);
+		Escala esc = Escala::Escala(0.4,0.4,0.4);
 		t.setEscala(esc);
 		parseNivelado(grupo, t);
 	}
@@ -418,8 +418,8 @@ int main(int argc, char **argv) {
 
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
-    glutInitWindowPosition(100,100);
-    glutInitWindowSize(800,800);
+    glutInitWindowPosition(580,150);
+    glutInitWindowSize(1200,800);
     glutCreateWindow("Projeto_de_CG"); 
 
     // leitura do ficheiro xml
