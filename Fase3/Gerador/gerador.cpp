@@ -397,6 +397,10 @@ void menu() {
 	cout <<"|       $ ./gen Figura [Parâmetros] figura.3d               |"<< endl;
 	cout <<"|       $ mv figura.3d diretoria/Motor                      |"<< endl;
 	cout <<"|                                                           |"<< endl;
+	cout <<"|       -> Patch                                            |"<< endl;
+    cout <<"|        $ g++ gerador.cpp -o gen                           |"<< endl;
+	cout <<"|        $ ./gen Patch less teapot.patch                    |"<< endl;
+    cout <<"|                                                           |"<< endl;
 	cout <<"|                                                           |"<< endl;
 	cout <<"|       MOTOR:                                              |"<< endl;
 	cout <<"|                                                           |"<< endl;
@@ -415,6 +419,7 @@ void menu() {
 	cout <<"|                                                           |"<< endl;
 	cout <<"|       * Esfera raio camadasV camadasH                     |"<< endl;
 	cout <<"|                                                           |"<< endl;
+	cout <<"|       * Patch less                                        |"<< endl;
 	cout <<"|                                                           |"<< endl;
 	cout <<"|---------------------> Controlos 3D <----------------------|"<< endl;
 	cout <<"|                                                           |"<< endl;
