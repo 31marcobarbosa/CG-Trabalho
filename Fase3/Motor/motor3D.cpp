@@ -15,6 +15,7 @@ float size;
 float w = 1;
 float xrot= 0, yrot = 0, zpos = 30, xpos = 0;
 float zx = 6, zy = 6, zz = -4;
+int line = GL_LINE;
 
 
 void changeSize(int w, int h) {
@@ -147,6 +148,18 @@ void letrasKeyboard(unsigned char key, int x, int y){
         case'S': zpos +=1 * cos(yrot /180 * 3.141592653589793);
                  xpos -=1 * sin(yrot /180 * 3.141592653589793);
                  break;
+
+        case 'p':
+		case 'P': line = GL_POINT;
+				  break;
+
+		case 'l':
+		case 'L': line = GL_LINE;
+	   	   		  break;
+
+		case 'o':
+		case 'O': line = GL_FILL;
+				  break;
 
 		case '+': glTranslatef(zx+=1, zy+=1, zz+=1);
 			break;
