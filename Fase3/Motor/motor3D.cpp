@@ -13,9 +13,11 @@ vector<Aplicacao> aplicacoes;
 float R = 1, G = 1, B = 1;
 float size;
 float w = 1;
-float xrot= 0, yrot = 0, zpos = 30, xpos = 0;
+float xrot= 0, yrot = 0, zrot = 0, zpos = 30, xpos = 0 , ypos = 0;
 float zx = 6, zy = 6, zz = -4;
 int line = GL_LINE;
+float rato = 0, ratoX, ratoY;
+int alpha = 0 , beta = 0;
 
 
 void changeSize(int w, int h) {
@@ -103,8 +105,18 @@ void renderScene(void) {
         glutWireTorus(0.25,1.75,28,28);
     glPopMatrix();
 
-	// End of frame
+	// End of fr
+	ame
 	glutSwapBuffers();
+}
+
+
+
+void resetCamara() {
+	xpos = ypos = zpos = 0.0f;
+	xrot = yrot = zrot = 0.0f;
+	alpha = 0;
+	beta = 0;
 }
 
 
@@ -161,6 +173,9 @@ void letrasKeyboard(unsigned char key, int x, int y){
 		case 'O': line = GL_FILL;
 				  break;
 
+		case 'r':
+		case 'R': resetCamara(); break;
+
 		case '+': glTranslatef(zx+=1, zy+=1, zz+=1);
 			break;
 
@@ -170,6 +185,21 @@ void letrasKeyboard(unsigned char key, int x, int y){
 
 	glutPostRedisplay();
 }
+
+
+void botoesRato(int but , ins stt , int x , int y) {
+
+	if( but == GLUT_LEFT_BUTTOM){
+		if (stt == GLUT_DOWN) {
+			rato = 1;
+			ratoX = x;
+			ratoY = y;
+		}
+		else if ( stt == GLUT_UP)
+				rato = 0;
+	}
+}
+
 
 
 void lerficheiro(string ficheiro) {
@@ -248,7 +278,7 @@ void parseNivelado(XMLElement *grupo , Transformacao transf){
 	Rotacao ro;
 	Escala es;
 	Cor cr;
-	float ang, rotX, rotY, rotZ, transX, transY, transZ, escX, escY, escZ, tx, ty, tz;
+	float tmp, rotX, rotY, rotZ, transX, transY, transZ, escX, escY, escZ, tx, ty, tz;
 	ang = rotX = rotY = rotZ = transX = transY = transZ = escX = escY = escZ = 1;
 
 	if (strcmp(grupo->FirstChildElement()->Value(), "grupo") == 0)
@@ -272,9 +302,9 @@ void parseNivelado(XMLElement *grupo , Transformacao transf){
 			tr = Translacao::Translacao(transX, transY, transZ);
 		}
 		if (strcmp(transformacao->Value(), "rotacao") == 0){
-			if (transformacao->Attribute("angulo")) 
-				ang = stof(transformacao->Attribute("angulo"));
-			else ang = 0;
+			if (transformacao->Attribute("tempo")) 
+				tmp = stof(transformacao->Attribute("tempo"));
+			else tmp = 0;
 			if (transformacao->Attribute("eixoX")) 
 				rotX = stof(transformacao->Attribute("eixoX"));
 			else rotX = 0;
@@ -284,7 +314,7 @@ void parseNivelado(XMLElement *grupo , Transformacao transf){
 			if (transformacao->Attribute("eixoZ")) 
 				rotZ = stof(transformacao->Attribute("eixoZ"));
 			else rotZ = 0;
-			ro = Rotacao::Rotacao(ang, rotX, rotY, rotZ);
+			ro = Rotacao::Rotacao(tmp, rotX, rotY, rotZ);
 		}
 		if (strcmp(transformacao->Value(), "escala") == 0){
 			if (transformacao->Attribute("X")) 
@@ -400,9 +430,16 @@ int main(int argc, char **argv) {
 
     glutDisplayFunc(renderScene);
     glutReshapeFunc(changeSize);
+   
+
     glutSpecialFunc(keyboardspecial);
     glutKeyboardFunc(letrasKeyboard);
+    glutMouseFunc(botoesRato);
     
+    // OpenGL settings
+
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
 	
 	// enter GLUT's main loop
 	glutMainLoop(); 
