@@ -9,7 +9,7 @@ vector<Aplicacao> aplicacoes;
 
 
 
-
+// Vars. para utilização rato e teclado
 float R = 1, G = 1, B = 1;
 float size;
 float w = 1;
@@ -18,6 +18,10 @@ float zx = 6, zy = 6, zz = -4;
 int line = GL_LINE;
 float rato = 0, ratoX, ratoY;
 int alpha = 0 , beta = 0;
+
+//Vars. para fps
+int frame = 0 , timeb = 0;
+
 
 
 void changeSize(int w, int h) {
@@ -45,6 +49,42 @@ void changeSize(int w, int h) {
 	glMatrixMode(GL_MODELVIEW);
 }
 
+
+void fps() {
+	float fpsec;
+	int time;
+	char sol[64];
+
+	frame++;
+	time = glutGet(GLUT_ELAPSED_TIME);
+
+	if (time - timeb > 1000) {
+		fpsec = frame*1000.0 / (time - timeb);
+		timeb = time;
+		frame = 0;
+		sprintf(stg,"FPS: %f6.2",fps);
+		glutSetWindowTitle(stg);
+	}
+}
+
+// função que desenha as órbitas 
+void renderCatmullRomCurve( vector<Ponto> pontos) {
+	int x = pontos.size();
+	float npts[3];
+	int i;
+
+	glBegin(GL_LINE_LOOP);
+
+	for(i=0; i < n ; i ++) {
+		npts[0] = pontos[i].getX();
+		npts[1] = pontos[i].getY();
+		npts[2] = pontos[i].getZ();
+
+		glVertex3fv(npts);
+		}
+	}
+	glEnd();
+}
 
 
 void renderScene(void) {
