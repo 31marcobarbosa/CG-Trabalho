@@ -312,28 +312,28 @@ void parseNivelado(XMLElement *grupo , Transformacao transf, char pai){
 	float tmp, rotX, rotY, rotZ, transX, transY, transZ, escX, escY, escZ, tx, ty, tz, time;
 	ang = rotX = rotY = rotZ = transX = transY = transZ = escX = escY = escZ = 1;
 
-	if (strcmp(grupo->FirstChildElement()->Value(), "grupo") == 0)
+	if (strcmp(grupo->FirstChildElement()->Value(), "group") == 0)
 		grupo = grupo->FirstChildElement();
 
 
 	//transformações para um grupo
 	XMLElement* transformacao = grupo->FirstChildElement();
 
-	for (transformacao; (strcmp(transformacao->Value(), "modelos") != 0); transformacao = transformacao->NextSiblingElement()) {
+	for (transformacao; (strcmp(transformacao->Value(), "models") != 0); transformacao = transformacao->NextSiblingElement()) {
 		
-		if (strcmp(transformacao->Value(), "translacao") == 0){
+		if (strcmp(transformacao->Value(), "translate") == 0){
 
 				vector<Ponto> translPontos;
 				XMLElement* ponto;
 
-				if(transformacao->Attribute("tempo")) {
-					time = stof(transformacao->Attribute("tempo"));
+				if(transformacao->Attribute("time")) {
+					time = stof(transformacao->Attribute("time"));
 				} 
 				else {
 					time = 0;
 				}
 
-				for (ponto = transformacao->FirstChildElement("ponto"); ponto; ponto = ponto->NextSiblingElement("ponto")) {
+				for (ponto = transformacao->FirstChildElement("point"); ponto; ponto = ponto->NextSiblingElement("point")) {
 
 
 					if(transformacao->Attribute("X")) 
@@ -355,9 +355,9 @@ void parseNivelado(XMLElement *grupo , Transformacao transf, char pai){
 
 	}
 
-		if (strcmp(transformacao->Value(), "rotacao") == 0){
-			if (transformacao->Attribute("tempo")) 
-				tmp = stof(transformacao->Attribute("tempo"));
+		if (strcmp(transformacao->Value(), "rotate") == 0){
+			if (transformacao->Attribute("time")) 
+				tmp = stof(transformacao->Attribute("time"));
 			else tmp = 0;
 			if (transformacao->Attribute("eixoX")) 
 				rotX = stof(transformacao->Attribute("eixoX"));
@@ -370,7 +370,7 @@ void parseNivelado(XMLElement *grupo , Transformacao transf, char pai){
 			else rotZ = 0;
 			ro = Rotacao::Rotacao(rotX, rotY, rotZ, tmp);
 		}
-		if (strcmp(transformacao->Value(), "escala") == 0){
+		if (strcmp(transformacao->Value(), "scale") == 0){
 			if (transformacao->Attribute("X")) 
 				escX = stof(transformacao->Attribute("X"));
 			else escX = 1;
@@ -384,7 +384,7 @@ void parseNivelado(XMLElement *grupo , Transformacao transf, char pai){
 			es.setY(escY);
 			es.setZ(escZ);
 		}
-		if (strcmp(transformacao->Value(), "cor") == 0) {
+		if (strcmp(transformacao->Value(), "colour") == 0) {
 			if (transformacao->Attribute("R"))
 				tx = stof(transformacao->Attribute("R"));
 			else tx = 0;
@@ -404,10 +404,10 @@ void parseNivelado(XMLElement *grupo , Transformacao transf, char pai){
 
 	trans = alteracaoValores(tr, es, ro, cr, transf);
 
-	for (XMLElement* modelo = grupo->FirstChildElement("modelos")->FirstChildElement("modelo"); modelo; modelo = modelo->NextSiblingElement("modelo")) {
+	for (XMLElement* modelo = grupo->FirstChildElement("models")->FirstChildElement("model"); modelo; modelo = modelo->NextSiblingElement("model")) {
 		
 		Aplicacao app;
-		app.setNome(modelo->Attribute("ficheiro"));
+		app.setNome(modelo->Attribute("file"));
 		cout << app.getNome() << endl;
 		lerficheiro(app.getNome());
 		app.setPontos(pontos);
@@ -438,20 +438,20 @@ void parseNivelado(XMLElement *grupo , Transformacao transf, char pai){
 	}
 
 	//verifica o caso se for filho e tiver irmaos
-	if ((grupo->FirstChildElement("grupo"))  && (pai == 'F' || pai == 'P')) {
-		parseNivelado(grupo->FirstChildElement("grupo"), trans,'P');
+	if ((grupo->FirstChildElement("group"))  && (pai == 'F' || pai == 'P')) {
+		parseNivelado(grupo->FirstChildElement("group"), trans,'P');
 	}
 
 	//verifica o caso de possuir filhos
-	if (grupo->FirstChildElement("grupo")) {
+	if (grupo->FirstChildElement("group")) {
 		cout << "Teste ao filho" << endl;
-		parseNivelado(grupo->FirstChildElement("grupo"), trans);
+		parseNivelado(grupo->FirstChildElement("group"), trans);
 	}
 
 	//verifica os grupos dos irmãos
-	if ((grupo->NextSiblingElement("grupo")) && (pai != 'F' || pai != 'P') ) {
+	if ((grupo->NextSiblingElement("group")) && (pai != 'F' || pai != 'P') ) {
 		cout << "teste ao irmao " << endl;
-		parseNivelado(grupo->NextSiblingElement("grupo"), transf,'F');
+		parseNivelado(grupo->NextSiblingElement("group"), transf,'F');
 	}
 
 }
@@ -463,8 +463,8 @@ void lerXML(string ficheiro) {
 	
 	if (!(docxml.LoadFile(ficheiro.c_str()))) {
 		
-		XMLElement * cena = docxml.FirstChildElement("cena");
-		XMLElement * grupo = cena -> FirstChildElement("grupo");
+		XMLElement * cena = docxml.FirstChildElement("scene");
+		XMLElement * grupo = cena -> FirstChildElement("group");
 
 	
 		Transformacao t = Transformacao::Transformacao();
