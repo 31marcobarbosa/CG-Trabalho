@@ -250,6 +250,7 @@ void lerficheiro(string ficheiro) {
 	double a,b,c;
 
 	ifstream file(ficheiro);
+	
 	if (file.is_open()){
 
 		while(getline(file,linha)){
@@ -288,20 +289,10 @@ Transformacao alteracaoValores(Translacao tr , Escala es , Rotacao ro , Cor cr, 
 
 
 	Transformacao valores;
-	tr.setX(tr.getX() + transf.getTranslacao().getX());
-	tr.setY(tr.getY() + transf.getTranslacao().getY());
-	tr.setZ(tr.getZ() + transf.getTranslacao().getZ());
-	ro.setAngulo(ro.getAngulo() + transf.getRotacao().getAngulo());
-	ro.setEixoX(ro.geteixoX() + transf.getRotacao().geteixoX());
-	ro.setEixoY(ro.geteixoY() + transf.getRotacao().geteixoY());
-	ro.setEixoZ(ro.geteixoZ() + transf.getRotacao().geteixoZ());
 	es.setX(es.getX() * transf.getEscala().getX());
 	es.setY(es.getY() * transf.getEscala().getY());
 	es.setZ(es.getZ() * transf.getEscala().getZ());
-	cr.setR(cr.getR());
-	cr.setG(cr.getG());
-	cr.setB(cr.getB());
-
+	
 	valores = Transformacao::Transformacao(tr,ro,es,cr);
 
 	return valores;
@@ -311,14 +302,14 @@ Transformacao alteracaoValores(Translacao tr , Escala es , Rotacao ro , Cor cr, 
 
 
 // Parse do xml tendo em conta os níveis hirarquicos
-void parseNivelado(XMLElement *grupo , Transformacao transf){
+void parseNivelado(XMLElement *grupo , Transformacao transf, char pai){
 	
 	Transformacao trans;
 	Translacao tr;
 	Rotacao ro;
 	Escala es;
 	Cor cr;
-	float tmp, rotX, rotY, rotZ, transX, transY, transZ, escX, escY, escZ, tx, ty, tz;
+	float tmp, rotX, rotY, rotZ, transX, transY, transZ, escX, escY, escZ, tx, ty, tz, time;
 	ang = rotX = rotY = rotZ = transX = transY = transZ = escX = escY = escZ = 1;
 
 	if (strcmp(grupo->FirstChildElement()->Value(), "grupo") == 0)
@@ -329,18 +320,41 @@ void parseNivelado(XMLElement *grupo , Transformacao transf){
 	XMLElement* transformacao = grupo->FirstChildElement();
 
 	for (transformacao; (strcmp(transformacao->Value(), "modelos") != 0); transformacao = transformacao->NextSiblingElement()) {
+		
 		if (strcmp(transformacao->Value(), "translacao") == 0){
-			if(transformacao->Attribute("X")) 
-				transX = stof(transformacao->Attribute("X"));
-			else transX = 0;
-			if (transformacao->Attribute("Y"))
-				 transY = stof(transformacao->Attribute("Y"));
-			else transY = 0;
-			if (transformacao->Attribute("Z")) 
-				transZ = stof(transformacao->Attribute("Z"));
-			else transZ = 0;
-			tr = Translacao::Translacao(transX, transY, transZ);
-		}
+
+				vector<Ponto> translPontos;
+				XMLElement* ponto;
+
+				if(transformacao->Attribute("tempo")) {
+					time = stof(transformacao->Attribute("tempo"));
+				} 
+				else {
+					time = 0;
+				}
+
+				for (ponto = transformacao->FirstChildElement("ponto"); ponto; ponto = ponto->NextSiblingElement("ponto")) {
+
+
+					if(transformacao->Attribute("X")) 
+						 transX = stof(transformacao->Attribute("X"));
+					else transX = 0;
+					if (transformacao->Attribute("Y"))
+						 transY = stof(transformacao->Attribute("Y"));
+					else transY = 0;
+					if (transformacao->Attribute("Z")) 
+						transZ = stof(transformacao->Attribute("Z"));
+					else transZ = 0;
+					
+					Ponto pontt = Ponto::Ponto(transX,transY,transZ);	 
+					translPontos.push_back(pontt);
+				}
+
+				tr = Translacao::Translacao(time,translPontos,translPontos.size());
+				tr.desenhaCurvas();
+
+	}
+
 		if (strcmp(transformacao->Value(), "rotacao") == 0){
 			if (transformacao->Attribute("tempo")) 
 				tmp = stof(transformacao->Attribute("tempo"));
@@ -354,7 +368,7 @@ void parseNivelado(XMLElement *grupo , Transformacao transf){
 			if (transformacao->Attribute("eixoZ")) 
 				rotZ = stof(transformacao->Attribute("eixoZ"));
 			else rotZ = 0;
-			ro = Rotacao::Rotacao(tmp, rotX, rotY, rotZ);
+			ro = Rotacao::Rotacao(rotX, rotY, rotZ, tmp);
 		}
 		if (strcmp(transformacao->Value(), "escala") == 0){
 			if (transformacao->Attribute("X")) 
@@ -408,16 +422,36 @@ void parseNivelado(XMLElement *grupo , Transformacao transf){
 		cout << "Cor       : " << trans.getCor().getR() << " - " << trans.getCor().getG() << " - " << trans.getCor().getB() << endl;
 
 		aplicacoes.push_back(app);
+
+		int qtd = aplicacoes.size();
+
+		if( pai == 'F') {
+			aplicacoes[qtd].setFilho(qtd);
+		}
+		else if (pai == 'P') {
+			aplicacoes[qtd].setFilho(qtd);
+		}
+		else {
+			aplicacoes.push_back(qtd);
+		}
+
 	}
 
-	//verifica os grupos dos filhos
+	//verifica o caso se for filho e tiver irmaos
+	if ((grupo->FirstChildElement("grupo"))  && (pai == 'F' || pai == 'P')) {
+		parseNivelado(grupo->FirstChildElement("grupo"), trans,'P');
+	}
+
+	//verifica o caso de possuir filhos
 	if (grupo->FirstChildElement("grupo")) {
+		cout << "Teste ao filho" << endl;
 		parseNivelado(grupo->FirstChildElement("grupo"), trans);
 	}
 
 	//verifica os grupos dos irmãos
-	if (grupo->NextSiblingElement("grupo")) {
-		parseNivelado(grupo->NextSiblingElement("grupo"), transf);
+	if ((grupo->NextSiblingElement("grupo")) && (pai != 'F' || pai != 'P') ) {
+		cout << "teste ao irmao " << endl;
+		parseNivelado(grupo->NextSiblingElement("grupo"), transf,'F');
 	}
 
 }
@@ -435,8 +469,10 @@ void lerXML(string ficheiro) {
 	
 		Transformacao t = Transformacao::Transformacao();
 		Escala esc = Escala::Escala(0.5,0.5,0.5);
+		Translacao translacao = Translacao::Translacao();
 		t.setEscala(esc);
-		parseNivelado(grupo, t);
+		t.setTranslacao();
+		parseNivelado(grupo, t, 'I');
 	}
 	else {
 		cout << "Ficheiro XML não foi encontrado" << endl;

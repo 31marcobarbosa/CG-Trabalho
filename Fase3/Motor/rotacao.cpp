@@ -9,10 +9,10 @@ Rotacao::Rotacao(){
 };
 
 Rotacao::Rotacao(float a, float b, float c, float d){
-	tempo = a;
-	eixoX = b;
-	eixoY = c;
-	eixoZ = d;
+	tempo = d;
+	eixoX = a;
+	eixoY = b;
+	eixoZ = c;
 };
 
 
