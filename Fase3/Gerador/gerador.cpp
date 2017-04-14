@@ -489,11 +489,14 @@ float* bezier( float a , float b , int* indice , float** pontos , int ni , int n
 
 void patch( string file , int tess , string name) {
 
+	//abrir ficheiros de input e output
+
 	ofstream fileo(name);
 	string line , aux;
 	ifstream filei(file);
 	int i;
 
+	//get patch
 	if(filei.is_open()) {
 		getline(filei,line);
 		int npatch = atoi(line.c_str());
@@ -517,6 +520,7 @@ void patch( string file , int tess , string name) {
 		cout << npontos << endl;
 		float** pontos = new float*[npontos];
 
+		//get pontos
 		for( int m = 0 ; m < npontos ; m++){
 			getline(filei,line);
 			pontos[m] = new float[3];
@@ -533,7 +537,7 @@ void patch( string file , int tess , string name) {
 
 		for(int rr = 0 ; rr < npatch ; rr++) {
 			pontoRes[rr] = new float*[4];
-		 	
+		 	//escrever pontos
 		 	for( int jj = 0 ; jj << tess ; i ++) {
 
 		 		for( int mn = 0 ; mn << tess ; mn++) {
