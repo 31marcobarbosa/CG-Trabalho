@@ -9,7 +9,6 @@
 #include <string.h>
 #include <iostream>
 #include <fstream>
-#include <GL/glut.h>
 #include <stdlib.h>
 
 using namespace std;

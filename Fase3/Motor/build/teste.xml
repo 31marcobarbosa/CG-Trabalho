@@ -1,0 +1,123 @@
+<scene>
+	
+			<!--Sol-->
+			<group>
+				<scale X="3.0" Y="3.0" Z="3.0"/>
+				<rotate time="50" eixoX="0" eixoY="1" eixoZ="0" />
+				<models>
+					<model file="esfera.3d"/>
+				</models>
+			</group>
+			<!--Mercúrio-->
+			<group>
+				<translate time="4.4">
+					<point X="25" Y="0" Z="0" />
+					<point X="23.097" Y="0" Z="9.56709" />
+					<point X="17.6777" Y="0" Z="17.6777" />
+					<point X="9.56709" Y="0" Z="23.097" />
+					<point X="1.53081e-015" Y="0" Z="25" />
+					<point X="-9.56709" Y="0" Z="23.097" />
+					<point X="-17.6777" Y="0" Z="17.6777" />
+					<point X="-23.097" Y="0" Z="9.56709" />
+					<point X="-25" Y="0" Z="3.06162e-015" />
+					<point X="-23.097" Y="0" Z="-9.56709" />
+					<point X="-17.6777" Y="0" Z="-17.6777" />
+					<point X="-9.56709" Y="0" Z="-23.097" />
+					<point X="-4.59243e-015" Y="0" Z="-25" />
+					<point X="9.56709" Y="0" Z="-23.097" />
+					<point X="17.6777" Y="0" Z="-17.6777" />
+					<point X="23.097" Y="0" Z="-9.56709" />
+				</translate>
+				<colour R="0.1" G="0.7" B="1.0" />
+				<rotate time="38" eixoX="0" eixoY="1" eixoZ="0" />
+				<scale X="0.5" Y="0.5" Z="0.5"/>
+				<models>
+					<model file="esfera.3d"/>
+				</models>
+			</group>
+
+			<!--Vénus-->
+			<group>
+				<translate time="11.2">
+					<point X="35" Y="0" Z="0" />
+					<point X="32.3358" Y="0" Z="13.3939" />
+					<point X="24.7487" Y="0" Z="24.7487" />
+					<point X="13.3939" Y="0" Z="32.3358" />
+					<point X="2.14313e-015" Y="0" Z="35" />
+					<point X="-13.3939" Y="0" Z="32.3358" />
+					<point X="-24.7487" Y="0" Z="24.7487" />
+					<point X="-32.3358" Y="0" Z="13.3939" />
+					<point X="-35" Y="0" Z="4.28626e-015" />
+					<point X="-32.3358" Y="0" Z="-13.3939" />
+					<point X="-24.7487" Y="0" Z="-24.7487" />
+					<point X="-13.3939" Y="0" Z="-32.3358" />
+					<point X="-6.4294e-015" Y="0" Z="-35" />
+					<point X="13.3939" Y="0" Z="-32.3358" />
+					<point X="24.7487" Y="0" Z="-24.7487" />
+					<point X="32.3358" Y="0" Z="-13.3939" />
+				</translate>
+				<rotate time="40" eixoX="0" eixoY="-1" eixoZ="0" />
+				<colour R="0.5" G="0.5" B="0.5" />
+				<scale X="0.7" Y="0.7" Z="0.7"/>
+				<models>
+					<model file="esfera.3d"/>
+				</models>
+			</group>
+
+			<!--Terra-->
+			<group>
+				<translate time="18.25">
+					<point X="50" Y="0" Z="0" />
+					<point X="46.194" Y="0" Z="19.1342" />
+					<point X="35.3553" Y="0" Z="35.3553" />
+					<point X="19.1342" Y="0" Z="46.194" />
+					<point X="3.06162e-015" Y="0" Z="50" />
+					<point X="-19.1342" Y="0" Z="46.194" />
+					<point X="-35.3553" Y="0" Z="35.3553" />
+					<point X="-46.194" Y="0" Z="19.1342" />
+					<point X="-50" Y="0" Z="6.12323e-015" />
+					<point X="-46.194" Y="0" Z="-19.1342" />
+					<point X="-35.3553" Y="0" Z="-35.3553" />
+					<point X="-19.1342" Y="0" Z="-46.194" />
+					<point X="-9.18485e-015" Y="0" Z="-50" />
+					<point X="19.1342" Y="0" Z="-46.194" />
+					<point X="35.3553" Y="0" Z="-35.3553" />
+					<point X="46.194" Y="0" Z="-19.1342" />
+				</translate>
+				<rotate time="15" eixoX="0" eixoY="0.5" eixoZ="0" />
+				<colour R="0.0" G="0.0" B="0.9" />
+				<scale X="0.7" Y="0.7" Z="0.7"/>
+				<models>
+					<model file="esfera.3d"/>
+				</models>
+			</group>
+
+				<!--Lua-->
+					<group>
+						<translate time="10">
+							<point X="8" Y="0" Z="0" />
+							<point X="7.39104" Y="3.06147" Z="0" />
+							<point X="5.65685" Y="5.65685" Z="0" />
+							<point X="3.06147" Y="7.39104" Z="0" />
+							<point X="4.89859e-016" Y="8" Z="0" />
+							<point X="-3.06147" Y="7.39104" Z="0" />
+							<point X="-5.65685" Y="5.65685" Z="0" />
+							<point X="-7.39104" Y="3.06147" Z="0" />
+							<point X="-8" Y="9.79717e-016" Z="0" />
+							<point X="-7.39104" Y="-3.06147" Z="0" />
+							<point X="-5.65685" Y="-5.65685" Z="0" />
+							<point X="-3.06147" Y="-7.39104" Z="0" />
+							<point X="-1.46958e-015" Y="-8" Z="0" />
+							<point X="3.06147" Y="-7.39104" Z="0" />
+							<point X="5.65685" Y="-5.65685" Z="0" />
+							<point X="7.39104" Y="-3.06147" Z="0" />
+						</translate>
+						<rotate time="24" eixoX="0" eixoY="1" eixoZ="0" />
+						<scale X="0.25" Y="0.25" Z="0.25"/>
+						<colour R="0.9" G="0.0" B="0.0" />
+						<models>
+							<model file="esfera.3d"/>
+						</models>
+					</group>
+					
+			</scene>

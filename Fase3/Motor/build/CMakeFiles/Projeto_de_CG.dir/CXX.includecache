@@ -147,6 +147,10 @@ translacao.h
 /Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/motor/translacao.h
 vector
 -
+stdlib.h
+-
+math.h
+-
 ponto.h
 /Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/motor/ponto.h
 
