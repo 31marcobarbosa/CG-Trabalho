@@ -16,11 +16,6 @@ Aplicacao::Aplicacao(string n, vector<Aplicacao> a, vector<Ponto> p, Transformac
 
 
 
-void Aplicacao::setFilho(Aplicacao f){ 
-	filhos.push_back(f); 
-}
-
-
 void Aplicacao::prep() {
 
 	int i , n , pptam , bmem;
@@ -43,7 +38,7 @@ void Aplicacao::prep() {
 
 	glGenBuffers(1,buffer);
 	glBindBuffer(GL_ARRAY_BUFFER, buffer[0]);
-	glBufferData(GL_ARRAY_BUFFER, bmem, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, bmem, v, GL_STATIC_DRAW);
 }
 
 

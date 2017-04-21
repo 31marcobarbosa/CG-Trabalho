@@ -48,10 +48,10 @@ RM = /Applications/CMake.app/Contents/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor
+CMAKE_SOURCE_DIR = /Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/motor
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/build
+CMAKE_BINARY_DIR = /Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/motor/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/build/CMakeFiles /Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/motor/build/CMakeFiles /Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/motor/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/motor/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

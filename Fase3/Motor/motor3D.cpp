@@ -302,7 +302,7 @@ Transformacao alteracaoValores(Translacao tr , Escala es , Rotacao ro , Cor cr, 
 
 
 // Parse do xml tendo em conta os níveis hirarquicos
-void parseNivelado(XMLElement *grupo , Transformacao transf, char pai){
+void parseNivelado(tinyxml2::XMLElement *grupo , Transformacao transf, char pai){
 	
 	Transformacao trans;
 	Translacao tr;
@@ -317,14 +317,14 @@ void parseNivelado(XMLElement *grupo , Transformacao transf, char pai){
 
 
 	//transformações para um grupo
-	XMLElement* transformacao = grupo->FirstChildElement();
+	tinyxml2::XMLElement* transformacao = grupo->FirstChildElement();
 
 	for (transformacao; (strcmp(transformacao->Value(), "models") != 0); transformacao = transformacao->NextSiblingElement()) {
 		
 		if (strcmp(transformacao->Value(), "translate") == 0){
 
 				vector<Ponto> translPontos;
-				XMLElement* ponto;
+				tinyxml2::XMLElement* ponto;
 
 				if(transformacao->Attribute("time")) {
 					time = stof(transformacao->Attribute("time"));
@@ -404,7 +404,7 @@ void parseNivelado(XMLElement *grupo , Transformacao transf, char pai){
 
 	trans = alteracaoValores(tr, es, ro, cr, transf);
 
-	for (XMLElement* modelo = grupo->FirstChildElement("models")->FirstChildElement("model"); modelo; modelo = modelo->NextSiblingElement("model")) {
+	for (tinyxml2::XMLElement* modelo = grupo->FirstChildElement("models")->FirstChildElement("model"); modelo; modelo = modelo->NextSiblingElement("model")) {
 		
 		Aplicacao app;
 		app.setNome(modelo->Attribute("file"));
@@ -425,13 +425,13 @@ void parseNivelado(XMLElement *grupo , Transformacao transf, char pai){
 		int qtd = aplicacoes.size()-1;
 
 		if( pai == 'F') {
-			aplicacoes[qtd].setFilho(qtd);
+			aplicacoes[qtd].setFilho(app);
 		}
 		else if (pai == 'P') {
-			aplicacoes[qtd].setFilho(qtd);
+			aplicacoes[qtd].setFilho(app);
 		}
 		else {
-			aplicacoes.push_back(qtd);
+			aplicacoes.push_back(app);
 		}
 
 	}
@@ -444,7 +444,7 @@ void parseNivelado(XMLElement *grupo , Transformacao transf, char pai){
 	//verifica o caso de possuir filhos
 	if (grupo->FirstChildElement("group")) {
 		cout << "Teste ao filho" << endl;
-		parseNivelado(grupo->FirstChildElement("group"), trans);
+		parseNivelado(grupo->FirstChildElement("group"), trans, 'F');
 	}
 
 	//verifica os grupos dos irmãos
@@ -462,8 +462,8 @@ void lerXML(string ficheiro) {
 	
 	if (!(docxml.LoadFile(ficheiro.c_str()))) {
 		
-		XMLElement * cena = docxml.FirstChildElement("scene");
-		XMLElement * grupo = cena -> FirstChildElement("group");
+		tinyxml2::XMLElement * cena = docxml.FirstChildElement("scene");
+		tinyxml2::XMLElement * grupo = cena -> FirstChildElement("group");
 
 	
 		Transformacao t = Transformacao::Transformacao();
@@ -519,11 +519,16 @@ int main(int argc, char **argv){
 	enter GLUT's main loop
 	glutMainLoop(); 
 */
-	
-   
- 	return 0;
-}	
- 
+return 0;}
+
+
+
+
+
+
+
+
+
 
 
 

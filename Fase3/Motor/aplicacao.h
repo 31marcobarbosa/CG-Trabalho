@@ -5,8 +5,9 @@
 #include <GLUT/glut.h>
 #else
 #include <GL/glut.h>
-#endif
 #include <GL/glew.h>
+#endif
+
 
 #include "ponto.h"
 #include "transformacao.h"
@@ -29,6 +30,7 @@ class Aplicacao{
 	float *v;
 
 
+
 public: 
 		Aplicacao();
 		Aplicacao(string, vector<Aplicacao>, vector<Ponto>, Transformacao);
@@ -40,8 +42,8 @@ public:
 		void setPontos(vector<Ponto> p) {pontos = p;}
 		void setFilhos(vector<Aplicacao> f) {filhos=f;}
 		void setTransformacao(Transformacao t) { transformacao = t;}
-		void setFilho(Aplicacao f){filhos.push_back(f);
+		void setFilho(Aplicacao f){filhos.push_back(f);}
 		void prep();
 		void draw();
-		void cosnt();
+		void construir();
 }; 
