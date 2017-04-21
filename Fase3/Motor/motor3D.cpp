@@ -417,9 +417,9 @@ void parseNivelado(tinyxml2::XMLElement *grupo , Transformacao transf, char pai)
 
 
 		cout << "Translacao: " << trans.getTranslacao().getTempo() << endl;
-		cout << "Rotacao   : " << trans.getRotacao().getTempo() << " - " << trans.getRotacao().geteixoX() << " - " << trans.getRotacao().geteixoY() << " - " << trans.getRotacao().geteixoZ() << endl;
-		cout << "Escala    : " << trans.getEscala().getX() << " - " << trans.getEscala().getY() << " - " << trans.getEscala().getZ() << endl;
-		cout << "Cor       : " << trans.getCor().getR() << " - " << trans.getCor().getG() << " - " << trans.getCor().getB() << endl;
+		cout << "Rotacao   : " << trans.getRotacao().getTempo() << " , " << trans.getRotacao().geteixoX() << " , " << trans.getRotacao().geteixoY() << " , " << trans.getRotacao().geteixoZ() << endl;
+		cout << "Escala    : " << trans.getEscala().getX() << " , " << trans.getEscala().getY() << " , " << trans.getEscala().getZ() << endl;
+		cout << "Cor       : " << trans.getCor().getR() << " , " << trans.getCor().getG() << " , " << trans.getCor().getB() << endl;
 
 
 		int qtd = aplicacoes.size()-1;
@@ -467,7 +467,7 @@ void lerXML(string ficheiro) {
 
 	
 		Transformacao t = Transformacao::Transformacao();
-		Escala esc = Escala::Escala(0.5,0.5,0.5);
+		Escala esc = Escala::Escala();
 		Translacao translacao = Translacao::Translacao();
 		t.setEscala(esc);
 		t.setTranslacao(0.0);
