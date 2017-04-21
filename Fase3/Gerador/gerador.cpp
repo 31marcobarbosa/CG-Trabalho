@@ -399,7 +399,7 @@ void menu() {
 	cout <<"|                                                           |"<< endl;
 	cout <<"|       -> Patch                                            |"<< endl;
     cout <<"|        $ g++ gerador.cpp -o gen                           |"<< endl;
-	cout <<"|        $ ./gen Patch less teapot.patch                    |"<< endl;
+	cout <<"|        $ ./gen Patch teapot.patch [Numero] teapot.3d      |"<< endl;
     cout <<"|                                                           |"<< endl;
 	cout <<"|                                                           |"<< endl;
 	cout <<"|       MOTOR:                                              |"<< endl;
@@ -436,12 +436,12 @@ void menu() {
 float* formulaBezier( float tt, float *p1 , float *p2 , float *p3 , float *p4) {
 
 	float ite = 1.0 - tt;
-	float* ptt = new float[3];
+	float* ppt = new float[3];
 
 	float x0 , x1 , x2 , x3;
 	x0 = pow(ite,3);
-	x1 = 3 * pow(ite,2);
-	x2 = 3 * tt * tt * tt;
+	x1 = 3 * tt*pow(ite,2);
+	x2 = 3 * tt * tt * ite;
 	x3 = tt * tt * tt;
 
 	ppt[0] = x0*p1[0] + x1*p2[0] + x2*p3[0] + x3*p4[0];
@@ -475,7 +475,7 @@ float* bezier( float a , float b , int* indice , float** pontos , int ni , int n
 			res[x][1] = ponto[1];
 			res[x][2] = ponto[2];
 
-			k++;
+			x++;
 
 			j = 0;
 		}
@@ -538,9 +538,9 @@ void patch( string file , int tess , string name) {
 		for(int rr = 0 ; rr < npatch ; rr++) {
 			pontoRes[rr] = new float*[4];
 		 	//escrever pontos
-		 	for( int jj = 0 ; jj << tess ; i ++) {
+		 	for( int jj = 0 ; jj < tess ; jj++) {
 
-		 		for( int mn = 0 ; mn << tess ; mn++) {
+		 		for( int mn = 0 ; mn < tess ; mn++) {
 
 		 			u = jj*incre;
 		 			v = mn*incre;
@@ -597,7 +597,7 @@ int main (int argc , char **argv){
 				cilindro(atoi(argv[2]), atoi(argv[3]), atoi(argv[4]), atoi(argv[5]), argv[6]);
 			}
 			else if(strcmp(argv[1],"Patch") == 0){
-				patch(argv[2], atoi(argv[3]) , argv[4]);
+				patch(argv[2], atoi(argv[3]), argv[4]);
 			}
 			else {
 				printf("FIGURA IMPOSSÍVEL\n");
