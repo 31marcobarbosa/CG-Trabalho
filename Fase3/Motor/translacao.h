@@ -3,6 +3,8 @@
 #define _MAIN
 
 #include <vector>
+#include <stdlib.h>
+#include <math.h>
 #include "ponto.h"
 using namespace std;
 

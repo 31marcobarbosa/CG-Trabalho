@@ -6,14 +6,14 @@ Translacao::Translacao() {
 }
 
 
-Translacao::Translacao(float tempo){
-	this.tempo = tempo;
+Translacao::Translacao(float t){
+	tempo = t;
 }
 
 
-Translacao::Translacao(float tempo, vector<Ponto> p , int size) {
-	this.tempo = tempo;
-	this.size = size;
+Translacao::Translacao(float t, vector<Ponto> p , int num) {
+	tempo = t;
+	size = num;
 	pointTrans = p;
 }
 
@@ -22,25 +22,24 @@ Translacao::Translacao(float tempo, vector<Ponto> p , int size) {
 
 void Translacao::getCatmullRomPoint(float gtt , int* indices , float* res , vector<Ponto> transp){
 	float novo[4];
-	float matriz[4][4];
 	float ttt , tt;
 	int ind1 , ind2 , ind3 , ind4;
-	Ponto p0 , p1 p2 , p3;
+	Ponto p0 , p1, p2 , p3;
 
 	novo[0] = novo[1] = novo[2] = 0.0;
 	ttt = pow(gtt,3);
 	tt = pow(gtt,2);
 
-	matriz[4][4] = { { -0.5f, 1.5f, -1.5f, 0.5f },
+	float m[4][4] = {{ -0.5f, 1.5f, -1.5f, 0.5f },
 					 { 1.0f, -2.5f, 2.0f, -0.5f },
 					 { -0.5f, 0.0f, 0.5f, 0.0f },
 					 { 0.0f, 1.0f, 0.0f, 0.0f } };
 
 
-	novo[0] = ttt*m[0][0] + tt*m[1][0] + gtt*m[2][0] + matriz[3][0];
-	novo[1] = ttt*m[0][1] + tt*m[1][1] + gtt*m[2][1] + matriz[3][1];
-	novo[2] = ttt*m[0][2] + tt*m[1][2] + gtt*m[2][2] + matriz[3][2];
-	novo[3] = ttt*m[0][3] + tt*m[1][3] + gtt*m[2][3] + matriz[3][3];
+	novo[0] = ttt*m[0][0] + tt*m[1][0] + gtt*m[2][0] + m[3][0];
+	novo[1] = ttt*m[0][1] + tt*m[1][1] + gtt*m[2][1] + m[3][1];
+	novo[2] = ttt*m[0][2] + tt*m[1][2] + gtt*m[2][2] + m[3][2];
+	novo[3] = ttt*m[0][3] + tt*m[1][3] + gtt*m[2][3] + m[3][3];
 
 	ind1 = indices[0];
 	ind2 = indices[1];
