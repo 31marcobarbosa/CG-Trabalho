@@ -1558,7 +1558,7 @@ public:
 	/// See QueryIntText()
 	float FloatText(float defaultValue = 0) const;
 
-    // internal:
+    //internal:
     enum {
         OPEN,		// <foo>
         CLOSED,		// <foo/>
