@@ -26,7 +26,7 @@ public:
 	void setSize( int a) {  size = a; }
 	void setPontosTrans( vector <Ponto> p) { pointTrans = p; }
 	void setPontosCurv( vector <Ponto> p) { pointCurv = p; }
-	void Translacao::getGlobalCatmullRomPoint( float , float * , vector<Ponto> );
-	void Translacao::desenhaCurvas();
-	void Translacao::getCatmullRomPoint(float, int* , float*,vector<Ponto>);
+	void getGlobalCatmullRomPoint( float , float * , vector<Ponto> );
+	void desenhaCurvas();
+	void getCatmullRomPoint(float, int* , float*,vector<Ponto>);
 };

@@ -4,10 +4,10 @@
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #else
+#include <GL/glew.h>
 #include <GL/glut.h>
 #endif
 
-#define _USE_MATH_DEFINES
 
 #include "tinyxml2.h"
 #include "aplicacao.h"
@@ -19,6 +19,9 @@
 #include <string>
 #include <iostream>
 #include <vector>
+
+#define _USE_MATH_DEFINES
+
 
 using namespace tinyxml2;
 using namespace std;

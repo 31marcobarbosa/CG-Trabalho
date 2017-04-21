@@ -22,7 +22,7 @@ int alpha = 0 , beta = 0;
 //Vars. para fps
 int frame = 0 , timeb = 0;
 
-
+/*
 
 void changeSize(int w, int h) {
 
@@ -240,7 +240,7 @@ void botoesRato(int but , ins stt , int x , int y) {
 	}
 }
 
-
+*/
 
 void lerficheiro(string ficheiro) {
 
@@ -309,7 +309,7 @@ void parseNivelado(XMLElement *grupo , Transformacao transf, char pai){
 	Rotacao ro;
 	Escala es;
 	Cor cr;
-	float tmp, rotX, rotY, rotZ, transX, transY, transZ, escX, escY, escZ, tx, ty, tz, time;
+	float tmp, rotX, rotY, rotZ, transX, transY, transZ, escX, escY, escZ, tx, ty, tz, ang, time;
 	ang = rotX = rotY = rotZ = transX = transY = transZ = escX = escY = escZ = 1;
 
 	if (strcmp(grupo->FirstChildElement()->Value(), "group") == 0)
@@ -416,14 +416,13 @@ void parseNivelado(XMLElement *grupo , Transformacao transf, char pai){
 		app.setTransformacao(trans);
 
 
-		cout << "Translacao: " << trans.getTranslacao().getX() << " - " << trans.getTranslacao().getY() << " - " << trans.getTranslacao().getZ() << endl;
-		cout << "Rotacao   : " << trans.getRotacao().getAngulo() << " - " << trans.getRotacao().geteixoX() << " - " << trans.getRotacao().geteixoY() << " - " << trans.getRotacao().geteixoZ() << endl;
+		cout << "Translacao: " << trans.getTranslacao().getTempo() << endl;
+		cout << "Rotacao   : " << trans.getRotacao().getTempo() << " - " << trans.getRotacao().geteixoX() << " - " << trans.getRotacao().geteixoY() << " - " << trans.getRotacao().geteixoZ() << endl;
 		cout << "Escala    : " << trans.getEscala().getX() << " - " << trans.getEscala().getY() << " - " << trans.getEscala().getZ() << endl;
 		cout << "Cor       : " << trans.getCor().getR() << " - " << trans.getCor().getG() << " - " << trans.getCor().getB() << endl;
 
-		aplicacoes.push_back(app);
 
-		int qtd = aplicacoes.size();
+		int qtd = aplicacoes.size()-1;
 
 		if( pai == 'F') {
 			aplicacoes[qtd].setFilho(qtd);
@@ -471,7 +470,7 @@ void lerXML(string ficheiro) {
 		Escala esc = Escala::Escala(0.5,0.5,0.5);
 		Translacao translacao = Translacao::Translacao();
 		t.setEscala(esc);
-		t.setTranslacao();
+		t.setTranslacao(0.0);
 		parseNivelado(grupo, t, 'I');
 	}
 	else {
@@ -483,27 +482,27 @@ void lerXML(string ficheiro) {
 
 
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv){
 
 
-    if(argc > 1){
+    //if(argc > 1){
 		
 
 
 	// put GLUT init here
-
+/*
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
     glutInitWindowPosition(580,150);
     glutInitWindowSize(1200,800);
     glutCreateWindow("Projeto_de_CG"); 
-
+*/
     // leitura do ficheiro xml
     lerXML(argv[1]);
 
 
 	// put callback registration here
-
+/*
     glutDisplayFunc(renderScene);
     glutReshapeFunc(changeSize);
    
@@ -512,17 +511,19 @@ int main(int argc, char **argv) {
     glutKeyboardFunc(letrasKeyboard);
     glutMouseFunc(botoesRato);
     
-    // OpenGL settings
+    OpenGL settings
 
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	
-	// enter GLUT's main loop
+	enter GLUT's main loop
 	glutMainLoop(); 
-
+*/
 	
-   }
+   
  	return 0;
-	
-  }
+}	
+ 
+
+
 

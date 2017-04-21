@@ -1,0 +1,3 @@
+/home/marco/Desktop/CG/projeto/CG-Trabalho/Fase3/Motor/build/CMakeFiles/edit_cache.dir
+/home/marco/Desktop/CG/projeto/CG-Trabalho/Fase3/Motor/build/CMakeFiles/rebuild_cache.dir
+/home/marco/Desktop/CG/projeto/CG-Trabalho/Fase3/Motor/build/CMakeFiles/Projeto_de_CG.dir

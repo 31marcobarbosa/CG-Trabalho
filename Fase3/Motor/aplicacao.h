@@ -40,8 +40,8 @@ public:
 		void setPontos(vector<Ponto> p) {pontos = p;}
 		void setFilhos(vector<Aplicacao> f) {filhos=f;}
 		void setTransformacao(Transformacao t) { transformacao = t;}
-		void setFilho(Aplicacao f);
+		void setFilho(Aplicacao f){filhos.push_back(f);
 		void prep();
 		void draw();
 		void cosnt();
-};
+}; 
