@@ -437,8 +437,8 @@ void parseNivelado(tinyxml2::XMLElement *grupo , Transformacao transf, char pai)
 	}
 
 	//verifica o caso se for filho e tiver irmaos
-	if ((grupo->FirstChildElement("group"))  && (pai == 'F' || pai == 'P')) {
-		parseNivelado(grupo->FirstChildElement("group"), trans,'P');
+	if ((grupo->NextSiblingElement("group"))  && (pai == 'F' || pai == 'P')) {
+		parseNivelado(grupo->NextSiblingElement("group"), transf,'P');
 	}
 
 	//verifica o caso de possuir filhos
@@ -450,7 +450,7 @@ void parseNivelado(tinyxml2::XMLElement *grupo , Transformacao transf, char pai)
 	//verifica os grupos dos irmãos
 	if ((grupo->NextSiblingElement("group")) && (pai != 'F' || pai != 'P') ) {
 		cout << "teste ao irmao " << endl;
-		parseNivelado(grupo->NextSiblingElement("group"), transf,'F');
+		parseNivelado(grupo->NextSiblingElement("group"), transf,'I');
 	}
 
 }

@@ -90,7 +90,7 @@
 				<models>
 					<model file="esfera.3d"/>
 				</models>
-			</group>
+			
 
 				<!--Lua-->
 					<group>
@@ -119,5 +119,33 @@
 							<model file="esfera.3d"/>
 						</models>
 					</group>
+				</group>
+			<!--Marte-->
+			<group>
+				<translate tempo="34.35">
+					<point X="70" Y="0" Z="0" />
+					<point X="64.6716" Y="0" Z="26.7878" />
+					<point X="49.4975" Y="0" Z="49.4975" />
+					<point X="26.7878" Y="0" Z="64.6716" />
+					<point X="4.28626e-015" Y="0" Z="70" />
+					<point X="-26.7878" Y="0" Z="64.6716" />
+					<point X="-49.4975" Y="0" Z="49.4975" />
+					<point X="-64.6716" Y="0" Z="26.7878" />
+					<point X="-70" Y="0" Z="8.57253e-015" />
+					<point X="-64.6716" Y="0" Z="-26.7878" />
+					<point X="-49.4975" Y="0" Z="-49.4975" />
+					<point X="-26.7878" Y="0" Z="-64.6716" />
+					<point X="-1.28588e-014" Y="0" Z="-70" />
+					<point X="26.7878" Y="0" Z="-64.6716" />
+					<point X="49.4975" Y="0" Z="-49.4975" />
+					<point X="64.6716" Y="0" Z="-26.7878" />
+				</translate>
+				<rotate tempo="20" eixoX="0" eixoY="0.5" eixoZ="0" />
+				<scale X="0.6" Y="0.6" Z="0.6"/>
+				<colour R="0.9" G="0.0" B="0.0" />
+				<models>
+					<model ficheiro="esfera.3d"/>
+				</models>
+			</group>
 					
 			</scene>
