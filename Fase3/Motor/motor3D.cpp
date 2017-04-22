@@ -22,7 +22,7 @@ int alpha = 0 , beta = 0;
 //Vars. para fps
 int frame = 0 , timeb = 0;
 
-/*
+
 
 void changeSize(int w, int h) {
 
@@ -62,8 +62,8 @@ void fps() {
 		fpsec = frame*1000.0 / (time - timeb);
 		timeb = time;
 		frame = 0;
-		sprintf(stg,"FPS: %f6.2",fps);
-		glutSetWindowTitle(stg);
+		sprintf(sol,"FPS: %f6.2",fps);
+		glutSetWindowTitle(sol);
 	}
 }
 
@@ -75,18 +75,18 @@ void renderCatmullRomCurve( vector<Ponto> pontos) {
 
 	glBegin(GL_LINE_LOOP);
 
-	for(i=0; i < n ; i ++) {
+	for(i=0; i < x ; i ++) {
 		npts[0] = pontos[i].getX();
 		npts[1] = pontos[i].getY();
 		npts[2] = pontos[i].getZ();
 
 		glVertex3fv(npts);
 		}
-	}
+	
 	glEnd();
-}
+ }
 
-
+/*
 void renderScene(void) {
 	// clear buffers
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -150,7 +150,7 @@ void renderScene(void) {
 	glutSwapBuffers();
 }
 
-
+*/
 
 void resetCamara() {
 	xpos = ypos = zpos = 0.0f;
@@ -240,7 +240,7 @@ void botoesRato(int but , ins stt , int x , int y) {
 	}
 }
 
-*/
+
 
 void lerficheiro(string ficheiro) {
 
