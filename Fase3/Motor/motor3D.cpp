@@ -86,71 +86,101 @@ void renderCatmullRomCurve( vector<Ponto> pontos) {
 	glEnd();
  }
 
-/*
+
 void renderScene(void) {
+	
+	int j , k;
+	float res[3];
+	float tget, gt, rt, gt;
+
+
 	// clear buffers
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
     
     // set the camera
     glLoadIdentity();
     glTranslatef(0, -1, zz);
     
-    //define ship
-	defineShip();
-    
 
     glRotatef(xrot,1.0,0.0,0.0);
     glRotatef(yrot,0.0,1.0,0.0);
-    glTranslated(-xpos,0,-zpos);
+    glRotatef(yrot,0.0,0.0,1.0);
+    glTranslated(xpos,ypos,zpos);
     
-	glBegin(GL_TRIANGLES);
 
-	int j;
+	
 
 	for(j = 0; j < aplicacoes.size(); j++){
 
 		glPushMatrix();
 		Transformacao t = aplicacoes[j].getTransformacao();
 
-		glRotatef(t.getRotacao().getAngulo(), t.getRotacao().geteixoX(), t.getRotacao().geteixoY(), t.getRotacao().geteixoZ());
-		glTranslatef(t.getTranslacao().getX(), t.getTranslacao().getY(), t.getTranslacao().getZ());
-		glScalef(t.getEscala().getX(), aplicacoes[j].getTransformacao().getEscala().getY(), aplicacoes[j].getTransformacao().getEscala().getZ());
-		glColor3f(t.getCor().getR(), t.getCor().getG(), t.getCor().getB());
-		pontos.clear();
-		pontos = aplicacoes[j].getPontos();
-
-		glBegin(GL_TRIANGLES);
-
-	
-		glColor3f(t.getCor().getR(), t.getCor().getG(), t.getCor().getB());
-
-		for (int i = 0; i < pontos.size(); i++){
-			glVertex3f(pontos[i].getX(), pontos[i].getY(), pontos[i].getZ());
+		//desenhar os planetas
+		if(t.getTranslacao().getTempo() != 0) {
+			tget = glutGet(GLUT_ELAPSED_TIME) % (int)(t.getTranslacao().getTempo() *1000);
+			gt = tget / (t.getTranslacao().getTempo() * 1000);
+			vector<Ponto> vecpts = t.getTranslacao().getPontosTrans();
+			renderCatmullRomCurve(t.getTranslacao().getPontosCurva());
+			t.getTranslacao().getGlobalCatmullRomPoint(gt,res,vecpts);
+			vecpts.clear();
+			glTranslatef(res[0],res[1],res[2]);
 		}
+
+		if(t.getRotacao().getTempo() != 0){
+			rt = glutGet(GLUT_ELAPSED_TIME) % (int)(t.getRotacao().getTempo() * 1000);
+			gr = (rt * 360) / (t.getRotacao().getTempo() * 1000);
+			glRotatef(gr,t.getRotacao().geteixoX(),t.getRotacao().geteixoY(),t.getRotacao().geteixoZ());
+		}
+		glScalef(t.getEscala().getX(),t.getEscala().getY(),t.getEscala().getZ());
+
+
+		// desenhar luas e anéis
+		if(aplicacoes[j].getFilhos().size() != 0) {
+			vector<Aplicacao> filhos = primitivas[j].getFilhos();
+
+			for(k = 0; k < filhos.size(); k++) {
+				glPushMatrix();
+				Transformacao transfilho = filhos[k].getTransformacao();
+
+				if(transfilho.getTranslacao().getTempo() != 0) {
+					tget = glutGet(GLUT_ELAPSED_TIME) % (int)(transfilho.getTranslacao().getTempo() *1000);
+					gt = tget / (transfilho.getTranslacao().getTempo() * 1000);
+					vector<Ponto> fvpts = transfilho.getTranslacao().getPontosTrans();
+					renderCatmullRomCurve(transfilho.getTranslacao().getPontosTrans());
+					transfilho.getTranslacao().getGlobalCatmullRomPoint(gt, res, fvpts);
+					fvpts.clear();
+					glTranslatef(res[0],res[1],res[2]);
+				}
+
+				if(transfilho.getRotacao().getTempo() != 0 ){
+					rt = glutGet(GLUT_ELAPSED_TIME) % (int)(transfilho.getRotacao().getTempo() * 1000);
+					gr = (rt * 360) / (transfilho.getRotacao().getTempo() * 1000);
+					glRotatef(gr,transfilho.getRotacao().geteixoX(),transfilho.getRotacao().geteixoY(),transfilho.getRotacao().geteixoZ());
+				}
+				glScalef(transfilho.getEscala().getX(),transfilho.getEscala().getY(),transfilho.getEscala().getZ());
+
+				filhos[k].draw();
+
+				glPopMatrix();
+			}
+		}
+
+		// VBO'S
+		aplicacoes[j].prep();
+		aplicacoes[j].draw();
+
 		
-		glEnd();
+		//aplicacoes[j].construir();
+
 		glPopMatrix();
 
-	}
-
-	glEnd();
-
-
-    glColor3f(0.4f,0.21f,0.0f);
-    glPushMatrix();
-        glScalef(1.8,0.5,1.8);
-        glTranslated(52.7,0,0);
-        glRotatef(120.0, 1.0, 0.0, 0.0);
-        glutWireTorus(0.25,1.75,28,28);
-    glPopMatrix();
-
-	// End of fr
-	ame
+		}
+		
+	fps();
 	glutSwapBuffers();
 }
 
-*/
+
 
 void resetCamara() {
 	xpos = ypos = zpos = 0.0f;
