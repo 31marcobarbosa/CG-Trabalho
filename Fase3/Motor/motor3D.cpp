@@ -515,24 +515,24 @@ void lerXML(string ficheiro) {
 int main(int argc, char **argv){
 
 
-    //if(argc > 1){
+    if(argc > 1){
 		
 
 
 	// put GLUT init here
-/*
+
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
     glutInitWindowPosition(580,150);
     glutInitWindowSize(1200,800);
     glutCreateWindow("Projeto_de_CG"); 
-*/
+
     // leitura do ficheiro xml
     lerXML(argv[1]);
 
 
 	// put callback registration here
-/*
+
     glutDisplayFunc(renderScene);
     glutReshapeFunc(changeSize);
    
@@ -541,15 +541,16 @@ int main(int argc, char **argv){
     glutKeyboardFunc(letrasKeyboard);
     glutMouseFunc(botoesRato);
     
-    OpenGL settings
+    //OpenGL settings
 
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	
-	enter GLUT's main loop
+	//enter GLUT's main loop
 	glutMainLoop(); 
-*/
-return 0;}
+
+return 0;
+}
 
 
 
