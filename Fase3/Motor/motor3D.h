@@ -9,7 +9,12 @@
 
 
 #include "tinyxml2.h"
+#include "escala.h"
+#include "transformacao.h"
 #include "aplicacao.h"
+#include "ponto.h"
+#include "rotacao.h"
+#include "translacao.h"
 
 #include <math.h>
 #include <stdio.h>

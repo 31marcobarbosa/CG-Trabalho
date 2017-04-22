@@ -113,8 +113,8 @@
 							<point X="7.39104" Y="-3.06147" Z="0" />
 						</translate>
 						<rotate time="24" eixoX="0" eixoY="1" eixoZ="0" />
-						<scale X="0.25" Y="0.25" Z="0.25"/>
 						<colour R="0.9" G="0.0" B="0.0" />
+						<scale X="0.25" Y="0.25" Z="0.25"/>
 						<models>
 							<model file="esfera.3d"/>
 						</models>
@@ -123,7 +123,7 @@
 
 			<!--Marte-->
 			<group>
-				<translate tempo="34.35">
+				<translate time="34.35">
 					<point X="70" Y="0" Z="0" />
 					<point X="64.6716" Y="0" Z="26.7878" />
 					<point X="49.4975" Y="0" Z="49.4975" />
@@ -141,17 +141,17 @@
 					<point X="49.4975" Y="0" Z="-49.4975" />
 					<point X="64.6716" Y="0" Z="-26.7878" />
 				</translate>
-				<rotate tempo="20" eixoX="0" eixoY="0.5" eixoZ="0" />
+				<rotate time="20" eixoX="0" eixoY="0.5" eixoZ="0" />
 				<scale X="0.6" Y="0.6" Z="0.6"/>
 				<colour R="0.9" G="0.0" B="0.0" />
 				<models>
-					<model ficheiro="esfera.3d"/>
+					<model file="esfera.3d"/>
 				</models>
 			</group>
 
 			<!--Júpiter-->
 			<group>
-				<translate tempo="216.6">
+				<translate time="216.6">
 					<point X="130" Y="0" Z="0" />
 					<point X="120.104" Y="0" Z="49.7488" />
 					<point X="91.9239" Y="0" Z="91.9239" />
@@ -169,17 +169,17 @@
 					<point X="91.9239" Y="0" Z="-91.9239" />
 					<point X="120.104" Y="0" Z="-49.7488" />
 				</translate>
-				<rotate tempo="9" eixoX="0" eixoY="1" eixoZ="0" />
+				<rotate time="9" eixoX="0" eixoY="1" eixoZ="0" />
 				<scale X="2.1" Y="2.1" Z="2.1"/>
 				<colour R="0.9" G="0.0" B="0.0" />
 				<models>
-					<model ficheiro="esfera.3d"/>
+					<model file="esfera.3d"/>
 				</models>
 			</group>
 
 			<!--Saturno-->
 			<group>
-				<translate tempo="538">
+				<translate time="538">
 					<point X="190" Y="0" Z="0" />
 					<point X="175.537" Y="0" Z="72.7099" />
 					<point X="134.35" Y="0" Z="134.35" />
@@ -197,15 +197,15 @@
 					<point X="134.35" Y="0" Z="-134.35" />
 					<point X="175.537" Y="0" Z="-72.7099" />
 				</translate>
-				<rotate tempo="10" eixoX="0" eixoY="0.5" eixoZ="0" />
+				<rotate time="10" eixoX="0" eixoY="0.5" eixoZ="0" />
 				<scale X="2.0" Y="2.0" Z="2.0"/>
 				<colour R="0.9" G="0.0" B="0.0" />
 				<models>
-					<model ficheiro="esfera.3d"/>
+					<model file="esfera.3d"/>
 				</models>
 				<!--Aneis-->
 					<group>
-						<translate tempo="18">
+						<translate time="18">
 							<point X="7" Y="0" Z="0" />
 							<point X="6.46716" Y="2.67878" Z="0" />
 							<point X="4.94975" Y="4.94975" Z="0" />
@@ -223,15 +223,15 @@
 							<point X="4.94975" Y="-4.94975" Z="0" />
 							<point X="6.46716" Y="-2.67878" Z="0" />
 						</translate>
-						<rotate tempo="5" eixoX="0" eixoY="1" eixoZ="0" />
+						<rotate time="5" eixoX="0" eixoY="1" eixoZ="0" />
 						<scale X="0.01" Y="0.01" Z="0.01"/>
 						<colour R="0.9" G="0.5" B="0.5" />
 						<models>
-							<model ficheiro="esfera.3d"/>
+							<model file="esfera.3d"/>
 						</models>
 					</group>
 					<group>
-						<translate tempo="10">
+						<translate time="10">
 							<point X="8" Y="0" Z="0" />
 							<point X="7.39104" Y="3.06147" Z="0" />
 							<point X="5.65685" Y="5.65685" Z="0" />
@@ -249,15 +249,15 @@
 							<point X="5.65685" Y="-5.65685" Z="0" />
 							<point X="7.39104" Y="-3.06147" Z="0" />
 						</translate>
-						<rotate tempo="5" eixoX="0" eixoY="1" eixoZ="0" />
+						<rotate time="5" eixoX="0" eixoY="1" eixoZ="0" />
 						<scale X="0.01" Y="0.01" Z="0.01"/>
 						<colour R="0.9" G="0.5" B="0.5" />
 						<models>
-							<model ficheiro="esfera.3d"/>
+							<model file="esfera.3d"/>
 						</models>
 					</group>
 					<group>
-						<translate tempo="5">
+						<translate time="5">
 							<point X="9" Y="0" Z="0" />
 							<point X="8.31492" Y="3.44415" Z="0" />
 							<point X="6.36396" Y="6.36396" Z="0" />
@@ -275,15 +275,15 @@
 							<point X="6.36396" Y="-6.36396" Z="0" />
 							<point X="8.31492" Y="-3.44415" Z="0" />
 						</translate>
-						<rotate tempo="5" eixoX="0" eixoY="1" eixoZ="0" />
+						<rotate time="5" eixoX="0" eixoY="1" eixoZ="0" />
 						<scale X="0.01" Y="0.01" Z="0.01"/>
 						<colour R="0.9" G="0.5" B="0.5" />
 						<models>
-							<model ficheiro="esfera.3d"/>
+							<model file="esfera.3d"/>
 						</models>
 					</group>
 					<group>
-						<translate tempo="15">
+						<translate time="15">
 							<point X="10" Y="0" Z="0" />
 							<point X="9.2388" Y="3.82683" Z="0" />
 							<point X="7.07107" Y="7.07107" Z="0" />
@@ -301,15 +301,15 @@
 							<point X="7.07107" Y="-7.07107" Z="0" />
 							<point X="9.2388" Y="-3.82683" Z="0" />
 						</translate>
-						<rotate tempo="5" eixoX="0" eixoY="1" eixoZ="0" />
+						<rotate time="5" eixoX="0" eixoY="1" eixoZ="0" />
 						<scale X="0.01" Y="0.01" Z="0.01"/>
 						<colour R="0.9" G="0.5" B="0.5" />
 						<models>
-							<model ficheiro="esfera.3d"/>
+							<model file="esfera.3d"/>
 						</models>
 					</group>
 					<group>
-						<translate tempo="20">
+						<translate time="20">
 							<point X="11" Y="0" Z="0" />
 							<point X="10.1627" Y="4.20952" Z="0" />
 							<point X="7.77817" Y="7.77817" Z="0" />
@@ -327,18 +327,18 @@
 							<point X="7.77817" Y="-7.77817" Z="0" />
 							<point X="10.1627" Y="-4.20952" Z="0" />
 						</translate>
-						<rotate tempo="5" eixoX="0" eixoY="1" eixoZ="0" />
+						<rotate time="5" eixoX="0" eixoY="1" eixoZ="0" />
 						<scale X="0.01" Y="0.01" Z="0.01"/>
 						<colour R="0.9" G="0.5" B="0.5" />
 						<models>
-							<model ficheiro="esfera.3d"/>
+							<model file="esfera.3d"/>
 						</models>
 					</group>
 			</group>
 
 			<!--Urano-->
 			<group>
-				<translate tempo="1335">
+				<translate time="1335">
 					<point X="260" Y="0" Z="0" />
 					<point X="240.209" Y="0" Z="99.4977" />
 					<point X="183.848" Y="0" Z="183.848" />
@@ -356,17 +356,17 @@
 					<point X="183.848" Y="0" Z="-183.848" />
 					<point X="240.209" Y="0" Z="-99.4977" />
 				</translate>
-				<rotate tempo="17" eixoX="0" eixoY="-0.8" eixoZ="0" />
+				<rotate time="17" eixoX="0" eixoY="-0.8" eixoZ="0" />
 				<scale X="1.5" Y="1.5" Z="1.5"/>
 				<colour R="0.9" G="0.5" B="0.5" />
 				<models>
-					<model ficheiro="esfera.3d"/>
+					<model file="esfera.3d"/>
 				</models>
 			</group>
 
 			<!--Neptuno-->
 			<group>
-				<translate tempo="2430">
+				<translate time="2430">
 					<point X="350" Y="0" Z="0" />
 					<point X="323.358" Y="0" Z="133.939" />
 					<point X="247.487" Y="0" Z="247.487" />
@@ -384,16 +384,16 @@
 					<point X="247.487" Y="0" Z="-247.487" />
 					<point X="323.358" Y="0" Z="-133.939" />
 				</translate>
-				<rotate tempo="16" eixoX="0" eixoY="0.5" eixoZ="0" />
+				<rotate time="16" eixoX="0" eixoY="0.5" eixoZ="0" />
 				<scale X="1.5" Y="1.5" Z="1.5"/>
 				<colour R="0.9" G="0.0" B="0.0" />
 				<models>
-					<model ficheiro="esfera.3d"/>
+					<model file="esfera.3d"/>
 				</models>
 			</group>
 			<!--Cometa-->
 			<group>
-				<translate tempo="10">
+				<translate time="10">
 					<point X="50" Y="0" Z="-230" />
 					<point X="46.194" Y="0" Z="-134.329" />
 					<point X="35.3553" Y="0" Z="-53.2233" />
@@ -414,7 +414,7 @@
 				<scale X="0.8" Y="0.8" Z="0.8"/>
 				<colour R="0.9" G="0.0" B="0.0" />
 				<models>
-					<model ficheiro="teapot.3d"/>
+					<model file="teapot.3d"/>
 				</models>
 			</group>
 		
