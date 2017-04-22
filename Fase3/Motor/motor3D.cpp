@@ -62,7 +62,7 @@ void fps() {
 		fpsec = frame*1000.0 / (time - timeb);
 		timeb = time;
 		frame = 0;
-		sprintf(sol,"FPS: %f6.2",fps);
+		sprintf(sol,"FPS: %f6.2",fpsec);
 		glutSetWindowTitle(sol);
 	}
 }
@@ -227,9 +227,9 @@ void letrasKeyboard(unsigned char key, int x, int y){
 }
 
 
-void botoesRato(int but , ins stt , int x , int y) {
+void botoesRato(int but , int stt , int x , int y) {
 
-	if( but == GLUT_LEFT_BUTTOM){
+	if( but == GLUT_LEFT_BUTTON){
 		if (stt == GLUT_DOWN) {
 			rato = 1;
 			ratoX = x;
