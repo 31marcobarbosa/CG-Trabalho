@@ -166,7 +166,7 @@ void renderScene(void) {
 		}
 
 		// VBO'S
-		aplicacoes[j].prep();
+		//aplicacoes[j].prep();
 		aplicacoes[j].draw();
 
 		

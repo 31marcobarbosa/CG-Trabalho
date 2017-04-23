@@ -49,6 +49,8 @@ motor3D.h
 /Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/motor3D.h
 GLUT/glut.h
 -
+GL/glut.h
+-
 GL/glew.h
 -
 tinyxml2.h
