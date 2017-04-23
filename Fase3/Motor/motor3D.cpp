@@ -534,6 +534,7 @@ int main(int argc, char **argv){
 	// put callback registration here
 
     glutDisplayFunc(renderScene);
+    glutIdleFunc(renderScene);
     glutReshapeFunc(changeSize);
    
 
@@ -542,10 +543,15 @@ int main(int argc, char **argv){
     glutMouseFunc(botoesRato);
     
     //OpenGL settings
-
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	
+
+    glewinit();
+
+    initGL();
+
+
 	//enter GLUT's main loop
 	glutMainLoop();
 	} 
