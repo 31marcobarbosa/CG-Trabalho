@@ -509,7 +509,28 @@ void lerXML(string ficheiro) {
 }
 
 
+void initGL() {
 
+	size_t j = 0, w = 0;
+
+	// definições para o OpenGL
+	glPolygonMode(GL_FRONT, GL_LINE);
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
+
+	// incialização dos VBOs
+	for (; j < aplicacoes.size(); j++){
+		aplicacoes[j].prep();
+
+		if (aplicacoes[j].getFilhos().size() != 0){
+			vector<Aplicacao> filhos = aplicacoes[j].getFilhos();
+			for (; w < filhos.size(); w++){
+				filhos[w].prep();
+			}
+			aplicacoes[j].setFilhos(filhos);
+		}
+	}
+}
 
 
 int main(int argc, char **argv){
@@ -547,7 +568,7 @@ int main(int argc, char **argv){
 	glEnable(GL_CULL_FACE);
 	
 
-    glewinit();
+    glewInit();
 
     initGL();
 
