@@ -91,7 +91,7 @@ void renderScene(void) {
 	
 	int j , k;
 	float res[3];
-	float tget, gt, rt, gt;
+	float tget, gt, rt, gr;
 
 
 	// clear buffers
@@ -136,7 +136,7 @@ void renderScene(void) {
 
 		// desenhar luas e anéis
 		if(aplicacoes[j].getFilhos().size() != 0) {
-			vector<Aplicacao> filhos = primitivas[j].getFilhos();
+			vector<Aplicacao> filhos = aplicacoes[j].getFilhos();
 
 			for(k = 0; k < filhos.size(); k++) {
 				glPushMatrix();
@@ -547,7 +547,8 @@ int main(int argc, char **argv){
 	glEnable(GL_CULL_FACE);
 	
 	//enter GLUT's main loop
-	glutMainLoop(); 
+	glutMainLoop();
+	} 
 
 return 0;
 }
