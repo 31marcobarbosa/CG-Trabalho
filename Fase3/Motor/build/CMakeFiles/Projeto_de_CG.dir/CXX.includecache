@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/aplicacao.cpp
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/aplicacao.cpp
 aplicacao.h
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/aplicacao.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/aplicacao.h
 
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/aplicacao.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/aplicacao.h
 vector
 -
 GLUT/glut.h
@@ -20,9 +20,9 @@ GL/glut.h
 GL/glew.h
 -
 ponto.h
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/ponto.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/ponto.h
 transformacao.h
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/transformacao.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/transformacao.h
 fstream
 -
 iostream
@@ -30,23 +30,23 @@ iostream
 string
 -
 
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/cor.cpp
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/cor.cpp
 cor.h
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/cor.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/cor.h
 
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/cor.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/cor.h
 
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/escala.cpp
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/escala.cpp
 escala.h
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/escala.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/escala.h
 
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/escala.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/escala.h
 
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/motor3D.cpp
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/motor3D.cpp
 motor3D.h
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/motor3D.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/motor3D.h
 
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/motor3D.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/motor3D.h
 GLUT/glut.h
 -
 GL/glut.h
@@ -54,19 +54,19 @@ GL/glut.h
 GL/glew.h
 -
 tinyxml2.h
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/tinyxml2.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/tinyxml2.h
 escala.h
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/escala.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/escala.h
 transformacao.h
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/transformacao.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/transformacao.h
 aplicacao.h
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/aplicacao.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/aplicacao.h
 ponto.h
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/ponto.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/ponto.h
 rotacao.h
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/rotacao.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/rotacao.h
 translacao.h
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/translacao.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/translacao.h
 math.h
 -
 stdio.h
@@ -82,21 +82,21 @@ iostream
 vector
 -
 
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/ponto.cpp
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/ponto.cpp
 ponto.h
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/ponto.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/ponto.h
 
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/ponto.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/ponto.h
 
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/rotacao.cpp
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/rotacao.cpp
 rotacao.h
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/rotacao.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/rotacao.h
 
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/rotacao.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/rotacao.h
 
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/tinyxml2.cpp
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/tinyxml2.cpp
 tinyxml2.h
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/tinyxml2.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/tinyxml2.h
 new
 -
 stddef.h
@@ -108,7 +108,7 @@ cstddef
 cstdarg
 -
 
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/tinyxml2.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/tinyxml2.h
 ctype.h
 -
 limits.h
@@ -138,25 +138,25 @@ android/log.h
 assert.h
 -
 
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/transformacao.cpp
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/transformacao.cpp
 transformacao.h
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/transformacao.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/transformacao.h
 
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/transformacao.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/transformacao.h
 translacao.h
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/translacao.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/translacao.h
 rotacao.h
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/rotacao.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/rotacao.h
 escala.h
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/escala.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/escala.h
 cor.h
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/cor.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/cor.h
 
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/translacao.cpp
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/translacao.cpp
 translacao.h
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/translacao.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/translacao.h
 
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/translacao.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/translacao.h
 vector
 -
 stdlib.h
@@ -164,5 +164,5 @@ stdlib.h
 math.h
 -
 ponto.h
-/Users/josebastos/UM/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/ponto.h
+/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/ponto.h
 

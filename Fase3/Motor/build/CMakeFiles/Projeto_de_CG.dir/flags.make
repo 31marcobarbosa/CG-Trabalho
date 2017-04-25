@@ -6,5 +6,5 @@ CXX_FLAGS =  -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacO
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/GLUT.framework/Headers 
+CXX_INCLUDES = -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/GLUT.framework/Headers -I/Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/-g 
 

@@ -349,7 +349,7 @@ void parseNivelado(tinyxml2::XMLElement *grupo , Transformacao transf, char pai)
 	//transformações para um grupo
 	tinyxml2::XMLElement* transformacao = grupo->FirstChildElement();
 
-	for (transformacao; (strcmp(transformacao->Value(), "models") != 0); transformacao = transformacao->NextSiblingElement()) {
+	for (; (strcmp(transformacao->Value(), "models") != 0); transformacao = transformacao->NextSiblingElement()) {
 		
 		if (strcmp(transformacao->Value(), "translate") == 0){
 
@@ -568,7 +568,7 @@ int main(int argc, char **argv){
 	glEnable(GL_CULL_FACE);
 	
 
-    glewInit();
+    //glewInit();
 
     initGL();
 

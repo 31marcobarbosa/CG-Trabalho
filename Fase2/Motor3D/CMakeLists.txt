@@ -13,7 +13,7 @@ if(NOT GLUT_FOUND)
 endif(NOT GLUT_FOUND)
 
 find_package(OpenGL REQUIRED)
-include_directories(${OpenGL_INCLUDE_DIRS})
+include_directories(${OpenGL_INCLUDE_DIRS} -g)
 link_directories(${OpenGL_LIBRARY_DIRS})
 add_definitions(${OpenGL_DEFINITIONS} -fpermissive)
 if(NOT OPENGL_FOUND)
