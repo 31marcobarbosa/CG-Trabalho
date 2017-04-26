@@ -24,7 +24,7 @@ void Aplicacao::prep() {
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 
-	v = (float *)malloc(sizeof(float)* nvertices);
+	v = (float *)malloc(sizeof(float)* pptam*3);
 
 	for(; i < pptam; i++) {
 		v[n] = pontos[i].getX();
@@ -46,7 +46,7 @@ void Aplicacao::draw() {
 
 	glBindBuffer(GL_ARRAY_BUFFER, buffer[0]);
 	glVertexPointer(3 , GL_FLOAT, 0 , 0);
-	glDrawArrays(GL_TRIANGLES,0, nvertices);
+	glDrawArrays(GL_TRIANGLES,0, filhos.size()*3);
 }
 
 
