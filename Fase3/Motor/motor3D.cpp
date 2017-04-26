@@ -11,9 +11,8 @@ vector<Aplicacao> aplicacoes;
 
 // Vars. para utilização rato e teclado
 float R = 1, G = 1, B = 1;
-float size;
 float w = 1;
-float xrot= 0, yrot = 0, zrot = 0, zpos = 0, xpos = 0 , ypos = 0;
+float xrot= 0, yrot = 0, zrot = 0, xpos = 0 , ypos = 0, zpos = 0;
 float zx = -30, zy = 30, zz = 20;
 int line = GL_LINE;
 float rato = 0, ratoX, ratoY;
@@ -503,7 +502,7 @@ void lerXML(string ficheiro) {
 		Escala esc = Escala::Escala();
 		Translacao translacao = Translacao::Translacao();
 		t.setEscala(esc);
-		t.setTranslacao(0.0);
+		t.setTranslacao(translacao);
 		parseNivelado(grupo, t, 'I');
 	}
 	else {

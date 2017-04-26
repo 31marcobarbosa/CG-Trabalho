@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/bin/cmake
+CMAKE_COMMAND = /Applications/CMake.app/Contents/bin/cmake
 
 # The command to remove a file.
-RM = /usr/bin/cmake -E remove -f
+RM = /Applications/CMake.app/Contents/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/marco/Desktop/CG/projeto/CG-Trabalho/Fase2/Motor3D
+CMAKE_SOURCE_DIR = /Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/marco/Desktop/CG/projeto/CG-Trabalho/Fase2/Motor3D/build
+CMAKE_BINARY_DIR = /Users/josebastos/um/3ano/CG/trabalho/CG-Trabalho/Fase3/Motor/build
 
 #=============================================================================
 # Targets provided globally by CMake.

@@ -18,7 +18,8 @@ Aplicacao::Aplicacao(string n, vector<Aplicacao> a, vector<Ponto> p, Transformac
 
 void Aplicacao::prep() {
 
-	int i , n , pptam , bmem;
+	int n , pptam , bmem;
+	size_t i;
 	n = i = 0;
 	pptam = pontos.size();
 
@@ -48,7 +49,7 @@ void Aplicacao::draw() {
 
 	glBindBuffer(GL_ARRAY_BUFFER, buffer[0]);
 	glVertexPointer(3 , GL_FLOAT, 0 , 0);
-	glDrawArrays(GL_TRIANGLES,0, 3*pontos.size());
+	glDrawArrays(GL_TRIANGLES,0, nvertices);
 }
 
 
