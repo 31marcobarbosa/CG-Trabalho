@@ -39,14 +39,16 @@ void Aplicacao::prep() {
 	glGenBuffers(1,buffer);
 	glBindBuffer(GL_ARRAY_BUFFER, buffer[0]);
 	glBufferData(GL_ARRAY_BUFFER, bmem, v, GL_STATIC_DRAW);
-}
 
+	free(v);
+}
+	
 
 void Aplicacao::draw() {
 
 	glBindBuffer(GL_ARRAY_BUFFER, buffer[0]);
 	glVertexPointer(3 , GL_FLOAT, 0 , 0);
-	glDrawArrays(GL_TRIANGLES,0, filhos.size()*3);
+	glDrawArrays(GL_TRIANGLES,0, 3*pontos.size());
 }
 
 

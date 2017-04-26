@@ -13,8 +13,8 @@ vector<Aplicacao> aplicacoes;
 float R = 1, G = 1, B = 1;
 float size;
 float w = 1;
-float xrot= 0, yrot = 0, zrot = 0, zpos = 30, xpos = 0 , ypos = 0;
-float zx = 6, zy = 6, zz = -4;
+float xrot= 0, yrot = 0, zrot = 0, zpos = 0, xpos = 0 , ypos = 0;
+float zx = -30, zy = 30, zz = 20;
 int line = GL_LINE;
 float rato = 0, ratoX, ratoY;
 int alpha = 0 , beta = 0;
@@ -99,13 +99,15 @@ void renderScene(void) {
     
     // set the camera
     glLoadIdentity();
-    glTranslatef(0, -1, zz);
+    gluLookAt(zx, zy, zz,
+		0.0, 0.0, 0.0,
+		0.0f, 1.0f, 0.0f);
     
 
     glRotatef(xrot,1.0,0.0,0.0);
     glRotatef(yrot,0.0,1.0,0.0);
     glRotatef(yrot,0.0,0.0,1.0);
-    glTranslated(xpos,ypos,zpos);
+    glTranslatef(xpos,ypos,zpos);
     
 
 	
@@ -159,13 +161,14 @@ void renderScene(void) {
 				}
 				glScalef(transfilho.getEscala().getX(),transfilho.getEscala().getY(),transfilho.getEscala().getZ());
 
-				filhos[k].draw();
+			//	filhos[k].draw();
 
 				glPopMatrix();
 			}
 		}
 
 		// VBO'S
+		// faz no initGL
 		//aplicacoes[j].prep();
 		aplicacoes[j].draw();
 
