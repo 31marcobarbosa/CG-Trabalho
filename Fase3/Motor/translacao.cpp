@@ -26,7 +26,7 @@ void Translacao::getCatmullRomPoint(float gtt , int* indices , float* res , vect
 	int ind1 , ind2 , ind3 , ind4;
 	Ponto p0 , p1, p2 , p3;
 
-	novo[0] = novo[1] = novo[2] = 0.0;
+	res[0] = res[1] = res[2] = 0.0;
 	ttt = pow(gtt,3);
 	tt = pow(gtt,2);
 
@@ -52,8 +52,8 @@ void Translacao::getCatmullRomPoint(float gtt , int* indices , float* res , vect
 	p3 = transp[ind4];
 
 	res[0] = novo[0]*p0.getX() + novo[1]*p1.getX() + novo[2]*p2.getX() + novo[3]*p3.getX();
-	res[0] = novo[0]*p0.getY() + novo[1]*p1.getY() + novo[2]*p2.getY() + novo[3]*p3.getY();
-	res[0] = novo[0]*p0.getZ() + novo[1]*p1.getZ() + novo[2]*p2.getZ() + novo[3]*p3.getZ();
+	res[1] = novo[0]*p0.getY() + novo[1]*p1.getY() + novo[2]*p2.getY() + novo[3]*p3.getY();
+	res[2] = novo[0]*p0.getZ() + novo[1]*p1.getZ() + novo[2]*p2.getZ() + novo[3]*p3.getZ();
 
 }
 
