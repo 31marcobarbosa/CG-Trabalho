@@ -14,11 +14,24 @@ Aplicacao::Aplicacao(string n, vector<Aplicacao> a, vector<Ponto> p, Transformac
 	transformacao = t;
 }
 
+void Aplicacao::construir() {
+	int i;
+	int totalpts = pontos.size();
+
+	glBegin(GL_TRIANGLES);
+
+	for(i=0; i< totalpts ; i++) {
+
+		glVertex3f(pontos.at(i).getX() , pontos.at(i).getY(), pontos.at(i).getZ());
+	}
+
+	glEnd();
+}
 
 
 void Aplicacao::prep() {
 
-	int n , pptam , bmem;
+	int n , pptam;
 	size_t i;
 	n = i = 0;
 	pptam = pontos.size();
@@ -35,11 +48,10 @@ void Aplicacao::prep() {
 	}
 
 	nvertices = n;
-	bmem = sizeof(float) * nvertices;
 
 	glGenBuffers(1,buffer);
 	glBindBuffer(GL_ARRAY_BUFFER, buffer[0]);
-	glBufferData(GL_ARRAY_BUFFER, bmem, v, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * nvertices, v, GL_STATIC_DRAW);
 
 	free(v);
 }
@@ -47,23 +59,11 @@ void Aplicacao::prep() {
 
 void Aplicacao::draw() {
 
+	
 	glBindBuffer(GL_ARRAY_BUFFER, buffer[0]);
 	glVertexPointer(3 , GL_FLOAT, 0 , 0);
 	glDrawArrays(GL_TRIANGLES,0, nvertices);
 }
 
 
-void Aplicacao::construir() {
-	int i;
-	int totalpts = pontos.size();
 
-	glBegin(GL_TRIANGLES);
-
-	for(i=0; i< totalpts ; i++) {
-
-		glVertex3f(pontos.at(i).getX() , pontos.at(i).getY(), pontos.at(i).getZ());
-		// glVertex3f(pontos[i].getX() , pontos[i].getY(), pontos[i].getZ());
-	}
-
-	glEnd();
-}
