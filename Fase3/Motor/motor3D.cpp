@@ -88,7 +88,7 @@ void renderCatmullRomCurve( vector<Ponto> pontos) {
 
 void renderScene(void) {
 	
-	int j , k;
+	size_t j,k;
 	float res[3];
 	float tget, gt, rt, gr;
 
@@ -147,7 +147,7 @@ void renderScene(void) {
 					tget = glutGet(GLUT_ELAPSED_TIME) % (int)(transfilho.getTranslacao().getTempo() *1000);
 					gt = tget / (transfilho.getTranslacao().getTempo() * 1000);
 					vector<Ponto> fvpts = transfilho.getTranslacao().getPontosTrans();
-					renderCatmullRomCurve(transfilho.getTranslacao().getPontosTrans());
+					renderCatmullRomCurve(transfilho.getTranslacao().getPontosCurva());
 					transfilho.getTranslacao().getGlobalCatmullRomPoint(gt, res, fvpts);
 					fvpts.clear();
 					glTranslatef(res[0],res[1],res[2]);
@@ -160,7 +160,7 @@ void renderScene(void) {
 				}
 				glScalef(transfilho.getEscala().getX(),transfilho.getEscala().getY(),transfilho.getEscala().getZ());
 
-			//	filhos[k].draw();
+				filhos[k].draw();
 
 				glPopMatrix();
 			}
@@ -188,7 +188,7 @@ void resetCamara() {
 	xpos = ypos = zpos = 0.0f;
 	xrot = yrot = zrot = 0.0f;
 	alpha = 0;
-	beta = 0;
+	beta = 0.5;
 }
 
 
@@ -501,8 +501,8 @@ void lerXML(string ficheiro) {
 		Transformacao t = Transformacao::Transformacao();
 		Escala esc = Escala::Escala();
 		Translacao translacao = Translacao::Translacao();
-		t.setEscala(esc);
 		t.setTranslacao(translacao);
+		t.setEscala(esc);
 		parseNivelado(grupo, t, 'I');
 	}
 	else {
@@ -546,8 +546,8 @@ int main(int argc, char **argv){
 
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
-    glutInitWindowPosition(580,150);
-    glutInitWindowSize(1200,800);
+    glutInitWindowPosition(100,100);
+    glutInitWindowSize(800,800);
     glutCreateWindow("Projeto_de_CG"); 
 
     // leitura do ficheiro xml

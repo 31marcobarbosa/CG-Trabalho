@@ -33,17 +33,18 @@ class Aplicacao{
 
 public: 
 		Aplicacao();
-		Aplicacao(string, vector<Aplicacao>, vector<Ponto>, Transformacao);
+		Aplicacao(string n, vector<Aplicacao>, vector<Ponto>, Transformacao);
 		vector<Ponto> getPontos() {return pontos;}
 		vector<Aplicacao> getFilhos() { return filhos;}
 		string getNome() { return nome;}
 		Transformacao getTransformacao() { return transformacao;}
 		void setNome( string n) { nome=n;}
 		void setPontos(vector<Ponto> p) {pontos = p;}
-		void setFilhos(vector<Aplicacao> f) {filhos=f;}
+		void setFilhos(vector<Aplicacao> f) {filhos.clear();filhos=f;}
 		void setTransformacao(Transformacao t) { transformacao = t;}
 		void setFilho(Aplicacao f){filhos.push_back(f);}
 		void prep();
 		void draw();
 		void construir();
+		virtual ~Aplicacao() {};
 }; 

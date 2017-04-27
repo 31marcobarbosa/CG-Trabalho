@@ -603,12 +603,12 @@ void lerXML(string ficheiro) {
 	
 	if (!(docxml.LoadFile(ficheiro.c_str()))) {
 		
-		XMLElement * cena = docxml.FirstChildElement("cena");
-		XMLElement * grupo = cena -> FirstChildElement("grupo");
+		XMLElement * scene = docxml.FirstChildElement("scene");
+		XMLElement * group = scene -> FirstChildElement("group");
 
 	
 		Transformacao t = Transformacao::Transformacao();
-		Escala esc = Escala::Escala(0.5,0.5,0.5);
+		Escala esc = Escala::Escala(1,1,1);
 		t.setEscala(esc);
 		parseNivelado(grupo, t);
 	}
@@ -632,8 +632,8 @@ int main(int argc, char **argv) {
 
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
-    glutInitWindowPosition(580,150);
-    glutInitWindowSize(1200,800);
+    glutInitWindowPosition(100,100);
+    glutInitWindowSize(800,800);
     glutCreateWindow("Projeto_de_CG"); 
 
     // leitura do ficheiro xml
