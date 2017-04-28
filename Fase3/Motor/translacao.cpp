@@ -17,7 +17,9 @@ Translacao::Translacao(float t, vector<Ponto> p , int num) {
 	pointTrans = p;
 }
 
-
+bool Translacao::isEmpty() {
+	return (tempo == 0 && pointTrans.size() == 0) ? true : false;
+}
 
 
 void Translacao::getCatmullRomPoint(float gtt , int* indices , float* res , vector<Ponto> transp){

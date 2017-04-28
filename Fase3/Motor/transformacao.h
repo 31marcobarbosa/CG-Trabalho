@@ -23,5 +23,6 @@ class Transformacao{
 		void setRotacao(Rotacao r){ rotacao = r; }
 		void setEscala(Escala e){ escala = e; }
 		void setCor(Cor c){ cor = c; }
+		bool transformacaoVazia();
 
 };

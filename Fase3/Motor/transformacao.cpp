@@ -13,3 +13,11 @@ Transformacao::Transformacao(Translacao t , Rotacao r, Escala e, Cor c) {
 	escala = e;
 	cor = c;
 }
+
+bool Transformacao::transformacaoVazia() {
+	bool res = false;
+	if (translacao.isEmpty() && rotacao.isEmpty() && escala.isEmpty() & cor.isEmpty())
+		res = true;
+
+	return res;
+}

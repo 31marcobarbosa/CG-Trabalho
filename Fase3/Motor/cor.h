@@ -15,5 +15,5 @@ public:
 	void setR( float a) {  r = a; }
 	void setG( float a) {  g = a; }
 	void setB( float a) {  b = a; }
-
+	bool isEmpty();
 };

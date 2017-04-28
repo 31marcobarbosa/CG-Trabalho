@@ -16,3 +16,6 @@ Rotacao::Rotacao(float a, float b, float c, float d){
 };
 
 
+bool Rotacao::isEmpty() {
+	return (tempo == 0 && eixoX == 0 && eixoY == 0 && eixoZ == 0) ? true : false;
+}

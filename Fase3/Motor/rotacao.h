@@ -17,6 +17,7 @@ public:
 	void setEixoX(float x){ eixoX = x; }
 	void setEixoY(float y){ eixoY = y; }
 	void setEixoZ(float z){ eixoZ = z; }
+	bool isEmpty();
 
 };
 

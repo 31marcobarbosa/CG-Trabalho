@@ -91,6 +91,8 @@ void renderScene(void) {
 	size_t j,k;
 	float res[3];
 	float tget, gt, rt, gr;
+	float pos[4] = { 1.0, 1.0, 1.0, 0.0 };
+
 
 
 	// clear buffers
@@ -98,9 +100,14 @@ void renderScene(void) {
     
     // set the camera
     glLoadIdentity();
+    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+
+    glLightfv(GL_LIGHT0, GL_POSITION, pos);
     gluLookAt(zx, zy, zz,
-		0.0, 0.0, 0.0,
+		xpos,ypos,zpos,
 		0.0f, 1.0f, 0.0f);
+
+
     
 
     glRotatef(xrot,1.0,0.0,0.0);
@@ -113,63 +120,87 @@ void renderScene(void) {
 
 	for(j = 0; j < aplicacoes.size(); j++){
 
+		Aplicacao mod = aplicacoes[j];
+		Transformacao tr = aplicacoes[j].getTransformacao();
 		glPushMatrix();
-		Transformacao t = aplicacoes[j].getTransformacao();
 
 		//desenhar os planetas
-		if(t.getTranslacao().getTempo() != 0) {
-			tget = glutGet(GLUT_ELAPSED_TIME) % (int)(t.getTranslacao().getTempo() *1000);
-			gt = tget / (t.getTranslacao().getTempo() * 1000);
-			vector<Ponto> vecpts = t.getTranslacao().getPontosTrans();
-			renderCatmullRomCurve(t.getTranslacao().getPontosCurva());
-			t.getTranslacao().getGlobalCatmullRomPoint(gt,res,vecpts);
-			vecpts.clear();
-			glTranslatef(res[0],res[1],res[2]);
-		}
+		if(!tr.transformacaoVazia()) {
+			Rotacao r = tr.getRotacao();
+			if(!r.isEmpty() && r.getTempo()!=0) {
+				float t = glutGet(GLUT_ELAPSED_TIME) % (int)(r.getTempo() * 1000);
+				float gr = (t * 360) / (r.getTempo() * 1000);
+				glRotatef(gr, r.geteixoX(), r.geteixoY(), r.geteixoZ());
+			}
+		
 
-		if(t.getRotacao().getTempo() != 0){
-			rt = glutGet(GLUT_ELAPSED_TIME) % (int)(t.getRotacao().getTempo() * 1000);
-			gr = (rt * 360) / (t.getRotacao().getTempo() * 1000);
-			glRotatef(gr,t.getRotacao().geteixoX(),t.getRotacao().geteixoY(),t.getRotacao().geteixoZ());
-		}
-		glScalef(t.getEscala().getX(),t.getEscala().getY(),t.getEscala().getZ());
+		Translacao t = tr.getTranslacao();
+		if(!t.isEmpty()) {
 
-
-		// desenhar luas e anéis
-		if(aplicacoes[j].getFilhos().size() != 0) {
-			vector<Aplicacao> filhos = aplicacoes[j].getFilhos();
-
-			for(k = 0; k < filhos.size(); k++) {
-				glPushMatrix();
-				Transformacao transfilho = filhos[k].getTransformacao();
-
-				if(transfilho.getTranslacao().getTempo() != 0) {
-					tget = glutGet(GLUT_ELAPSED_TIME) % (int)(transfilho.getTranslacao().getTempo() *1000);
-					gt = tget / (transfilho.getTranslacao().getTempo() * 1000);
-					vector<Ponto> fvpts = transfilho.getTranslacao().getPontosTrans();
-					renderCatmullRomCurve(transfilho.getTranslacao().getPontosCurva());
-					transfilho.getTranslacao().getGlobalCatmullRomPoint(gt, res, fvpts);
-					fvpts.clear();
-					glTranslatef(res[0],res[1],res[2]);
-				}
-
-				if(transfilho.getRotacao().getTempo() != 0 ){
-					rt = glutGet(GLUT_ELAPSED_TIME) % (int)(transfilho.getRotacao().getTempo() * 1000);
-					gr = (rt * 360) / (transfilho.getRotacao().getTempo() * 1000);
-					glRotatef(gr,transfilho.getRotacao().geteixoX(),transfilho.getRotacao().geteixoY(),transfilho.getRotacao().geteixoZ());
-				}
-				glScalef(transfilho.getEscala().getX(),transfilho.getEscala().getY(),transfilho.getEscala().getZ());
-
-				filhos[k].draw();
-
-				glPopMatrix();
+			int n = t.getSize();
+			if (n>0){
+				float r = glutGet(GLUT_ELAPSED_TIME) % (int)(t.getTempo() * 1000);
+				float gt = r / (t.getTempo() * 1000);
+				vector<Ponto> tp = t.getPontosTrans();
+				renderCatmullRomCurve(t.getPontosCurva());
+				t.getGlobalCatmullRomPoint(gt,res,tp);
+				glTranslatef(res[0],res[1],res[2]);
 			}
 		}
 
+		Escala s = tr.getEscala();
+		if (!s.isEmpty()) {
+			glScalef(s.getX(),s.getY(),s.getZ());
+			}
+		Cor color = tr.getCor();
+		if(!color.isEmpty()) {
+			glColor3f(color.getR(),color.getG(),color.getB());
+		}
+	}
+
+
+		if (aplicacoes[j].getFilhos().size() != 0){
+		vector<Aplicacao> filhos = aplicacoes[j].getFilhos();
+		for (k=0; k < filhos.size(); k++){
+			Transformacao tfilho = filhos[k].getTransformacao();
+			if (!tfilho.transformacaoVazia()){
+				glPushMatrix();
+				Translacao trans = tfilho.getTranslacao();
+					if (!trans.isEmpty()){
+						int tam = trans.getSize();
+						if (tam > 0){
+							float te = glutGet(GLUT_ELAPSED_TIME) % (int)(trans.getTempo() * 1000);
+							float gt = te / (trans.getTempo() * 1000);
+							vector<Ponto> vpt = trans.getPontosTrans();
+							renderCatmullRomCurve(trans.getPontosCurva());
+							trans.getGlobalCatmullRomPoint(gt, res, vpt);
+							glTranslatef(res[0], res[1], res[2]);
+						}
+					}
+
+				Rotacao rot = tfilho.getRotacao();
+				if (!rot.isEmpty()){
+					float r = glutGet(GLUT_ELAPSED_TIME) % (int)(rot.getTempo() * 1000);
+					float gr = (r * 360) / (rot.getTempo() * 1000);
+					glRotatef(gr, rot.geteixoX(), rot.geteixoY(), rot.geteixoZ());
+				}
+
+				Escala esc = tfilho.getEscala();
+				if (!esc.isEmpty()){
+					glScalef(esc.getX(), esc.getY(), esc.getZ());
+				}
+			}
+		
+
+		//filhos[k].draw();
+
+		glPopMatrix();
 		// VBO'S
 		// faz no initGL
 		//aplicacoes[j].prep();
-		aplicacoes[j].draw();
+		}
+		}
+		mod.draw();
 
 		
 		//aplicacoes[j].construir();
@@ -177,7 +208,7 @@ void renderScene(void) {
 		glPopMatrix();
 
 		}
-		
+	glutPostRedisplay();
 	fps();
 	glutSwapBuffers();
 }
@@ -516,6 +547,7 @@ void initGL() {
 	size_t j = 0, w = 0;
 
 	// definições para o OpenGL
+	glEnableClientState(GL_VERTEX_ARRAY);
 	glPolygonMode(GL_FRONT, GL_LINE);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);

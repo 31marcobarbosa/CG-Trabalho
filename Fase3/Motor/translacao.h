@@ -21,7 +21,7 @@ public:
 	Translacao(float);
 	Translacao(float , vector<Ponto> , int);
 	vector<Ponto> getPontosTrans() { return pointTrans; }
-	vector<Ponto> getPontosCurva() { return pointTrans; }
+	vector<Ponto> getPontosCurva() { return pointCurv; }
 	float getTempo() { return tempo; }
 	int getSize() { return size; }
 	void setTempo( float a) {  tempo = a; }
@@ -31,4 +31,5 @@ public:
 	void getGlobalCatmullRomPoint( float , float * , vector<Ponto> );
 	void desenhaCurvas();
 	void getCatmullRomPoint(float, int* , float*,vector<Ponto>);
+	bool isEmpty();
 };
