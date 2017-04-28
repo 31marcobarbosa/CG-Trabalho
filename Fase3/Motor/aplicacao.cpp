@@ -35,15 +35,20 @@ void Aplicacao::prep() {
 	size_t i;
 	n = i = 0;
 	pptam = pontos.size();
+	int nvertices = pptam*3;
+
+	buffer = (GLuint*)malloc(sizeof(GLuint)*nvertices);
+
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 
-	v = (float *)malloc(sizeof(float)* pptam*3);
+	float *v = (float *)malloc(sizeof(float)* pptam*3);
 
 	for(; i < pptam; i++) {
-		v[n] = pontos[i].getX();
-		v[n + 1] = pontos[i].getY();
-		v[n + 2] = pontos[i].getZ();
+		Ponto xyz = pontos.at(i);
+		v[n] = xyz.getX();
+		v[n + 1] = xyz.getY();
+		v[n + 2] = xyz.getZ();
 		n += 3; 
 	}
 
