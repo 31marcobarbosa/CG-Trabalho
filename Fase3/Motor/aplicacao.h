@@ -25,7 +25,7 @@ class Aplicacao{
 	vector<Aplicacao> filhos;
 	vector<Ponto> pontos;
 	Transformacao transformacao;
-	GLuint *buffer;
+	GLuint buffer[3];
 	int nvertices;
 	float *v;
 

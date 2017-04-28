@@ -192,7 +192,7 @@ void renderScene(void) {
 			}
 		
 
-		filhos[k].draw();
+		//filhos[k].draw();
 
 		glPopMatrix();
 		// VBO'S
