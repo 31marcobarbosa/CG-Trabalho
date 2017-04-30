@@ -5,6 +5,12 @@ Translacao::Translacao() {
 	tempo = 0;
 }
 
+Translacao::Translacao(float a, float b, float c){
+	x = a;
+	y = b;
+	z = c;
+	tempo = 0;
+}
 
 Translacao::Translacao(float t){
 	tempo = t;
@@ -15,6 +21,10 @@ Translacao::Translacao(float t, vector<Ponto> p , int num) {
 	tempo = t;
 	size = num;
 	pointTrans = p;
+}
+
+void Translacao::addPonto(Ponto p){
+	pointTrans.push_back(p);
 }
 
 bool Translacao::isEmpty() {
