@@ -91,7 +91,6 @@ void renderScene(void) {
 	size_t j,k;
 	float res[3];
 	float tget, gt, rt, gr;
-	float pos[4] = { 1.0, 1.0, 1.0, 0.0 };
 
 
 
@@ -102,8 +101,7 @@ void renderScene(void) {
     glLoadIdentity();
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
-    glLightfv(GL_LIGHT0, GL_POSITION, pos);
-    gluLookAt(zx, zy, zz,
+   	gluLookAt(zx, zy, zz,
 		xpos,ypos,zpos,
 		0.0f, 1.0f, 0.0f);
 
@@ -142,6 +140,7 @@ void renderScene(void) {
 				float r = glutGet(GLUT_ELAPSED_TIME) % (int)(t.getTempo() * 1000);
 				float gt = r / (t.getTempo() * 1000);
 				vector<Ponto> tp = t.getPontosTrans();
+				t.desenhaCurvas();
 				renderCatmullRomCurve(t.getPontosCurva());
 				t.getGlobalCatmullRomPoint(gt,res,tp);
 				glTranslatef(res[0],res[1],res[2]);
@@ -172,6 +171,7 @@ void renderScene(void) {
 							float te = glutGet(GLUT_ELAPSED_TIME) % (int)(trans.getTempo() * 1000);
 							float gt = te / (trans.getTempo() * 1000);
 							vector<Ponto> vpt = trans.getPontosTrans();
+							trans.desenhaCurvas();
 							renderCatmullRomCurve(trans.getPontosCurva());
 							trans.getGlobalCatmullRomPoint(gt, res, vpt);
 							glTranslatef(res[0], res[1], res[2]);
@@ -189,12 +189,11 @@ void renderScene(void) {
 				if (!esc.isEmpty()){
 					glScalef(esc.getX(), esc.getY(), esc.getZ());
 				}
+				
 			}
 		
 
-		//filhos[k].draw();
-
-		glPopMatrix();
+		filhos[k].draw();
 		// VBO'S
 		// faz no initGL
 		//aplicacoes[j].prep();
@@ -207,8 +206,7 @@ void renderScene(void) {
 
 		glPopMatrix();
 
-		}
-	glutPostRedisplay();
+	}
 	fps();
 	glutSwapBuffers();
 }
