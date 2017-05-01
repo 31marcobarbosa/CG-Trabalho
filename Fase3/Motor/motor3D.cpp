@@ -383,35 +383,32 @@ void parseNivelado(XMLElement *grupo , Transformacao transf, int res){
 	for (transformacao; (strcmp(transformacao->Value(), "models") != 0); transformacao = transformacao->NextSiblingElement()) {
 		
 		if (strcmp(transformacao->Value(), "translate") == 0){
-			if(transformacao->Attribute("X")) 
-				transX = stof(transformacao->Attribute("X"));
-			else transX = 0;
-			if (transformacao->Attribute("Y"))
-				 transY = stof(transformacao->Attribute("Y"));
-			else transY = 0;
-			if (transformacao->Attribute("Z")) 
-				transZ = stof(transformacao->Attribute("Z"));
-			else transZ = 0;
-
-			tr = Translacao::Translacao(transX, transY, transZ); // inicializar time a 0.
-
+			vector<Ponto> trpontos;
 			if(transformacao->Attribute("time")){
 				time = stof(transformacao->Attribute("time"));
-				tr.setTempo(time);
-
-				XMLElement* it = transformacao->FirstChildElement();
-				for(;it;it=it->NextSiblingElement()){
-					float x = stof(it->Attribute("X"));
-					float y = stof(it->Attribute("Y"));
-					float z = stof(it->Attribute("Z"));
-					Ponto p = Ponto::Ponto(x,y,z);
-					tr.addPonto(p);
-				}
 			}
 			else time = 0;
 
-			tr.desenhaCurvas();
-		}
+		for (XMLElement* ponto = transformacao->FirstChildElement("ponto"); ponto; ponto = ponto->NextSiblingElement("ponto")) {
+			
+			if(transformacao->Attribute("X")) 
+				transX = stof(ponto->Attribute("X"));
+			else transX = 0;
+			if (transformacao->Attribute("Y"))
+				 transY = stof(ponto->Attribute("Y"));
+			else transY = 0;
+			if (transformacao->Attribute("Z")) 
+				transZ = stof(ponto->Attribute("Z"));
+			else transZ = 0;
+
+			Ponto pt = Ponto::Ponto(transX,transY,transZ);
+			trpontos.push_back(pt);
+			}
+
+				tr = Translacao::Translacao(time,trpontos,trpontos.size());
+				tr.desenhaCurvas();
+			}
+			
 
 		if (strcmp(transformacao->Value(), "rotate") == 0){
 			if (transformacao->Attribute("angle")) 
@@ -485,9 +482,8 @@ void parseNivelado(XMLElement *grupo , Transformacao transf, int res){
 		cout << "Cor       : " << trans.getCor().getR() << " - " << trans.getCor().getG() << " - " << trans.getCor().getB() << endl;
 
 		//aplicacoes.push_back(app);
-	}
 
-	// I = 0 / P = 1 / F = 2
+			// I = 0 / P = 1 / F = 2
 	if( res == 2) {
 		int q = aplicacoes.size()-1;
 		aplicacoes[q].setFilho(app);
@@ -499,6 +495,9 @@ void parseNivelado(XMLElement *grupo , Transformacao transf, int res){
 	else {
 		aplicacoes.push_back(app);
 	}
+  }
+
+
 
 
 	//verifica os grupos dos filhos
@@ -704,6 +703,7 @@ void initGL() {
 	glPolygonMode(GL_FRONT, GL_LINE);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
+
 
 	// incialização dos VBOs
 	for (; j < aplicacoes.size(); j++){
