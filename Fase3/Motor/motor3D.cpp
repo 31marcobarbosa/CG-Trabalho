@@ -193,7 +193,7 @@ void renderScene(void) {
 			}
 		
 
-		//filhos[k].draw();
+		filhos[k].draw();
 		// VBO'S
 		// faz no initGL
 		//aplicacoes[j].prep();
@@ -360,6 +360,7 @@ Transformacao alteracaoValores(Translacao tr , Escala es , Rotacao ro , Cor cr, 
 }
 
 
+<<<<<<< HEAD
 // Parse do xml tendo em conta os níveis hirarquicos
 void parseNivelado(XMLElement *grupo , Transformacao transf, int rel){
 	
@@ -516,6 +517,11 @@ void parseNivelado(XMLElement *grupo , Transformacao transf, int rel){
 }
 
 /* Parse do xml tendo em conta os níveis hirarquicos
+=======
+
+
+// Parse do xml tendo em conta os níveis hirarquicos
+>>>>>>> parent of 6b09bf8... A RODAR NICOLAU, A RODAR
 void parseNivelado(tinyxml2::XMLElement *grupo , Transformacao transf, char pai){
 	
 	Transformacao trans;
@@ -668,7 +674,7 @@ void parseNivelado(tinyxml2::XMLElement *grupo , Transformacao transf, char pai)
 	}
 
 }
-*/
+
 
 // Leitura do ficheiro XML
 void lerXML(string ficheiro) {
@@ -685,7 +691,11 @@ void lerXML(string ficheiro) {
 		Translacao translacao = Translacao::Translacao();
 		t.setTranslacao(translacao);
 		t.setEscala(esc);
+<<<<<<< HEAD
 		parseNivelado(grupo, t, 0);
+=======
+		parseNivelado(grupo, t, 'I');
+>>>>>>> parent of 6b09bf8... A RODAR NICOLAU, A RODAR
 	}
 	else {
 		cout << "Ficheiro XML não foi encontrado" << endl;
