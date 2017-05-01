@@ -361,13 +361,14 @@ Transformacao alteracaoValores(Translacao tr , Escala es , Rotacao ro , Cor cr, 
 
 
 // Parse do xml tendo em conta os níveis hirarquicos
-void parseNivelado(XMLElement *grupo , Transformacao transf, int rel){
+void parseNivelado(XMLElement *grupo , Transformacao transf, int res){
 	
 	Transformacao trans;
 	Translacao tr;
 	Rotacao ro;
 	Escala es;
 	Cor cr;
+	Aplicacao app;
 	float ang, rotX, rotY, rotZ, transX, transY, transZ, escX, escY, escZ, tx, ty, tz, time;
 	ang = rotX = rotY = rotZ = transX = transY = transZ = escX = escY = escZ = 1;
 
@@ -468,7 +469,7 @@ void parseNivelado(XMLElement *grupo , Transformacao transf, int rel){
 
 	for (XMLElement* modelo = grupo->FirstChildElement("models")->FirstChildElement("model"); modelo; modelo = modelo->NextSiblingElement("modelo")) {
 		
-		Aplicacao app;
+		
 		app.setNome(modelo->Attribute("file"));
 		cout << app.getNome() << endl;
 		lerficheiro(app.getNome());
