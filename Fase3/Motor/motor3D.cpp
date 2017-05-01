@@ -86,6 +86,7 @@ void renderCatmullRomCurve( vector<Ponto> pontos) {
  }
 
 
+
 void renderScene(void) {
 	
 	size_t j,k;
@@ -104,9 +105,6 @@ void renderScene(void) {
    	gluLookAt(zx, zy, zz,
 		xpos,ypos,zpos,
 		0.0f, 1.0f, 0.0f);
-
-
-    
 
     glRotatef(xrot,1.0,0.0,0.0);
     glRotatef(yrot,0.0,1.0,0.0);
@@ -174,7 +172,8 @@ void renderScene(void) {
 							trans.desenhaCurvas();
 							renderCatmullRomCurve(trans.getPontosCurva());
 							trans.getGlobalCatmullRomPoint(gt, res, vpt);
-							glTranslatef(res[0], res[1], res[2]);
+							glTranslatef(res[0]*trans.getX(), res[1]*trans.getY(), res[2]*trans.getZ());
+							glRotatef(90.0, 1.0, 0.0, 0.0);
 						}
 					}
 
@@ -193,7 +192,7 @@ void renderScene(void) {
 			}
 		
 
-		//filhos[k].draw();
+		filhos[k].draw();
 		// VBO'S
 		// faz no initGL
 		//aplicacoes[j].prep();
@@ -361,7 +360,7 @@ Transformacao alteracaoValores(Translacao tr , Escala es , Rotacao ro , Cor cr, 
 
 
 // Parse do xml tendo em conta os níveis hirarquicos
-void parseNivelado(XMLElement *grupo , Transformacao transf, int rel){
+void parseNivelado(XMLElement *grupo , Transformacao transf){
 	
 	Transformacao trans;
 	Translacao tr;
@@ -377,37 +376,36 @@ void parseNivelado(XMLElement *grupo , Transformacao transf, int rel){
 
 	//transformações para um grupo
 	XMLElement* transformacao = grupo->FirstChildElement();
-	
 
 	for (transformacao; (strcmp(transformacao->Value(), "models") != 0); transformacao = transformacao->NextSiblingElement()) {
-		
 		if (strcmp(transformacao->Value(), "translate") == 0){
-			vector<Ponto> trpontos;
-			if(transformacao->Attribute("time")){
-				time = stof(transformacao->Attribute("time"));
-			}
-			else time = 0;
-
-		for (XMLElement* ponto = transformacao->FirstChildElement("ponto"); ponto; ponto = ponto->NextSiblingElement("ponto")) {
-			
 			if(transformacao->Attribute("X")) 
-				transX = stof(ponto->Attribute("X"));
+				transX = stof(transformacao->Attribute("X"));
 			else transX = 0;
 			if (transformacao->Attribute("Y"))
-				 transY = stof(ponto->Attribute("Y"));
+				 transY = stof(transformacao->Attribute("Y"));
 			else transY = 0;
 			if (transformacao->Attribute("Z")) 
-				transZ = stof(ponto->Attribute("Z"));
+				transZ = stof(transformacao->Attribute("Z"));
 			else transZ = 0;
 
-			Ponto pt = Ponto::Ponto(transX,transY,transZ);
-			trpontos.push_back(pt);
-			}
+			tr = Translacao::Translacao(transX, transY, transZ); // inicializar time a 0.
 
-				tr = Translacao::Translacao(time,trpontos,trpontos.size());
-				tr.desenhaCurvas();
+			if(transformacao->Attribute("time")){
+				time = stof(transformacao->Attribute("time"));
+				tr.setTempo(time);
+
+				XMLElement* it = transformacao->FirstChildElement();
+				for(;it;it=it->NextSiblingElement()){
+					float x = stof(it->Attribute("X"));
+					float y = stof(it->Attribute("Y"));
+					float z = stof(it->Attribute("Z"));
+					Ponto p = Ponto::Ponto(x,y,z);
+					tr.addPonto(p);
+				}
 			}
-			
+			else time = 0;
+		}
 
 		if (strcmp(transformacao->Value(), "rotate") == 0){
 			if (transformacao->Attribute("angle")) 
@@ -427,7 +425,6 @@ void parseNivelado(XMLElement *grupo , Transformacao transf, int rel){
 			else rotZ = 0;
 			ro = Rotacao::Rotacao(ang, rotX, rotY, rotZ, time);
 		}
-
 		if (strcmp(transformacao->Value(), "scale") == 0){
 			if (transformacao->Attribute("X")) 
 				escX = stof(transformacao->Attribute("X"));
@@ -442,7 +439,6 @@ void parseNivelado(XMLElement *grupo , Transformacao transf, int rel){
 			es.setY(escY);
 			es.setZ(escZ);
 		}
-
 		if (strcmp(transformacao->Value(), "colour") == 0) {
 			if (transformacao->Attribute("R"))
 				tx = stof(transformacao->Attribute("R"));
@@ -480,37 +476,17 @@ void parseNivelado(XMLElement *grupo , Transformacao transf, int rel){
 		cout << "Escala    : " << trans.getEscala().getX() << " - " << trans.getEscala().getY() << " - " << trans.getEscala().getZ() << endl;
 		cout << "Cor       : " << trans.getCor().getR() << " - " << trans.getCor().getG() << " - " << trans.getCor().getB() << endl;
 
-		//aplicacoes.push_back(app);
-
-			// I = 0 / P = 1 / F = 2
-	if( res == 2) {
-		int q = aplicacoes.size()-1;
-		aplicacoes[q].setFilho(app);
-	}
-	else if (res == 1) {
-		int q = aplicacoes.size()-1;
-		aplicacoes[q].setFilho(app);
-	}
-	else {
 		aplicacoes.push_back(app);
 	}
-  }
-
-
-
 
 	//verifica os grupos dos filhos
-	if (grupo->FirstChildElement("group") && ( res == 1 || res == 2)) {
-		parseNivelado(grupo->FirstChildElement("group"), trans,0);
+	if (grupo->FirstChildElement("group")) {
+		parseNivelado(grupo->FirstChildElement("group"), trans);
 	}
 
 	//verifica os grupos dos irmãos
 	if (grupo->NextSiblingElement("group")) {
-		parseNivelado(grupo->NextSiblingElement("group"), transf,2);
-	}
-
-	if (grupo->FirstChildElement("group") && ( res != 1 && res != 2)) {
-		parseNivelado(grupo->FirstChildElement("group"), trans,0);
+		parseNivelado(grupo->NextSiblingElement("group"), transf);
 	}
 
 }
@@ -685,7 +661,7 @@ void lerXML(string ficheiro) {
 		Translacao translacao = Translacao::Translacao();
 		t.setTranslacao(translacao);
 		t.setEscala(esc);
-		parseNivelado(grupo, t, 0);
+		parseNivelado(grupo, t);
 	}
 	else {
 		cout << "Ficheiro XML não foi encontrado" << endl;
@@ -702,7 +678,6 @@ void initGL() {
 	glPolygonMode(GL_FRONT, GL_LINE);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
-
 
 	// incialização dos VBOs
 	for (; j < aplicacoes.size(); j++){

@@ -4,6 +4,7 @@
 			<group>
 				<scale X="3.0" Y="3.0" Z="3.0"/>
 				<rotate time="50" eixoX="0" eixoY="1" eixoZ="0" />
+				<colour R="1" G="1" B="0" />
 				<models>
 					<model file="esfera.3d"/>
 				</models>
@@ -90,35 +91,6 @@
 				<models>
 					<model file="esfera.3d"/>
 				</models>
-			
-
-				<!--Lua-->
-					<group>
-						<translate time="10">
-							<point X="8" Y="0" Z="0" />
-							<point X="7.39104" Y="3.06147" Z="0" />
-							<point X="5.65685" Y="5.65685" Z="0" />
-							<point X="3.06147" Y="7.39104" Z="0" />
-							<point X="4.89859e-016" Y="8" Z="0" />
-							<point X="-3.06147" Y="7.39104" Z="0" />
-							<point X="-5.65685" Y="5.65685" Z="0" />
-							<point X="-7.39104" Y="3.06147" Z="0" />
-							<point X="-8" Y="9.79717e-016" Z="0" />
-							<point X="-7.39104" Y="-3.06147" Z="0" />
-							<point X="-5.65685" Y="-5.65685" Z="0" />
-							<point X="-3.06147" Y="-7.39104" Z="0" />
-							<point X="-1.46958e-015" Y="-8" Z="0" />
-							<point X="3.06147" Y="-7.39104" Z="0" />
-							<point X="5.65685" Y="-5.65685" Z="0" />
-							<point X="7.39104" Y="-3.06147" Z="0" />
-						</translate>
-						<rotate time="24" eixoX="0" eixoY="1" eixoZ="0" />
-						<colour R="0.9" G="0.0" B="0.0" />
-						<scale X="0.25" Y="0.25" Z="0.25"/>
-						<models>
-							<model file="esfera.3d"/>
-						</models>
-					</group>
 			</group>
 
 			<!--Marte-->
@@ -203,137 +175,6 @@
 				<models>
 					<model file="esfera.3d"/>
 				</models>
-				<!--Aneis-->
-					<group>
-						<translate time="18">
-							<point X="7" Y="0" Z="0" />
-							<point X="6.46716" Y="2.67878" Z="0" />
-							<point X="4.94975" Y="4.94975" Z="0" />
-							<point X="2.67878" Y="6.46716" Z="0" />
-							<point X="4.28626e-016" Y="7" Z="0" />
-							<point X="-2.67878" Y="6.46716" Z="0" />
-							<point X="-4.94975" Y="4.94975" Z="0" />
-							<point X="-6.46716" Y="2.67878" Z="0" />
-							<point X="-7" Y="8.57253e-016" Z="0" />
-							<point X="-6.46716" Y="-2.67878" Z="0" />
-							<point X="-4.94975" Y="-4.94975" Z="0" />
-							<point X="-2.67878" Y="-6.46716" Z="0" />
-							<point X="-1.28588e-015" Y="-7" Z="0" />
-							<point X="2.67878" Y="-6.46716" Z="0" />
-							<point X="4.94975" Y="-4.94975" Z="0" />
-							<point X="6.46716" Y="-2.67878" Z="0" />
-						</translate>
-						<rotate time="5" eixoX="0" eixoY="1" eixoZ="0" />
-						<scale X="0.01" Y="0.01" Z="0.01"/>
-						<colour R="0.9" G="0.5" B="0.5" />
-						<models>
-							<model file="esfera.3d"/>
-						</models>
-					</group>
-					<group>
-						<translate time="10">
-							<point X="8" Y="0" Z="0" />
-							<point X="7.39104" Y="3.06147" Z="0" />
-							<point X="5.65685" Y="5.65685" Z="0" />
-							<point X="3.06147" Y="7.39104" Z="0" />
-							<point X="4.89859e-016" Y="8" Z="0" />
-							<point X="-3.06147" Y="7.39104" Z="0" />
-							<point X="-5.65685" Y="5.65685" Z="0" />
-							<point X="-7.39104" Y="3.06147" Z="0" />
-							<point X="-8" Y="9.79717e-016" Z="0" />
-							<point X="-7.39104" Y="-3.06147" Z="0" />
-							<point X="-5.65685" Y="-5.65685" Z="0" />
-							<point X="-3.06147" Y="-7.39104" Z="0" />
-							<point X="-1.46958e-015" Y="-8" Z="0" />
-							<point X="3.06147" Y="-7.39104" Z="0" />
-							<point X="5.65685" Y="-5.65685" Z="0" />
-							<point X="7.39104" Y="-3.06147" Z="0" />
-						</translate>
-						<rotate time="5" eixoX="0" eixoY="1" eixoZ="0" />
-						<scale X="0.01" Y="0.01" Z="0.01"/>
-						<colour R="0.9" G="0.5" B="0.5" />
-						<models>
-							<model file="esfera.3d"/>
-						</models>
-					</group>
-					<group>
-						<translate time="5">
-							<point X="9" Y="0" Z="0" />
-							<point X="8.31492" Y="3.44415" Z="0" />
-							<point X="6.36396" Y="6.36396" Z="0" />
-							<point X="3.44415" Y="8.31492" Z="0" />
-							<point X="5.51091e-016" Y="9" Z="0" />
-							<point X="-3.44415" Y="8.31492" Z="0" />
-							<point X="-6.36396" Y="6.36396" Z="0" />
-							<point X="-8.31492" Y="3.44415" Z="0" />
-							<point X="-9" Y="1.10218e-015" Z="0" />
-							<point X="-8.31492" Y="-3.44415" Z="0" />
-							<point X="-6.36396" Y="-6.36396" Z="0" />
-							<point X="-3.44415" Y="-8.31492" Z="0" />
-							<point X="-1.65327e-015" Y="-9" Z="0" />
-							<point X="3.44415" Y="-8.31492" Z="0" />
-							<point X="6.36396" Y="-6.36396" Z="0" />
-							<point X="8.31492" Y="-3.44415" Z="0" />
-						</translate>
-						<rotate time="5" eixoX="0" eixoY="1" eixoZ="0" />
-						<scale X="0.01" Y="0.01" Z="0.01"/>
-						<colour R="0.9" G="0.5" B="0.5" />
-						<models>
-							<model file="esfera.3d"/>
-						</models>
-					</group>
-					<group>
-						<translate time="15">
-							<point X="10" Y="0" Z="0" />
-							<point X="9.2388" Y="3.82683" Z="0" />
-							<point X="7.07107" Y="7.07107" Z="0" />
-							<point X="3.82683" Y="9.2388" Z="0" />
-							<point X="6.12323e-016" Y="10" Z="0" />
-							<point X="-3.82683" Y="9.2388" Z="0" />
-							<point X="-7.07107" Y="7.07107" Z="0" />
-							<point X="-9.2388" Y="3.82683" Z="0" />
-							<point X="-10" Y="1.22465e-015" Z="0" />
-							<point X="-9.2388" Y="-3.82683" Z="0" />
-							<point X="-7.07107" Y="-7.07107" Z="0" />
-							<point X="-3.82683" Y="-9.2388" Z="0" />
-							<point X="-1.83697e-015" Y="-10" Z="0" />
-							<point X="3.82683" Y="-9.2388" Z="0" />
-							<point X="7.07107" Y="-7.07107" Z="0" />
-							<point X="9.2388" Y="-3.82683" Z="0" />
-						</translate>
-						<rotate time="5" eixoX="0" eixoY="1" eixoZ="0" />
-						<scale X="0.01" Y="0.01" Z="0.01"/>
-						<colour R="0.9" G="0.5" B="0.5" />
-						<models>
-							<model file="esfera.3d"/>
-						</models>
-					</group>
-					<group>
-						<translate time="20">
-							<point X="11" Y="0" Z="0" />
-							<point X="10.1627" Y="4.20952" Z="0" />
-							<point X="7.77817" Y="7.77817" Z="0" />
-							<point X="4.20952" Y="10.1627" Z="0" />
-							<point X="6.73556e-016" Y="11" Z="0" />
-							<point X="-4.20952" Y="10.1627" Z="0" />
-							<point X="-7.77817" Y="7.77817" Z="0" />
-							<point X="-10.1627" Y="4.20952" Z="0" />
-							<point X="-11" Y="1.34711e-015" Z="0" />
-							<point X="-10.1627" Y="-4.20952" Z="0" />
-							<point X="-7.77817" Y="-7.77817" Z="0" />
-							<point X="-4.20952" Y="-10.1627" Z="0" />
-							<point X="-2.02067e-015" Y="-11" Z="0" />
-							<point X="4.20952" Y="-10.1627" Z="0" />
-							<point X="7.77817" Y="-7.77817" Z="0" />
-							<point X="10.1627" Y="-4.20952" Z="0" />
-						</translate>
-						<rotate time="5" eixoX="0" eixoY="1" eixoZ="0" />
-						<scale X="0.01" Y="0.01" Z="0.01"/>
-						<colour R="0.9" G="0.5" B="0.5" />
-						<models>
-							<model file="esfera.3d"/>
-						</models>
-					</group>
 			</group>
 
 			<!--Urano-->
@@ -414,7 +255,7 @@
 				<scale X="0.8" Y="0.8" Z="0.8"/>
 				<colour R="0.9" G="0.0" B="0.0" />
 				<models>
-					<model file="teapot.3d"/>
+					<model file="esfera.3d"/>
 				</models>
 			</group>
 		
