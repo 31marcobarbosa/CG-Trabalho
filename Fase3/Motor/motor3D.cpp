@@ -361,7 +361,7 @@ Transformacao alteracaoValores(Translacao tr , Escala es , Rotacao ro , Cor cr, 
 
 
 // Parse do xml tendo em conta os níveis hirarquicos
-void parseNivelado(XMLElement *grupo , Transformacao transf){
+void parseNivelado(XMLElement *grupo , Transformacao transf, int rel){
 	
 	Transformacao trans;
 	Translacao tr;
@@ -377,8 +377,10 @@ void parseNivelado(XMLElement *grupo , Transformacao transf){
 
 	//transformações para um grupo
 	XMLElement* transformacao = grupo->FirstChildElement();
+	
 
 	for (transformacao; (strcmp(transformacao->Value(), "models") != 0); transformacao = transformacao->NextSiblingElement()) {
+		
 		if (strcmp(transformacao->Value(), "translate") == 0){
 			if(transformacao->Attribute("X")) 
 				transX = stof(transformacao->Attribute("X"));
@@ -406,6 +408,8 @@ void parseNivelado(XMLElement *grupo , Transformacao transf){
 				}
 			}
 			else time = 0;
+
+			tr.desenhaCurvas();
 		}
 
 		if (strcmp(transformacao->Value(), "rotate") == 0){
@@ -426,6 +430,7 @@ void parseNivelado(XMLElement *grupo , Transformacao transf){
 			else rotZ = 0;
 			ro = Rotacao::Rotacao(ang, rotX, rotY, rotZ, time);
 		}
+
 		if (strcmp(transformacao->Value(), "scale") == 0){
 			if (transformacao->Attribute("X")) 
 				escX = stof(transformacao->Attribute("X"));
@@ -440,6 +445,7 @@ void parseNivelado(XMLElement *grupo , Transformacao transf){
 			es.setY(escY);
 			es.setZ(escZ);
 		}
+
 		if (strcmp(transformacao->Value(), "colour") == 0) {
 			if (transformacao->Attribute("R"))
 				tx = stof(transformacao->Attribute("R"));
@@ -477,17 +483,35 @@ void parseNivelado(XMLElement *grupo , Transformacao transf){
 		cout << "Escala    : " << trans.getEscala().getX() << " - " << trans.getEscala().getY() << " - " << trans.getEscala().getZ() << endl;
 		cout << "Cor       : " << trans.getCor().getR() << " - " << trans.getCor().getG() << " - " << trans.getCor().getB() << endl;
 
+		//aplicacoes.push_back(app);
+	}
+
+	// I = 0 / P = 1 / F = 2
+	if( res == 2) {
+		int q = aplicacoes.size()-1;
+		aplicacoes[q].setFilho(app);
+	}
+	else if (res == 1) {
+		int q = aplicacoes.size()-1;
+		aplicacoes[q].setFilho(app);
+	}
+	else {
 		aplicacoes.push_back(app);
 	}
 
+
 	//verifica os grupos dos filhos
-	if (grupo->FirstChildElement("group")) {
-		parseNivelado(grupo->FirstChildElement("group"), trans);
+	if (grupo->FirstChildElement("group") && ( res == 1 || res == 2)) {
+		parseNivelado(grupo->FirstChildElement("group"), trans,0);
 	}
 
 	//verifica os grupos dos irmãos
 	if (grupo->NextSiblingElement("group")) {
-		parseNivelado(grupo->NextSiblingElement("group"), transf);
+		parseNivelado(grupo->NextSiblingElement("group"), transf,2);
+	}
+
+	if (grupo->FirstChildElement("group") && ( res != 1 && res != 2)) {
+		parseNivelado(grupo->FirstChildElement("group"), trans,0);
 	}
 
 }
@@ -662,7 +686,7 @@ void lerXML(string ficheiro) {
 		Translacao translacao = Translacao::Translacao();
 		t.setTranslacao(translacao);
 		t.setEscala(esc);
-		parseNivelado(grupo, t);
+		parseNivelado(grupo, t, 0);
 	}
 	else {
 		cout << "Ficheiro XML não foi encontrado" << endl;
