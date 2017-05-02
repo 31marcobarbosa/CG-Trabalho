@@ -578,6 +578,7 @@ int main(int argc, char **argv)
 		glutInitWindowPosition(580,150);
 		glutInitWindowSize(800,800);
 		glutCreateWindow("TP@CG");
+		glutFullScreen();
 
 		//Leitura do ficheiro XML:
 		readXML(argv[1]);
