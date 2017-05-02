@@ -575,8 +575,8 @@ int main(int argc, char **argv)
 	if (argc>1) {
 		glutInit(&argc, argv);
 		glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
-		glutInitWindowPosition(100, 100);
-		glutInitWindowSize(800, 800);
+		glutInitWindowPosition(580,150);
+		glutInitWindowSize(800,800);
 		glutCreateWindow("TP@CG");
 
 		//Leitura do ficheiro XML:

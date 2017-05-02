@@ -5,18 +5,19 @@
 #include <vector>
 #include <stdlib.h>
 #ifdef __APPLE__
-#include <GLUT/glut.h>
 #include <IL/il.h>
-#else
 #include <GL/glut.h>
+#else
+#include <IL/il.h>
 #include <GL/glew.h>
+#include <GL/glut.h>
 #endif
 
 
 
 
 #include "ponto.h"
-#include "Transformacao.h"
+#include "transformacao.h"
 
 #include <fstream>
 #include <iostream>

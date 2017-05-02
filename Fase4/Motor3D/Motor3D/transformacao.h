@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Translacao.h"
-#include "Rotacao.h"
-#include "Escala.h"
+#include "translacao.h"
+#include "rotacao.h"
+#include "escala.h"
 
 class Transformacao{
 	Translacao trans;
