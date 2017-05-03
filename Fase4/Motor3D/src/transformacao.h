@@ -5,19 +5,20 @@
 #include "escala.h"
 
 class Transformacao{
-	Translacao trans;
-	Rotacao rot;
-	Escala esc;
+	Translacao translacao;
+	Rotacao rotacao;
+	Escala escala;
 
 	public:
 		Transformacao();
 		Transformacao(Translacao, Rotacao, Escala);
-		Translacao getTranslacao() { return trans; }
-		Rotacao getRotacao() { return rot; }
-		Escala getEscala() { return esc; }
-		void setTranslacao(Translacao t){ trans = t; }
-		void setRotacao(Rotacao r){ rot = r; }
-		void setEscala(Escala e){ esc = e; }
+		Translacao getTranslacao() { return translacao; }
+		Rotacao getRotacao() { return rotacao; }
+		Escala getEscala() { return escala; }
+		void setTranslacao(Translacao t){ translacao = t; }
+		void setRotacao(Rotacao r){ rotacao = r; }
+		void setEscala(Escala e){ escala = e; }
+		bool transformacaoVazia();
 		virtual ~Transformacao() {};
 
 };

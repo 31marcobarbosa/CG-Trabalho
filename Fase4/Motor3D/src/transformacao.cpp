@@ -1,14 +1,21 @@
 #include "transformacao.h"
 
-Transformacao::Transformacao(){
-
-	trans = Translacao::Translacao();
-	rot = Rotacao::Rotacao();
-	esc = Escala::Escala();
+Transformacao::Transformacao() {
+	translacao = Translacao::Translacao();
+	rotacao = Rotacao::Rotacao();
+	escala = Escala::Escala();
 }
 
-Transformacao::Transformacao(Translacao t, Rotacao r, Escala e){
-	trans = t;
-	rot = r;
-	esc = e;
+Transformacao::Transformacao(Translacao t , Rotacao r, Escala e) {
+	translacao = t;
+	rotacao = r;
+	escala = e;
+}
+
+bool Transformacao::transformacaoVazia() {
+	bool res = false;
+	if (translacao.isEmpty() && rotacao.isEmpty() && escala.isEmpty())
+		res = true;
+
+	return res;
 }

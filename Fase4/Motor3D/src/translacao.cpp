@@ -14,6 +14,11 @@ Translacao::Translacao(float t, vector<Ponto> vtp, int num) {
 	tam = num;
 }
 
+bool Translacao::isEmpty() {
+	return (time == 0 && pontosTrans.size() == 0) ? true : false;
+}
+
+
 void getCatmullRomPoint(float t, int *indices, float *res, vector<Ponto> transpontos) {
 	float res_aux[4];
 

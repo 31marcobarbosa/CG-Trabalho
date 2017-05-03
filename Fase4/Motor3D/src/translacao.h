@@ -25,5 +25,6 @@ public:
 	void setPontosCurva(vector<Ponto> p){ pontosCurva = p; }
 	void getGlobalCatmullRomPoint(float, float *, vector<Ponto>);
 	void execCurvas();
+	bool isEmpty();
 	virtual ~Translacao() {};
 };
