@@ -578,7 +578,7 @@ void initGL() {
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHT0);
 	glEnable(GL_TEXTURE_2D);
-
+	glShadeModel (GL_SMOOTH);
 	// init para VBOs
 	for (size_t j = 0; j < aplicacoes.size(); j++){
 		aplicacoes[j].prep();
