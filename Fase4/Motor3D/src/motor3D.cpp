@@ -1,4 +1,4 @@
-#include "motor3d.h"
+#include "motor3D.h"
 
 
 // Vectores com os pontos lidos do ficheiro:
@@ -214,8 +214,8 @@ void normalkeyboard(unsigned char tecla, int x, int y) {
 	case 'E': anguloZ -= 5; break;
 	case 'R':;
 	case 'r': resetCamara(); break;
-	case '+': coordZ += 5.0f; break;
-	case '-': coordZ -= 5.0f; break;
+	case '+': coordY += 5; break;
+	case '-': coordY -= 5; break;
 	case 'p':
 	case 'P': line = GL_POINT;
 			break;
@@ -231,10 +231,10 @@ void normalkeyboard(unsigned char tecla, int x, int y) {
 
 void specialKeys(int key, int x, int y) {
 	switch (key) {
-	case GLUT_KEY_UP: coordY += 5; break;
-	case GLUT_KEY_DOWN: coordY -= 5; break;
-	case GLUT_KEY_LEFT: coordX -= 5; break;
-	case GLUT_KEY_RIGHT: coordX += 5; break;
+	case GLUT_KEY_UP: coordZ += 5.0f; break;
+	case GLUT_KEY_DOWN: coordZ -= 5.0f; break;
+	case GLUT_KEY_LEFT: coordX += 5; break;
+	case GLUT_KEY_RIGHT: coordX -= 5; break;
 	}
 }
 
