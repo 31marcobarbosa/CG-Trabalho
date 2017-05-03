@@ -1,18 +1,47 @@
 #include "motor3d.h"
 
-void framesPerSecond() {
-	float fps;
+
+// Vectores com os pontos lidos do ficheiro:
+vector<Ponto> pontos;
+vector<Ponto> normais;
+vector<Ponto> texturas;
+
+// Aplicacaos do sistema solar
+vector<Aplicacao> aplicacoes;
+
+#define CONST 1.0f;
+
+// Variaveis para utilização do teclado e rato:
+float radius = 5.0f;
+float camX = -30, camY = 30, camZ = 20;
+float anguloX = 0.0f, anguloY = 0.0f, anguloZ = 0.0f;
+float coordX = 0, coordY = 0, coordZ = 0;
+int startX, startY, tracking = 0;
+int alpha = 0, beta = 0, r = 5;
+
+/* FPS */
+int timebase = 0, frame = 0;
+
+/* Luz */
+string tipo;
+float posX, posY, posZ;
+
+
+
+void fps() {
+	float fpsec;
 	int time;
-	char s[64];
+	char sol[64];
 
 	frame++;
 	time = glutGet(GLUT_ELAPSED_TIME);
-	if (time - timebase > 1000) {
-		fps = frame*1000.0 / (time - timebase);
-		timebase = time;
+
+	if (time - timeb > 1000) {
+		fpsec = frame*1000.0 / (time - timeb);
+		timeb = time;
 		frame = 0;
-		sprintf(s, "FPS: %f6.2", fps);
-		glutSetWindowTitle(s);
+		sprintf(sol,"FPS: %f6.2",fpsec);
+		glutSetWindowTitle(sol);
 	}
 }
 
@@ -154,7 +183,7 @@ void renderScene(void)
 		glPopMatrix();
 	}
 
-	framesPerSecond();
+	fps();
 
 	glutSwapBuffers();
 }
@@ -185,6 +214,15 @@ void normalkeyboard(unsigned char tecla, int x, int y) {
 	case 'r': resetCamara(); break;
 	case '+': coordZ += 5.0f; break;
 	case '-': coordZ -= 5.0f; break;
+	case 'p':
+	case 'P': line = GL_POINT;
+			break;
+	case 'l':
+	case 'L': line = GL_LINE;
+	   	   	break;
+	case 'o':
+	case 'O': line = GL_FILL;
+			break;
 	}
 	glutPostRedisplay();
 }
@@ -527,25 +565,8 @@ void readXML(string filename)
 	parseGrupo(grupo, t, 'I');
 }
 
-// Função de processamento do menu
-void menu(int op)
-{
-	switch (op) {
-	case 1: glPolygonMode(GL_FRONT, GL_FILL); break;
-	case 2: glPolygonMode(GL_FRONT, GL_LINE); break;
-	case 3: glPolygonMode(GL_FRONT, GL_POINT); break;
-	}
-	glutPostRedisplay();
-}
 
-void defineMenu() {
-	glutCreateMenu(menu);
 
-	glutAddMenuEntry("GL_FILL", 1);
-	glutAddMenuEntry("GL_LINE", 2);
-	glutAddMenuEntry("GL_POINT", 3);
-	glutAttachMenu(GLUT_RIGHT_BUTTON);
-}
 
 void initGL() {
 
@@ -594,9 +615,6 @@ int main(int argc, char **argv)
 		//Rato
 		glutMouseFunc(processMouseButtons);
 		glutMotionFunc(processMouseMotion);
-
-		//Criação e opções do menu:
-		defineMenu();
 
 		ilInit();
 		ilEnable(IL_ORIGIN_SET);
