@@ -18,9 +18,11 @@ float anguloX = 0.0f, anguloY = 0.0f, anguloZ = 0.0f;
 float coordX = 0, coordY = 0, coordZ = 0;
 int startX, startY, tracking = 0;
 int alpha = 0, beta = 0, r = 5;
+int line = GL_LINE;
+
 
 /* FPS */
-int timebase = 0, frame = 0;
+int timeb = 0, frame = 0;
 
 /* Luz */
 string tipo;
@@ -165,7 +167,7 @@ void renderScene(void)
 				
 				glBindTexture(GL_TEXTURE_2D, filhos[k].getTexID());
 				glEnable(GL_LIGHTING);
-				filhos[k].desenhar();
+				filhos[k].draw();
 				glDisable(GL_LIGHTING);
 				glBindTexture(GL_TEXTURE_2D, 0);
 
@@ -176,7 +178,7 @@ void renderScene(void)
 		//VBOs
 		glBindTexture(GL_TEXTURE_2D, aplicacoes[j].getTexID());
 		glEnable(GL_LIGHTING);
-		aplicacoes[j].desenhar();	
+		aplicacoes[j].draw();	
 		glDisable(GL_LIGHTING);
 		glBindTexture(GL_TEXTURE_2D, 0);
 		
@@ -579,12 +581,12 @@ void initGL() {
 
 	// init para VBOs
 	for (size_t j = 0; j < aplicacoes.size(); j++){
-		aplicacoes[j].preparar();
+		aplicacoes[j].prep();
 
 		if (aplicacoes[j].getFilhos().size() != 0){
 			vector<Aplicacao> filhos = aplicacoes[j].getFilhos();
 			for (size_t w = 0; w < filhos.size(); w++){
-				filhos[w].preparar();
+				filhos[w].prep();
 			}
 			aplicacoes[j].setFilhos(filhos);
 		}

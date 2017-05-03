@@ -1,8 +1,8 @@
 #include "aplicacao.h"
 
 Aplicacao::Aplicacao(){
-	nome = "";
 	transformacao = Transformacao::Transformacao();
+	nome = "";
 	filhos = vector<Aplicacao>();
 	pontos = vector<Ponto>();
 }
@@ -15,16 +15,17 @@ Aplicacao::Aplicacao(string n, vector<Aplicacao> f, vector<Ponto> p, Transformac
 }
 
 void Aplicacao::construir() {
-	int numpontos = pontos.size();
+	int i;
+	int totalpts = pontos.size();
 
 	glBegin(GL_TRIANGLES);
-	for (int j = 0; j< numpontos; j++) {
-		glVertex3f(pontos.at(j).getX(), pontos.at(j).getY(), pontos.at(j).getZ());
+	for (i = 0; i< totalpts; i++) {
+		glVertex3f(pontos.at(i).getX(), pontos.at(i).getY(), pontos.at(i).getZ());
 	}
 	glEnd();
 }
 
-void Aplicacao::preparar() {
+void Aplicacao::prep() {
 	int h = 0;
 
 	glEnableClientState(GL_VERTEX_ARRAY);
@@ -75,7 +76,7 @@ void Aplicacao::preparar() {
 	criarTextura();
 }
 
-void Aplicacao::desenhar() {
+void Aplicacao::draw() {
 	glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
 	glVertexPointer(3, GL_FLOAT, 0, 0);
 	glBindBuffer(GL_ARRAY_BUFFER, buffers[1]);
@@ -91,15 +92,15 @@ void Aplicacao::criarTextura(){
 	ilGenImages(1, &t);
 	ilBindImage(t);
 	ilLoadImage((ILstring)path.c_str());
-	tw = ilGetInteger(IL_IMAGE_WIDTH);
-	th = ilGetInteger(IL_IMAGE_HEIGHT);
+	width = ilGetInteger(IL_IMAGE_WIDTH);
+	height = ilGetInteger(IL_IMAGE_HEIGHT);
 	ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);
-	texData = ilGetData();
+	data = ilGetData();
 	glGenTextures(1, &texID); // unsigned int texID - variavel global;
 	glBindTexture(GL_TEXTURE_2D, texID);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tw, th, 0, GL_RGBA, GL_UNSIGNED_BYTE, texData);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 }
