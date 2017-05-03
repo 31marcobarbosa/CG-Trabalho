@@ -5,7 +5,7 @@
 	<grupo>
 			<!--Sol-->
 			<grupo>
-				<escala X="3.0" Y="3.0" Z="3.0"/>
+				<escala X="3.8" Y="3.8" Z="3.8"/>
 				<rotacao tempo="50" eixoX="0" eixoY="1" eixoZ="0" />
 				<modelos>
 					<modelo ficheiro="esfera.3d" textura="sol.jpg"/>
@@ -168,7 +168,7 @@
 					<ponto X="120.104" Y="0" Z="-49.7488" />
 				</translacao>
 				<rotacao tempo="9" eixoX="0" eixoY="1" eixoZ="0" />
-				<escala X="2.1" Y="2.1" Z="2.1"/>
+				<escala X="2.9" Y="2.9" Z="2.9"/>
 				<modelos>
 					<modelo ficheiro="esfera.3d" textura="jupiter.jpg"/>
 				</modelos>
