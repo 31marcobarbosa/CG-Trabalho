@@ -34,7 +34,7 @@ void plano(int lado,string nome) {
 		file << x << "," << y << "," << z << endl;
 	printf("%f %f %f\n",-x,y,-z);
 		file << -x << "," << y << "," << -z << endl;
-		
+
 	//normais
 	file << "@" << endl;
 	file << 0 << "," << 1 << "," << 0 << endl; file << 0 << "," << 1 << "," << 0 << endl;
@@ -54,7 +54,7 @@ void plano(int lado,string nome) {
 	file.close();
 }
 
-void caixa(int x,int y , int z , string nome) {
+void cubo(int x,int y , int z , string nome) {
 	ofstream file(nome);
 	double xx, yy, zz; 
 	vector<float> texturas;
@@ -638,9 +638,6 @@ int main(int argc, char **argv) {
 			}
 			else if (strcmp(argv[1],"Cone") == 0) {
 				cone(atoi(argv[2]), atoi(argv[3]), atoi(argv[4]), atoi(argv[5]), argv[6]);
-			}
-			else if (strcmp(argv[1],"Cilindro") == 0) {
-				cilindro(atoi(argv[2]), atoi(argv[3]), atoi(argv[4]), atoi(argv[5]), argv[6]);
 			}
 			else if(strcmp(argv[1],"Patch") == 0){
 				patch(argv[2], atoi(argv[3]), argv[4]);
