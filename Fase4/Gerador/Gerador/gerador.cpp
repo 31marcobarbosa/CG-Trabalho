@@ -54,7 +54,7 @@ void plano(int lado,string nome) {
 	file.close();
 }
 
-
+/*
 void cubo(double comp, double larg, double alt, string nome) {
 	ofstream file(nome);
 	double xx, yy, zz; 
@@ -251,104 +251,49 @@ void cubo(double comp, double larg, double alt, string nome) {
 	file.close();
 }
 
+*/
+void cone(float raio, float altura, int camadasV, int camadasH, string nome){
 
-void cone(int rr, int hr, int slice, int stack, string nome) {
 	ofstream file(nome);
-	float alfa;
-	float r = rr, h = hr;
-	float l = sqrt(pow(h, 2) + pow(r, 2)) / stack, t = r / stack, x, y, z;
+	double espV = (2 * M_PI) / camadasV;
+	double espH = altura / camadasH;
+	double dif = raio / camadasH;
+	double alfa = 0;
+	double alfa1 = espV;
 
-	vector<float> texturas;
-	vector<float> normais;
 
-	float texV = 0.7 / (float)slice; //mapeamento de textura
-	float texH = 1 / (float)stack; //mapeamento de textura
+	altura = -(altura / 2); //faz o cone ficar centrado no referêncial
 
-	for (int i = 0; i < stack; i++) {		//CONE!!!
-		for (int j = 0; j < slice; j++) {			
+	//Base
+	for (int i = 0; i <= camadasV; i++){
+		printf("%f %f %f\n", raio*sin(alfa), altura, raio*cos(alfa)); file << raio*sin(alfa) << "," << altura << "," << raio*cos(alfa) << endl;
+		printf("0 %f 0\n", altura); file << 0 << "," << altura << "," << 0 << endl;
+		printf("%f %f %f\n", raio*sin(alfa1), altura, raio*cos(alfa1)); file << raio*sin(alfa1) << "," << altura << "," << raio*cos(alfa1) << endl;
 
-			alfa = j*(2 * M_PI) / slice;
+		alfa = espV*(i + 1);
+		alfa1 = espV*(i + 2);
+	}
 
-			x = r*sin(alfa)*cos(alfa + 2 * M_PI / slice);
-			y = r*sin(alfa + 2 * M_PI / slice);
-			z = r * cos(alfa)*cos(alfa + 2 * M_PI / slice);
+	//Resto
+	for (int i = 0; i < camadasH; i++){
 
-			if (i == 0) {
-				//texturas
-				texturas.push_back(0.15); texturas.push_back(0.15);
-				texturas.push_back(0.15 + 0.15*(sin(alfa))); texturas.push_back(0.15 + 0.15*(cos(alfa)));
-				texturas.push_back(0.15 + 0.15*(sin(alfa + 2 * M_PI / slice))); texturas.push_back(0.15 + 0.15*((cos(alfa + 2 * M_PI / slice))));
+		for (int j = 0; j < camadasV; j++){
+			alfa += espV;
+			double raionovo = raio - dif;
 
-				normais.push_back(0); normais.push_back(-1); normais.push_back(0);
-				normais.push_back(0); normais.push_back(-1); normais.push_back(0);
-				normais.push_back(0); normais.push_back(-1); normais.push_back(0);
+			printf("%f %f %f\n", raio*sin(alfa), altura, raio*cos(alfa)); file << raio*sin(alfa) << "," << altura << "," << raio*cos(alfa) << endl;
+			printf("%f %f %f\n", raio*sin(alfa + espV), altura, raio*cos(alfa + espV)); file << raio*sin(alfa + espV) << "," << altura << "," << raio*cos(alfa + espV) << endl;
+			printf("%f %f %f\n", raionovo*sin(alfa), altura + espH, raionovo*cos(alfa)); file << raionovo*sin(alfa) << "," << altura + espH << "," << raionovo*cos(alfa) << endl;
 
-				file << 0.0f << "," << i*l << "," << 0.0f << endl;
-				file << r * (sin(alfa + 2 * M_PI / slice)) << "," << i*l << "," << r * cos(alfa + 2 * M_PI / slice) << endl;
-				file << r*(sin(alfa)) << "," << i*l << "," << r*cos(alfa) << endl;
-			}
-			if (i < stack - 1) {
-				//texturas
-				texturas.push_back(j*texV); texturas.push_back(i*texH);
-				texturas.push_back(j*texV + texV); texturas.push_back(i*texH + texH);
-				texturas.push_back(j*texV + texV); texturas.push_back(i*texH);
-
-				texturas.push_back(j*texV + texV); texturas.push_back(i*texH + texH);
-				texturas.push_back(j*texV); texturas.push_back(i*texH);
-				texturas.push_back(j*texV); texturas.push_back(i*texH + texH);
-
-				normais.push_back(x / r); normais.push_back(1); normais.push_back(y / r);
-				normais.push_back(x / r); normais.push_back(1); normais.push_back(y / r);
-				normais.push_back(x / r); normais.push_back(1); normais.push_back(y / r);
-
-				normais.push_back(x / r); normais.push_back(1); normais.push_back(y / r);
-				normais.push_back(x / r); normais.push_back(1); normais.push_back(y / r);
-				normais.push_back(x / r); normais.push_back(1); normais.push_back(y / r);
-
-				file << (r - ((i + 1)*t))*(sin(alfa + 2 * M_PI / slice)) << "," << (i + 1)*l << "," << (r - ((i + 1)*t))*cos(alfa + 2 * M_PI / slice) << endl;
-				file << (r - ((i + 1)*t)) * (sin(alfa)) << "," << (i + 1)*l << "," << (r - ((i + 1)*t)) * cos(alfa) << endl;
-				file << (r - (i*t)) * (sin(alfa)) << "," << i*l << "," << (r - (i*t)) * cos(alfa) << endl;
-
-				file << (r - (i*t)) * (sin(alfa)) << "," << i*l << "," << (r - (i*t)) * cos(alfa) << endl;
-				file << (r - (i*t))*(sin(alfa + 2 * M_PI / slice)) << "," << i*l << "," << (r - (i*t))*cos(alfa + 2 * M_PI / slice) << endl;
-				file << (r - ((i + 1)*t))*(sin(alfa + 2 * M_PI / slice)) << "," << (i + 1)*l << "," << (r - ((i + 1)*t))*cos(alfa + 2 * M_PI / slice) << endl;
-			}
-			else {
-				//texturas
-				texturas.push_back(j*texV); texturas.push_back(i*texH);
-				texturas.push_back(j*texV + texV); texturas.push_back(i*texH + texH);
-				texturas.push_back(j*texV + texV); texturas.push_back(i*texH);
-
-				texturas.push_back(j*texV + texV); texturas.push_back(i*texH + texH);
-				texturas.push_back(j*texV); texturas.push_back(i*texH);
-				texturas.push_back(j*texV); texturas.push_back(i*texH + texH);
-
-				normais.push_back(x / r); normais.push_back(1); normais.push_back(y / r);
-				normais.push_back(x / r); normais.push_back(1); normais.push_back(y / r);
-				normais.push_back(x / r); normais.push_back(1); normais.push_back(y / r);
-
-				normais.push_back(x / r); normais.push_back(1); normais.push_back(y / r);
-				normais.push_back(x / r); normais.push_back(1); normais.push_back(y / r);
-				normais.push_back(x / r); normais.push_back(1); normais.push_back(y / r);
-
-				file << (r - (i*t)) * (sin(alfa)) << "," << i*l << "," << (r - (i*t)) * cos(alfa) << endl;
-				file << (r - (i*t))*(sin(alfa + 2 * M_PI / slice)) << "," << i*l << "," << (r - (i*t))*cos(alfa + 2 * M_PI / slice) << endl;
-				file << 0.0f << "," << (i + 1)*l << "," << 0.0f << endl;
-			}
+			printf("%f %f %f\n", raio*sin(alfa + espV), altura, raio*cos(alfa + espV)); file << raio*sin(alfa + espV) << "," << altura << "," << raio*cos(alfa + espV) << endl;
+			printf("%f %f %f\n", raionovo*sin(alfa + espV), altura + espH, raionovo*cos(alfa + espV)); file << raionovo*sin(alfa + espV) << "," << altura+espH << "," << raionovo*cos(alfa + espV) << endl;
+			printf("%f %f %f\n", raionovo*sin(alfa), altura + espH, raionovo*cos(alfa)); file << raionovo*sin(alfa) << "," << altura + espH << "," << raionovo*cos(alfa) << endl;
 		}
+		raio = raio - dif;
+		altura = altura + espH;
 	}
-	file << "@" << endl;
-	for (int i = 0; i < normais.size(); i += 3) {
-		file << normais[i] << normais[i + 1] << normais[i + 2] << endl;
-	}
-
-	file << "@" << endl;
-	for (int i = 0; i < texturas.size(); i += 2) {
-		file << texturas[i] << texturas[i + 1] << endl;
-	}
-	
-	file.close();
 }
+
 void esfera(int r,int camadasV,int camadasH, string nome) {
 	ofstream file(nome);
 
@@ -581,7 +526,7 @@ void menu() {
 	cout <<"|       GERADOR:                                            |"<< endl;
 	cout <<"|                                                           |"<< endl;
 	cout <<"|       $ g++ gerador.cpp -o gen                            |"<< endl;
-	cout <<"|       $ ./gen Figura [Parâmetros] figura.3d               |"<< endl;
+	cout <<"|       $ ./gen Figura [Parametros] figura.3d               |"<< endl;
 	cout <<"|       $ mv figura.3d diretoria/Motor                      |"<< endl;
 	cout <<"|                                                           |"<< endl;
 	cout <<"|       -> Patch                                            |"<< endl;
@@ -610,9 +555,9 @@ void menu() {
 	cout <<"|                                                           |"<< endl;
 	cout <<"|---------------------> Controlos 3D <----------------------|"<< endl;
 	cout <<"|                                                           |"<< endl;
-	cout <<"|       * TRANSLAÇÃO: Seta cima, baixo, esquerda, direita   |"<< endl;
+	cout <<"|       * TRANSLACAO: Seta cima, baixo, esquerda, direita   |"<< endl;
 	cout <<"|                                                           |"<< endl;
-	cout <<"|       * ROTAÇÃO: w, a, s, d  | W, A, S, D                 |"<< endl;
+	cout <<"|       * ROTACAO: w, a, s, d  | W, A, S, D                 |"<< endl;
 	cout <<"|                                                           |"<< endl;
 	cout <<"|       * ZOOM: + | -                                       |"<< endl;
 	cout <<"|                                                           |"<< endl;
@@ -632,7 +577,7 @@ int main(int argc, char **argv) {
 				plano(atoi(argv[2]),argv[3]);
 			}
 			else if (strcmp(argv[1],"Cubo") == 0) {
-				cubo(atof(argv[2]),atof(argv[3]),atof(argv[4]),atoi(argv[5]),argv[6]);
+				//cubo(atof(argv[2]),atof(argv[3]),atof(argv[4]),atoi(argv[5]),argv[6]);
 			}
 			else if (strcmp(argv[1],"Esfera") == 0) {
 				esfera(atoi(argv[2]), atoi(argv[3]), atoi(argv[4]),argv[5]);
@@ -644,7 +589,7 @@ int main(int argc, char **argv) {
 				patch(argv[2], atoi(argv[3]), argv[4]);
 			}
 			else {
-				printf("FIGURA IMPOSSÍVEL\n");
+				printf("FIGURA IMPOSSIVEL\n");
 			}
 
 	}
