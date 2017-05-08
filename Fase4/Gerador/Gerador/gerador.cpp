@@ -348,23 +348,23 @@ void cone(int rr, int hr, int slice, int stack, string nome) {
 	
 	file.close();
 }
-void esfera(int r,int slice,int stack, string nome) {
+void esfera(int r,int camadasV,int camadasH, string nome) {
 	ofstream file(nome);
 
 	double alfa, x, y, z;
 	int flag = 0;
 	double beta;
-	float texV = 1 / (float)slice; //mapeamento de textura
-	float texH = 1 / (float)stack; //mapeamento de textura
+	float texV = 1 / (float)camadasV; //mapeamento de textura
+	float texH = 1 / (float)camadasH; //mapeamento de textura
 
 	vector<float> texturas;
 	vector<float> normais;
 
-	for (int i = 0; i < stack; i++) {		//Esfera!!!
-		for (int j = 0; j < slice; j++) {
+	for (int i = 0; i < camadasH; i++) {		//Esfera!!!
+		for (int j = 0; j < camadasV; j++) {
 
-			alfa = j*(2 * M_PI) / slice;
-			beta = -M_PI / 2 + i* M_PI / slice;
+			alfa = j*(2 * M_PI) / camadasV;
+			beta = -M_PI / 2 + i* M_PI / camadasV;
 
 			//texturas
 			
@@ -384,35 +384,35 @@ void esfera(int r,int slice,int stack, string nome) {
 			file << x << "," << y << "," << z << endl;
 			normais.push_back(x / r); normais.push_back(y / r); normais.push_back(z / r);
 
-			x = r*sin(alfa + 2 * M_PI / slice)*cos(beta);			
-			z = r * cos(alfa + 2 * M_PI / slice)*cos(beta);
+			x = r*sin(alfa + 2 * M_PI / camadasV)*cos(beta);			
+			z = r * cos(alfa + 2 * M_PI / camadasV)*cos(beta);
 		
 			file << x << "," << y << "," << z << endl;
 			normais.push_back(x / r); normais.push_back(y / r); normais.push_back(z / r);
 
-			x = r*sin(alfa)*cos(beta + M_PI / slice);
-			y = r*sin(beta + M_PI / slice);
-			z = r * cos(alfa)*cos(beta + M_PI / slice);
+			x = r*sin(alfa)*cos(beta + M_PI / camadasV);
+			y = r*sin(beta + M_PI / camadasV);
+			z = r * cos(alfa)*cos(beta + M_PI / camadasV);
 			
 
 			file << x << "," << y << "," << z << endl;
 			normais.push_back(x / r); normais.push_back(y / r); normais.push_back(z / r);
 
-			x = r*sin(alfa + 2 * M_PI / slice)*cos(beta + M_PI / slice);
-			z = r * cos(alfa + 2 * M_PI / slice)*cos(beta + M_PI / slice);
+			x = r*sin(alfa + 2 * M_PI / camadasV)*cos(beta + M_PI / camadasV);
+			z = r * cos(alfa + 2 * M_PI / camadasV)*cos(beta + M_PI / camadasV);
 	
 
 			file << x << "," << y << "," << z << endl;
 			normais.push_back(x / r); normais.push_back(y / r); normais.push_back(z / r);
-			x = r*sin(alfa)*cos(beta + M_PI / slice);
-			z = r * cos(alfa)*cos(beta + M_PI / slice);
+			x = r*sin(alfa)*cos(beta + M_PI / camadasV);
+			z = r * cos(alfa)*cos(beta + M_PI / camadasV);
 			
 
 			file << x << "," << y << "," << z << endl;
 			normais.push_back(x / r); normais.push_back(y / r); normais.push_back(z / r);
-			x = r*sin(alfa + 2 * M_PI / slice)*cos(beta);
+			x = r*sin(alfa + 2 * M_PI / camadasV)*cos(beta);
 			y = r*sin(beta);
-			z = r * cos(alfa + 2 * M_PI / slice)*cos(beta);
+			z = r * cos(alfa + 2 * M_PI / camadasV)*cos(beta);
 			
 
 			file << x << "," << y << "," << z << endl;
