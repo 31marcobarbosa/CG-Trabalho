@@ -54,15 +54,16 @@ void plano(int lado,string nome) {
 	file.close();
 }
 
-void cubo(int x,int y , int z , string nome) {
+
+void cubo(double comp, double larg, double alt, string nome) {
 	ofstream file(nome);
 	double xx, yy, zz; 
 	vector<float> texturas;
 	vector<float> normais;
 
-	if (!(x % 2)) xx = x / 2; else xx = x / 2 + 0.5;
-	if (!(y % 2)) yy = y / 2; else yy = y / 2 + 0.5;
-	if (!(z % 2)) zz = z / 2; else zz = z / 2 + 0.5;
+	if (!(comp % 2)) xx = comp / 2; else xx = comp / 2 + 0.5;
+	if (!(larg % 2)) yy = larg / 2; else yy = larg / 2 + 0.5;
+	if (!(alt % 2)) zz = alt / 2; else zz = alt / 2 + 0.5;
 	
 	//frente
 	//1 triangulo
