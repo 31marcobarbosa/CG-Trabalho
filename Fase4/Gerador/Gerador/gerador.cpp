@@ -55,7 +55,7 @@ void plano(int lado,string nome) {
 }
 
 /*
-void cubo(double comp, double larg, double alt, string nome) { //COMENTAR ESTA PORRA DE ACORDO COM A FASE3
+void cubo(double comp, double larg, double alt, string nome) {
 	ofstream file(nome);
 	double xx, yy, zz; 
 	vector<float> texturas;
@@ -264,7 +264,7 @@ void cone(float raio, float altura, int camadasV, int camadasH, string nome){
 
 	altura = -(altura / 2); //faz o cone ficar centrado no referêncial
 
-	// a base (desenhado em y = alt = -altura/2)
+	//Base
 	for (int i = 0; i <= camadasV; i++){
 		printf("%f %f %f\n", raio*sin(alfa), altura, raio*cos(alfa)); file << raio*sin(alfa) << "," << altura << "," << raio*cos(alfa) << endl;
 		printf("0 %f 0\n", altura); file << 0 << "," << altura << "," << 0 << endl;
@@ -274,7 +274,7 @@ void cone(float raio, float altura, int camadasV, int camadasH, string nome){
 		alfa1 = espV*(i + 2);
 	}
 
-	// as várias camadas de altura
+	//Resto
 	for (int i = 0; i < camadasH; i++){
 
 		for (int j = 0; j < camadasV; j++){
@@ -306,7 +306,7 @@ void esfera(int r,int camadasV,int camadasH, string nome) {
 	vector<float> texturas;
 	vector<float> normais;
 
-	for (int i = 0; i < camadasH; i++) {		
+	for (int i = 0; i < camadasH; i++) {		//Esfera!!!
 		for (int j = 0; j < camadasV; j++) {
 
 			alfa = j*(2 * M_PI) / camadasV;
@@ -379,53 +379,6 @@ void esfera(int r,int camadasV,int camadasH, string nome) {
 	}
 	
 	file.close();
-}
-
-void menu() {
-
-	cout <<" ---------------------> MENU DE AJUDA <---------------------"<< endl;
-	cout <<"|                                                           |"<< endl;
-	cout <<"|                                                           |"<< endl;
-	cout <<"|       GERADOR:                                            |"<< endl;
-	cout <<"|                                                           |"<< endl;
-	cout <<"|       $ g++ gerador.cpp -o gen                            |"<< endl;
-	cout <<"|       $ ./gen Figura [Parametros] figura.3d               |"<< endl;
-	cout <<"|       $ mv figura.3d diretoria/Motor                      |"<< endl;
-	cout <<"|                                                           |"<< endl;
-	cout <<"|       -> Patch                                            |"<< endl;
-    cout <<"|        $ g++ gerador.cpp -o gen                           |"<< endl;
-	cout <<"|        $ ./gen Patch teapot.patch [Numero] teapot.3d      |"<< endl;
-    cout <<"|                                                           |"<< endl;
-	cout <<"|                                                           |"<< endl;
-	cout <<"|       MOTOR:                                              |"<< endl;
-	cout <<"|                                                           |"<< endl;
-	cout <<"|       [build]$ make                                       |"<< endl;
-	cout <<"|       $ ./Projecto_de_CG sistemasolar.xml                 |"<< endl;
-	cout <<"|                                                           |"<< endl;
-	cout <<"|                                                           |"<< endl;
-	cout <<"|------------------------> FIGURA <-------------------------|"<< endl;
-	cout <<"|                                                           |"<< endl;
-	cout <<"|                                                           |"<< endl;
-	cout <<"|       * Plano lado                                        |"<< endl;
-	cout <<"|                                                           |"<< endl;
-	cout <<"|       * Cubo comp larg alt camadas                        |"<< endl;
-	cout <<"|                                                           |"<< endl;
-	cout <<"|       * Cone raio altura camadasV camadasH                |"<< endl;
-	cout <<"|                                                           |"<< endl;
-	cout <<"|       * Esfera raio camadasV camadasH                     |"<< endl;
-	cout <<"|                                                           |"<< endl;
-	cout <<"|       * Patch less                                        |"<< endl;
-	cout <<"|                                                           |"<< endl;
-	cout <<"|---------------------> Controlos 3D <----------------------|"<< endl;
-	cout <<"|                                                           |"<< endl;
-	cout <<"|       * TRANSLACAO: Seta cima, baixo, esquerda, direita   |"<< endl;
-	cout <<"|                                                           |"<< endl;
-	cout <<"|       * ROTACAO: w, a, s, d  | W, A, S, D                 |"<< endl;
-	cout <<"|                                                           |"<< endl;
-	cout <<"|       * ZOOM: + | -                                       |"<< endl;
-	cout <<"|                                                           |"<< endl;
-	cout <<"|                                                           |"<< endl;
-	cout <<" ------------------------------><---------------------------"<< endl;
 }
 
 float* formulaBezier( float tt, float *p1 , float *p2 , float *p3 , float *p4) {
@@ -565,6 +518,52 @@ void patch( string file , int tess , string name) {
 	fileo.close();
 }
 
+void menu() {
+
+	cout <<" ---------------------> MENU DE AJUDA <---------------------"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|       GERADOR:                                            |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|       $ g++ gerador.cpp -o gen                            |"<< endl;
+	cout <<"|       $ ./gen Figura [Parametros] figura.3d               |"<< endl;
+	cout <<"|       $ mv figura.3d diretoria/Motor                      |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|       -> Patch                                            |"<< endl;
+    cout <<"|        $ g++ gerador.cpp -o gen                           |"<< endl;
+	cout <<"|        $ ./gen Patch teapot.patch [Numero] teapot.3d      |"<< endl;
+    cout <<"|                                                           |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|       MOTOR:                                              |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|       [build]$ make                                       |"<< endl;
+	cout <<"|       $ ./Projecto_de_CG sistemasolar.xml                 |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|------------------------> FIGURA <-------------------------|"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|       * Plano lado                                        |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|       * Cubo comp larg alt camadas                        |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|       * Cone raio altura camadasV camadasH                |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|       * Esfera raio camadasV camadasH                     |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|       * Patch less                                        |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|---------------------> Controlos 3D <----------------------|"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|       * TRANSLACAO: Seta cima, baixo, esquerda, direita   |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|       * ROTACAO: w, a, s, d  | W, A, S, D                 |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|       * ZOOM: + | -                                       |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<"|                                                           |"<< endl;
+	cout <<" ------------------------------><---------------------------"<< endl;
+}
 
 int main(int argc, char **argv) {
 	
