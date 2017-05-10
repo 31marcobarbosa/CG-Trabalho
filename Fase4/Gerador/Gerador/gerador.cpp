@@ -54,8 +54,8 @@ void plano(int lado,string nome) {
 	file.close();
 }
 
-/*
-void cubo(double comp, double larg, double alt, string nome) {
+
+void cubo(int comp, int larg, int alt, string nome) {
 	ofstream file(nome);
 	double xx, yy, zz; 
 	vector<float> texturas;
@@ -251,7 +251,7 @@ void cubo(double comp, double larg, double alt, string nome) {
 	file.close();
 }
 
-*/
+
 void cone(float raio, float altura, int camadasV, int camadasH, string nome){
 
 	ofstream file(nome);
@@ -577,7 +577,7 @@ int main(int argc, char **argv) {
 				plano(atoi(argv[2]),argv[3]);
 			}
 			else if (strcmp(argv[1],"Cubo") == 0) {
-				//cubo(atof(argv[2]),atof(argv[3]),atof(argv[4]),atoi(argv[5]),argv[6]);
+				cubo(atoi(argv[2]),atoi(argv[3]),atoi(argv[4]),argv[5]);
 			}
 			else if (strcmp(argv[1],"Esfera") == 0) {
 				esfera(atoi(argv[2]), atoi(argv[3]), atoi(argv[4]),argv[5]);
