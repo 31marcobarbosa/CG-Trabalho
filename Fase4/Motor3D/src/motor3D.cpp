@@ -1,12 +1,12 @@
 #include "motor3D.h"
 
 
-// Vectores com os pontos lidos do ficheiro:
+// Vetores com os pontos lidos do ficheiro:
 vector<Ponto> pontos;
 vector<Ponto> normais;
 vector<Ponto> texturas;
 
-// Aplicacaos do sistema solar
+// Aplicacao do sistema solar
 vector<Aplicacao> aplicacoes;
 
 #define CONST 1.0f;
@@ -30,7 +30,7 @@ float posX, posY, posZ;
 
 
 
-void fps() {
+void fps(){
 	float fpsec;
 	int time;
 	char sol[64];
@@ -47,8 +47,7 @@ void fps() {
 	}
 }
 
-void changeSize(int w, int h) 
-{
+void changeSize(int w, int h){
 	// Prevent a divide by zero, when window is too short
 	// (you cant make a window with zero width).
 	if (h == 0)
@@ -72,21 +71,24 @@ void changeSize(int w, int h)
 	glMatrixMode(GL_MODELVIEW);
 }
 
+
 //Desenho das orbitas
-void renderCatmullRomCurve(vector<Ponto> pontos) {
+void renderCatmullRomCurve(vector<Ponto> pontos, float r, float g, float b){
 	int n = pontos.size();
 	float pp[3];
 
 	glBegin(GL_LINE_LOOP);
 	for (int i = 0; i < n; i++) {
-		pp[0] = pontos[i].getX(); pp[1] = pontos[i].getY(); pp[2] = pontos[i].getZ();
+		pp[0] = pontos[i].getX(); 
+		pp[1] = pontos[i].getY();
+		pp[2] = pontos[i].getZ();
+		glColor3f(r,g,b);
 		glVertex3fv(pp);
 	}
 	glEnd();
 }
 
-void renderScene(void) 
-{
+void renderScene(void){
 	float res[3];
 	float te, gt, r, gr;
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -131,7 +133,7 @@ void renderScene(void)
 			te = glutGet(GLUT_ELAPSED_TIME) % (int)(t.getTranslacao().getTime() * 1000);
 			gt = te / (t.getTranslacao().getTime() * 1000);
 			vector<Ponto> vp = t.getTranslacao().getPontosTrans();
-			renderCatmullRomCurve(t.getTranslacao().getPontosCurva());
+			renderCatmullRomCurve(t.getTranslacao().getPontosCurva(), t.getCor_Orbita().getR(),t.getCor_Orbita().getG(),t.getCor_Orbita().getB());
 			t.getTranslacao().getGlobalCatmullRomPoint(gt, res, vp);
 			vp.clear();
 			glTranslatef(res[0], res[1], res[2]);
@@ -153,7 +155,7 @@ void renderScene(void)
 					te = glutGet(GLUT_ELAPSED_TIME) % (int)(tfilho.getTranslacao().getTime() * 1000);
 					gt = te / (tfilho.getTranslacao().getTime() * 1000);
 					vector<Ponto> vp = tfilho.getTranslacao().getPontosTrans();
-					renderCatmullRomCurve(tfilho.getTranslacao().getPontosCurva());
+					renderCatmullRomCurve(tfilho.getTranslacao().getPontosCurva(),tfilho.getCor_Orbita().getR(),tfilho.getCor_Orbita().getG(),tfilho.getCor_Orbita().getB());
 					tfilho.getTranslacao().getGlobalCatmullRomPoint(gt, res, vp);
 					vp.clear();
 					glTranslatef(res[0], res[1], res[2]);
@@ -191,56 +193,82 @@ void renderScene(void)
 }
 
 // Funções de processamento do teclado
-void resetCamara() {
+void resetCamara(){
 	anguloX = anguloY = anguloZ = 0.0f;
 	coordX = coordY = coordZ = 0;
 	alpha = 0.0f;
 	beta = 0.5f;
 }
 
-void normalkeyboard(unsigned char tecla, int x, int y) {
+void normalkeyboard(unsigned char tecla, int x, int y){
+	
 	switch (tecla) {
-	case 'W':;
-	case 'w': anguloX += 5; break;
-	case 'S':;
-	case 's': anguloX -= 5; break;
-	case 'A':;
-	case 'a': anguloY += 5; break;
-	case 'D':;
-	case 'd': anguloY -= 5; break;
-	case 'q':;
-	case 'Q': anguloZ += 5; break;
-	case 'e':;
-	case 'E': anguloZ -= 5; break;
-	case 'R':;
-	case 'r': resetCamara(); break;
-	case '+': coordY += 5; break;
-	case '-': coordY -= 5; break;
-	case 'p':
-	case 'P': line = GL_POINT;
-			break;
-	case 'l':
-	case 'L': line = GL_LINE;
-	   	   	break;
-	case 'o':
-	case 'O': line = GL_FILL;
-			break;
+		case 'W':
+		case 'w': anguloX += 5;
+				  break;
+
+		case 'S':;
+		case 's': anguloX -= 5;
+				  break;
+
+		case 'A':
+		case 'a': anguloY += 5;
+				  break;
+
+		case 'D':;
+		case 'd': anguloY -= 5;
+				  break;
+
+		case 'q':
+		case 'Q': anguloZ += 5;
+				  break;
+
+		case 'e':;
+		case 'E': anguloZ -= 5; 
+				  break;
+
+		case 'R':
+		case 'r': resetCamara();
+				  break;
+
+		case '+': coordY += 5; 
+				  break;
+
+		case '-': coordY -= 5; 
+				  break;
+
+		case 'f':
+		case 'F': glDisable(GL_LIGHTING);
+				  glDisable(GL_LIGHT0);
+				  break;
+
+		case 'o':
+		case 'O': glEnable(GL_LIGHTING);
+				  glEnable(GL_LIGHT0);
+				  break;
 	}
 	glutPostRedisplay();
 }
 
-void specialKeys(int key, int x, int y) {
+void specialKeys(int key, int x, int y){
+	
 	switch (key) {
-	case GLUT_KEY_UP: coordZ += 5.0f; break;
-	case GLUT_KEY_DOWN: coordZ -= 5.0f; break;
-	case GLUT_KEY_LEFT: coordX += 5; break;
-	case GLUT_KEY_RIGHT: coordX -= 5; break;
+		case GLUT_KEY_UP: coordZ += 5.0f; 
+						  break;
+
+		case GLUT_KEY_DOWN: coordZ -= 5.0f;
+							break;
+
+		case GLUT_KEY_LEFT: coordX += 5;
+							break;
+
+		case GLUT_KEY_RIGHT: coordX -= 5;
+							 break;
 	}
 }
 
 // Funções de processamento do rato
-void processMouseButtons(int button, int state, int xx, int yy)
-{
+void processMouseButtons(int button, int state, int xx, int yy){
 	if (state == GLUT_DOWN)  {
 		startX = xx;
 		startY = yy;
@@ -266,8 +294,7 @@ void processMouseButtons(int button, int state, int xx, int yy)
 	}
 }
 
-void processMouseMotion(int xx, int yy)
-{
+void processMouseMotion(int xx, int yy){
 	int deltaX, deltaY;
 	int alphaAux, betaAux;
 	int rAux;
@@ -303,8 +330,7 @@ void processMouseMotion(int xx, int yy)
 }
 
 // Função de leitura do ficheiro com os pontos:
-void readFile(string filename)
-{
+void readFile(string filename){
 	string linha, token, delimiter = ",";
 	int pos;
 	double a, b, c;
@@ -426,8 +452,9 @@ void parseGrupo(XMLElement* grupo, Transformacao transf, char parent){
 	Translacao tr;
 	Rotacao ro;
 	Escala es;
-	float rotX, rotY, rotZ, transX, transY, transZ, escX, escY, escZ, time;
-	rotX = rotY = rotZ = transX = transY = transZ = escX = escY = escZ = 1;
+	Cor_Orbita cr;
+	float rotX, rotY, rotZ, transX, transY, transZ, escX, escY, escZ, corR, corG,corB, time;
+	rotX = rotY = rotZ = transX = transY = transZ = escX = escY = escZ = corR = corG = corB = 1;
 
 	if (strcmp(grupo->FirstChildElement()->Value(), "grupo") == 0)
 		grupo = grupo->FirstChildElement();
@@ -439,8 +466,10 @@ void parseGrupo(XMLElement* grupo, Transformacao transf, char parent){
 		if (strcmp(transformacao->Value(), "translacao") == 0){
 			if(transformacao->Attribute("tempo")) time = stof(transformacao->Attribute("tempo"));
 			else time = 0;
+			
+			//procurar todos os pontos e guardá-los num vetor de pontos
 			vector<Ponto> trpontos;
-			int k = 0;
+			
 			for (XMLElement* ponto = transformacao->FirstChildElement("ponto"); ponto; ponto = ponto->NextSiblingElement("ponto")) {
 				transX = transY = transZ = 0;
 
@@ -481,6 +510,15 @@ void parseGrupo(XMLElement* grupo, Transformacao transf, char parent){
 			es.setY(escY);
 			es.setZ(escZ);
 		}
+		if (strcmp(transformacao->Value(), "cor_orbita") == 0){
+			if (transformacao->Attribute("R")) corR = stof(transformacao->Attribute("R"));
+			else corR = 1;
+			if (transformacao->Attribute("G")) corG = stof(transformacao->Attribute("G"));
+			else corG = 1;
+			if (transformacao->Attribute("B")) corB = stof(transformacao->Attribute("B"));
+			else corG = 1;
+			cr = Cor_Orbita::Cor_Orbita(corR,corG,corB);
+		}
 	}
 
 	//Calculo da escala em relaçao ao pai
@@ -489,7 +527,7 @@ void parseGrupo(XMLElement* grupo, Transformacao transf, char parent){
 		es.setY(es.getY() * transf.getEscala().getY());
 		es.setZ(es.getZ() * transf.getEscala().getZ());
 	}
-	trans = Transformacao::Transformacao(tr, ro, es);
+	trans = Transformacao::Transformacao(tr, ro, es, cr);
 		
 	//para o mesmo grupo, quais os modelos que recebem as transformações
 	for (XMLElement* modelo = grupo->FirstChildElement("modelos")->FirstChildElement("modelo"); modelo; modelo = modelo->NextSiblingElement("modelo")) {
@@ -511,6 +549,7 @@ void parseGrupo(XMLElement* grupo, Transformacao transf, char parent){
 		cout << "Translacao: " << trans.getTranslacao().getTime() << endl;
 		cout << "Rotacao   : " << trans.getRotacao().getTime() << " - " << trans.getRotacao().geteixoX() << " - " << trans.getRotacao().geteixoY() << " - " << trans.getRotacao().geteixoZ() << endl;
 		cout << "Escala    : " << trans.getEscala().getX() << " - " << trans.getEscala().getY() << " - " << trans.getEscala().getZ() << endl;
+		cout << "Cor    : " << trans.getCor_Orbita().getR() << " - " << trans.getCor_Orbita().getG() << " - " << trans.getCor_Orbita().getB() << endl;
 
 		if (parent == 'F'){
 			int q = aplicacoes.size() - 1;
@@ -541,8 +580,7 @@ void parseGrupo(XMLElement* grupo, Transformacao transf, char parent){
 }
 
 // Função de leitura do ficheiro XML:
-void readXML(string filename)
-{
+void readXML(string filename){
 
 	XMLDocument doc;
 	doc.LoadFile(filename.c_str());
@@ -558,10 +596,8 @@ void readXML(string filename)
 	
 	
 	Transformacao t = Transformacao::Transformacao();
-	Escala e;
-	e = Escala::Escala(1, 1, 1);
-	Translacao trans;
-	trans = Translacao::Translacao();
+	Escala e = Escala::Escala(1, 1, 1);
+	Translacao trans = Translacao::Translacao();
 	t.setTranslacao(trans);
 	t.setEscala(e);
 	parseGrupo(grupo, t, 'I');
@@ -570,7 +606,7 @@ void readXML(string filename)
 
 
 
-void initGL() {
+void initGL(){
 
 	// alguns settings para OpenGL
 	glPolygonMode(GL_FRONT, GL_FILL);
@@ -579,6 +615,7 @@ void initGL() {
 	glEnable(GL_LIGHT0);
 	glEnable(GL_TEXTURE_2D);
 	glShadeModel (GL_SMOOTH);
+	
 	// init para VBOs
 	for (size_t j = 0; j < aplicacoes.size(); j++){
 		aplicacoes[j].prep();
@@ -593,8 +630,7 @@ void initGL() {
 	}
 }
 
-int main(int argc, char **argv) 
-{
+int main(int argc, char **argv) {
 	if (argc>1) {
 		glutInit(&argc, argv);
 		glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);

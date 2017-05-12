@@ -37,6 +37,6 @@ if(NOT OPENGL_FOUND)
 endif(NOT OPENGL_FOUND)
 
 
-add_executable(${PROJECT_NAME} motor3D.cpp tinyxml2.cpp aplicacao.cpp escala.cpp ponto.cpp rotacao.cpp transformacao.cpp translacao.cpp)
+add_executable(${PROJECT_NAME} motor3D.cpp tinyxml2.cpp aplicacao.cpp escala.cpp ponto.cpp rotacao.cpp transformacao.cpp translacao.cpp cor_orbita.cpp cor_orbita.h)
 
 target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
