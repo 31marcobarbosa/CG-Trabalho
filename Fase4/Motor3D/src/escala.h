@@ -7,13 +7,34 @@ class Escala{
 
 public:
 	Escala();
+
 	Escala(float, float, float);
-	float getX() { return x; }
-	float getY() { return y; }
-	float getZ() { return z; }
-	void setX(float a){ x = a; }
-	void setY(float b){ y = b; }
-	void setZ(float c){ z = c; }
+	
+	float getX(){ 
+		return x; 
+	}
+
+	float getY(){ 
+		return y; 
+	}
+	
+	float getZ(){ 
+		return z;
+	}
+
+	void setX(float a){
+	 	x = a;
+	}
+
+	void setY(float b){
+		y = b;
+	}
+
+	void setZ(float c){ 
+		z = c;
+	}
+
 	bool isEmpty();
+	
 	virtual ~Escala() {};
 };

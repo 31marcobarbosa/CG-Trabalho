@@ -76,14 +76,13 @@ void Aplicacao::prep() {
 	criarTextura();
 }
 
-void Aplicacao::draw() {
+void Aplicacao::draw(){
 	glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
 	glVertexPointer(3, GL_FLOAT, 0, 0);
 	glBindBuffer(GL_ARRAY_BUFFER, buffers[1]);
 	glNormalPointer(GL_FLOAT, 0, 0);
 	glBindBuffer(GL_ARRAY_BUFFER, buffers[2]);
 	glTexCoordPointer(2, GL_FLOAT, 0, 0);
-
 	glDrawArrays(GL_TRIANGLES, 0, nvertex);
 }
 
@@ -96,7 +95,7 @@ void Aplicacao::criarTextura(){
 	height = ilGetInteger(IL_IMAGE_HEIGHT);
 	ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);
 	data = ilGetData();
-	glGenTextures(1, &texID); // unsigned int texID - variavel global;
+	glGenTextures(1, &texID);
 	glBindTexture(GL_TEXTURE_2D, texID);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);

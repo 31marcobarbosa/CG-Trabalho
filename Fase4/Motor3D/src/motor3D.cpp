@@ -11,7 +11,7 @@ vector<Aplicacao> aplicacoes;
 
 #define CONST 1.0f;
 
-// Variaveis para utilizaÁ„o do teclado e rato:
+// Variaveis para utiliza√ß√£o do teclado e rato:
 float radius = 5.0f;
 float camX = -30, camY = 30, camZ = 20;
 float anguloX = 0.0f, anguloY = 0.0f, anguloZ = 0.0f;
@@ -78,6 +78,7 @@ void renderCatmullRomCurve(vector<Ponto> pontos, float r, float g, float b){
 	float pp[3];
 
 	glBegin(GL_LINE_LOOP);
+	
 	for (int i = 0; i < n; i++) {
 		pp[0] = pontos[i].getX(); 
 		pp[1] = pontos[i].getY();
@@ -94,17 +95,13 @@ void renderScene(void){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glLoadIdentity();
-	gluLookAt(camX, camY, camZ,
-		0.0, 0.0, 0.0,
-		0.0f, 1.0f, 0.0f);
-
-
+	gluLookAt(camX, camY, camZ, 0.0, 0.0, 0.0, 0.0f, 1.0f, 0.0f);
 	glRotatef(anguloX, 1, 0, 0);
 	glRotatef(anguloY, 0, 1, 0);
 	glRotatef(anguloZ, 0, 0, 1);
 	glTranslatef(coordX, coordY, coordZ);
 
-	int fy = 1;
+	
 	for (size_t j = 0; j < aplicacoes.size(); j++){
 		glPushMatrix();
 		Transformacao t = aplicacoes[j].getTransformacao();
@@ -117,9 +114,9 @@ void renderScene(void){
 			GLfloat matt[3] = { 1, 1, 1 };
 
 			glMaterialf(GL_FRONT, GL_SHININESS, 20);
-			glLightfv(GL_LIGHT0, GL_POSITION, pos); // posiÁ„o da luz
-			glLightfv(GL_LIGHT0, GL_AMBIENT, amb); // cores da luz
-			glLightfv(GL_LIGHT0, GL_DIFFUSE, diff); // cores da luz
+			glLightfv(GL_LIGHT0, GL_POSITION, pos); // posi√ß√£o da luz
+			glLightfv(GL_LIGHT0, GL_AMBIENT, amb); // luz ambiente
+			glLightfv(GL_LIGHT0, GL_DIFFUSE, diff); // luz difusa
 
 			glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, matt);
 		}
@@ -130,6 +127,7 @@ void renderScene(void){
 
 		//Desenhar aplicacao (p.e. planetas)
 		if (t.getTranslacao().getTime() != 0){
+
 			te = glutGet(GLUT_ELAPSED_TIME) % (int)(t.getTranslacao().getTime() * 1000);
 			gt = te / (t.getTranslacao().getTime() * 1000);
 			vector<Ponto> vp = t.getTranslacao().getPontosTrans();
@@ -138,15 +136,19 @@ void renderScene(void){
 			vp.clear();
 			glTranslatef(res[0], res[1], res[2]);
 		}
+
 		if (t.getRotacao().getTime() != 0){
+
 			r = glutGet(GLUT_ELAPSED_TIME) % (int)(t.getRotacao().getTime() * 1000);
 			gr = (r * 360) / (t.getRotacao().getTime() * 1000);
 			glRotatef(gr, t.getRotacao().geteixoX(), t.getRotacao().geteixoY(), t.getRotacao().geteixoZ());
 		}
+
 		glScalef(t.getEscala().getX(), t.getEscala().getY(), t.getEscala().getZ());
 
 		//Desenhar filhos (p.e. luas)
 		if (aplicacoes[j].getFilhos().size() != 0){
+
 			vector<Aplicacao> filhos = aplicacoes[j].getFilhos();
 			for (size_t k = 0; k < filhos.size(); k++){
 				glPushMatrix();
@@ -160,11 +162,14 @@ void renderScene(void){
 					vp.clear();
 					glTranslatef(res[0], res[1], res[2]);
 				}
+
 				if (tfilho.getRotacao().getTime() != 0){
+
 					r = glutGet(GLUT_ELAPSED_TIME) % (int)(tfilho.getRotacao().getTime() * 1000);
 					gr = (r * 360) / (tfilho.getRotacao().getTime() * 1000);
 					glRotatef(gr, tfilho.getRotacao().geteixoX(), tfilho.getRotacao().geteixoY(), tfilho.getRotacao().geteixoZ());
 				}
+
 				glScalef(tfilho.getEscala().getX(), tfilho.getEscala().getY(), tfilho.getEscala().getZ());
 				
 				glBindTexture(GL_TEXTURE_2D, filhos[k].getTexID());
@@ -192,7 +197,7 @@ void renderScene(void){
 	glutSwapBuffers();
 }
 
-// FunÁıes de processamento do teclado
+// Fun√ß√µes de processamento do teclado
 void resetCamara(){
 	anguloX = anguloY = anguloZ = 0.0f;
 	coordX = coordY = coordZ = 0;
@@ -202,7 +207,7 @@ void resetCamara(){
 
 void normalkeyboard(unsigned char tecla, int x, int y){
 	
-	switch (tecla) {
+	switch (tecla){
 		case 'W':
 		case 'w': anguloX += 5;
 				  break;
@@ -239,7 +244,7 @@ void normalkeyboard(unsigned char tecla, int x, int y){
 
 		case 'f':
 		case 'F': glDisable(GL_LIGHTING);
-				  glDisable(GL_LIGHT0);
+				  glDisable(GL_LIGHT0);	
 				  break;
 
 		case 'o':
@@ -247,6 +252,7 @@ void normalkeyboard(unsigned char tecla, int x, int y){
 				  glEnable(GL_LIGHT0);
 				  break;
 	}
+
 	glutPostRedisplay();
 }
 
@@ -267,9 +273,11 @@ void specialKeys(int key, int x, int y){
 	}
 }
 
-// FunÁıes de processamento do rato
+// Fun√ß√µes de processamento do rato
 void processMouseButtons(int button, int state, int xx, int yy){
-	if (state == GLUT_DOWN)  {
+
+	if (state == GLUT_DOWN){
+
 		startX = xx;
 		startY = yy;
 		if (button == GLUT_LEFT_BUTTON)
@@ -279,17 +287,21 @@ void processMouseButtons(int button, int state, int xx, int yy){
 		else
 			tracking = 0;
 	}
-	else if (state == GLUT_UP) {
+
+	else if (state == GLUT_UP){
+
 		if (tracking == 1) {
 			alpha += (xx - startX);
 			beta += (yy - startY);
 		}
-		else if (tracking == 2) {
+
+		else if (tracking == 2){
 
 			r -= yy - startY;
 			if (r < 3)
 				r = 3.0;
 		}
+
 		tracking = 0;
 	}
 }
@@ -329,7 +341,7 @@ void processMouseMotion(int xx, int yy){
 	camY = rAux * sin(betaAux * 3.14 / 180.0);
 }
 
-// FunÁ„o de leitura do ficheiro com os pontos:
+// Fun√ß√£o de leitura do ficheiro com os pontos:
 void readFile(string filename){
 	string linha, token, delimiter = ",";
 	int pos;
@@ -339,8 +351,8 @@ void readFile(string filename){
 	int count = 0;
 
 	ifstream file(filename);
-	if (file.is_open())
-	{
+	if (file.is_open()){
+
 		//N de pontos
 		getline(file, linha);
 		pos = linha.find(delimiter);
@@ -363,8 +375,8 @@ void readFile(string filename){
 		linha.erase(0, pos + delimiter.length());
 
 		//Pontos da aplicacao:
-		while (count < npontos && getline(file, linha))
-		{
+		while (count < npontos && getline(file, linha)){
+
 			pos = linha.find(delimiter);
 			token = linha.substr(0, pos);
 			a = atof(token.c_str());
@@ -389,8 +401,8 @@ void readFile(string filename){
 
 		//Normais da aplicacao:
 		count = 0;
-		while (count < npontos && getline(file, linha))
-		{
+		while (count < npontos && getline(file, linha)){
+
 			pos = linha.find(delimiter);
 			token = linha.substr(0, pos);
 			a = atof(token.c_str());
@@ -415,8 +427,8 @@ void readFile(string filename){
 
 		//Texturas da aplicacao:
 		count = 0;
-		while (count < npontos && getline(file, linha))
-		{
+		while (count < npontos && getline(file, linha)){
+
 			pos = linha.find(delimiter);
 			token = linha.substr(0, pos);
 			a = atof(token.c_str());
@@ -438,10 +450,11 @@ void readFile(string filename){
 			texturas.push_back(p);
 			count++;
 		}
+
 		file.close();
 	}
-	else 
-	{
+
+	else{
 		cout << "Nao foi possivel ler o ficheiro" << endl;
 	}
 	
@@ -459,18 +472,20 @@ void parseGrupo(XMLElement* grupo, Transformacao transf, char parent){
 	if (strcmp(grupo->FirstChildElement()->Value(), "grupo") == 0)
 		grupo = grupo->FirstChildElement();
 
-	//transformaÁıes para um grupo
+	//transforma√ß√µes para um grupo
 	XMLElement* transformacao = grupo->FirstChildElement();
 
-	for (transformacao; (strcmp(transformacao->Value(), "modelos") != 0); transformacao = transformacao->NextSiblingElement()) {
+	for (transformacao; (strcmp(transformacao->Value(), "modelos") != 0); transformacao = transformacao->NextSiblingElement()){
+
 		if (strcmp(transformacao->Value(), "translacao") == 0){
+
 			if(transformacao->Attribute("tempo")) time = stof(transformacao->Attribute("tempo"));
 			else time = 0;
 			
-			//procurar todos os pontos e guard·-los num vetor de pontos
+			//procurar todos os pontos e guard√°-los num vetor de pontos
 			vector<Ponto> trpontos;
 			
-			for (XMLElement* ponto = transformacao->FirstChildElement("ponto"); ponto; ponto = ponto->NextSiblingElement("ponto")) {
+			for (XMLElement* ponto = transformacao->FirstChildElement("ponto"); ponto; ponto = ponto->NextSiblingElement("ponto")){
 				transX = transY = transZ = 0;
 
 				if (ponto->Attribute("X"))
@@ -485,10 +500,13 @@ void parseGrupo(XMLElement* grupo, Transformacao transf, char parent){
 				Ponto pt = Ponto::Ponto(transX, transY, transZ);
 				trpontos.push_back(pt);
 			}
+
 			tr = Translacao::Translacao(time, trpontos, trpontos.size());
 			tr.execCurvas();
 		}
+
 		if (strcmp(transformacao->Value(), "rotacao") == 0){
+
 			if (transformacao->Attribute("tempo")) time = stof(transformacao->Attribute("tempo"));
 			else time = 0;
 			if (transformacao->Attribute("eixoX")) rotX = stof(transformacao->Attribute("eixoX"));
@@ -499,7 +517,9 @@ void parseGrupo(XMLElement* grupo, Transformacao transf, char parent){
 			else rotZ = 0;
 			ro = Rotacao::Rotacao(rotX, rotY, rotZ, time);
 		}
+
 		if (strcmp(transformacao->Value(), "escala") == 0){
+
 			if (transformacao->Attribute("X")) escX = stof(transformacao->Attribute("X"));
 			else escX = 1;
 			if (transformacao->Attribute("Y")) escY = stof(transformacao->Attribute("Y"));
@@ -510,7 +530,9 @@ void parseGrupo(XMLElement* grupo, Transformacao transf, char parent){
 			es.setY(escY);
 			es.setZ(escZ);
 		}
+
 		if (strcmp(transformacao->Value(), "cor_orbita") == 0){
+
 			if (transformacao->Attribute("R")) corR = stof(transformacao->Attribute("R"));
 			else corR = 1;
 			if (transformacao->Attribute("G")) corG = stof(transformacao->Attribute("G"));
@@ -521,7 +543,7 @@ void parseGrupo(XMLElement* grupo, Transformacao transf, char parent){
 		}
 	}
 
-	//Calculo da escala em relaÁao ao pai
+	//Calculo da escala em rela√ßao ao pai
 	if (parent == 'F'){
 		es.setX(es.getX() * transf.getEscala().getX());
 		es.setY(es.getY() * transf.getEscala().getY());
@@ -529,8 +551,8 @@ void parseGrupo(XMLElement* grupo, Transformacao transf, char parent){
 	}
 	trans = Transformacao::Transformacao(tr, ro, es, cr);
 		
-	//para o mesmo grupo, quais os modelos que recebem as transformaÁıes
-	for (XMLElement* modelo = grupo->FirstChildElement("modelos")->FirstChildElement("modelo"); modelo; modelo = modelo->NextSiblingElement("modelo")) {
+	//para o mesmo grupo, quais os modelos que recebem as transforma√ß√µes
+	for (XMLElement* modelo = grupo->FirstChildElement("modelos")->FirstChildElement("modelo"); modelo; modelo = modelo->NextSiblingElement("modelo")){
 		
 		Aplicacao p;
 		p.setNome(modelo->Attribute("ficheiro"));
@@ -563,23 +585,23 @@ void parseGrupo(XMLElement* grupo, Transformacao transf, char parent){
 	}
 
 	//Se for filho e tiver irmaos:
-	if (grupo->NextSiblingElement("grupo") && (parent == 'F' || parent == 'P')) {
+	if (grupo->NextSiblingElement("grupo") && (parent == 'F' || parent == 'P')){
 		parseGrupo(grupo->NextSiblingElement("grupo"), transf, 'P');
 	}
 
 	//Se tiver elementos "filhos":
-	if (grupo->FirstChildElement("grupo")) {
+	if (grupo->FirstChildElement("grupo")){
 		cout << "Filho:" << endl;
 		parseGrupo(grupo->FirstChildElement("grupo"), trans, 'F');
 	}
 
-	//Elementos "irm„os"
-	if (grupo->NextSiblingElement("grupo") && parent != 'F' && parent != 'P') {
+	//Elementos "irm√£os"
+	if (grupo->NextSiblingElement("grupo") && parent != 'F' && parent != 'P'){
 		parseGrupo(grupo->NextSiblingElement("grupo"), transf, 'I');
 	}
 }
 
-// FunÁ„o de leitura do ficheiro XML:
+// Fun√ß√£o de leitura do ficheiro XML:
 void readXML(string filename){
 
 	XMLDocument doc;

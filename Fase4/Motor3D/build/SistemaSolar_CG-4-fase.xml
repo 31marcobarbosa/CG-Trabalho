@@ -33,7 +33,7 @@
 				</translacao>
 				<rotacao tempo="38" eixoX="0" eixoY="1" eixoZ="0" />
 				<escala X="0.5" Y="0.5" Z="0.5"/>
-				<cor_orbita R="0.25" G="0.25" B="0.25"/>
+				<cor_orbita R="0.2" G="0.2" B="0.2"/>
 				<modelos>
 					<modelo ficheiro="esfera.3d" textura="mercurio.jpg"/>
 				</modelos>
@@ -61,7 +61,7 @@
 				</translacao>
 				<rotacao tempo="40" eixoX="0" eixoY="-1" eixoZ="0" />
 				<escala X="0.7" Y="0.7" Z="0.7"/>
-				<cor_orbita R="0.25" G="0.25" B="0.25"/>
+				<cor_orbita R="0.2" G="0.2" B="0.2"/>
 				<modelos>
 					<modelo ficheiro="esfera.3d" textura="venus.jpg"/>
 				</modelos>
@@ -89,14 +89,14 @@
 				</translacao>
 				<rotacao tempo="15" eixoX="0" eixoY="0.5" eixoZ="0" />
 				<escala X="0.7" Y="0.7" Z="0.7"/>
-				<cor_orbita R="0.25" G="0.25" B="0.25"/>
+				<cor_orbita R="0.2" G="0.2" B="0.2"/>
 				<modelos>
 					<modelo ficheiro="esfera.3d" textura="terra.jpg"/>
 				</modelos>
 
 				<!--LUA-->
 					<grupo>
-						<translacao tempo="10">
+						<translacao tempo="20">
 							<ponto X="8" Y="0" Z="0" />
 							<ponto X="7.39104" Y="3.06147" Z="0" />
 							<ponto X="5.65685" Y="5.65685" Z="0" />
@@ -146,7 +146,7 @@
 				</translacao>
 				<rotacao tempo="20" eixoX="0" eixoY="0.5" eixoZ="0" />
 				<escala X="0.6" Y="0.6" Z="0.6"/>
-				<cor_orbita R="0.25" G="0.25" B="0.25"/>
+				<cor_orbita R="0.2" G="0.2" B="0.2"/>
 				<modelos>
 					<modelo ficheiro="esfera.3d" textura="marte.jpg"/>
 				</modelos>
@@ -174,7 +174,7 @@
 				</translacao>
 				<rotacao tempo="9" eixoX="0" eixoY="1" eixoZ="0" />
 				<escala X="2.1" Y="2.1" Z="2.1"/>
-				<cor_orbita R="0.25" G="0.25" B="0.25"/>
+				<cor_orbita R="0.2" G="0.2" B="0.2"/>
 				<modelos>
 					<modelo ficheiro="esfera.3d" textura="jupiter.jpg"/>
 				</modelos>
@@ -202,7 +202,7 @@
 				</translacao>
 				<rotacao tempo="10" eixoX="0" eixoY="0.5" eixoZ="0" />
 				<escala X="2.0" Y="2.0" Z="2.0"/>
-				<cor_orbita R="0.25" G="0.25" B="0.25"/>
+				<cor_orbita R="0.2" G="0.2" B="0.2"/>
 				<modelos>
 					<modelo ficheiro="esfera.3d" textura="saturno.jpg"/>
 				</modelos>
@@ -361,7 +361,7 @@
 				</translacao>
 				<rotacao tempo="17" eixoX="0" eixoY="-0.8" eixoZ="0" />
 				<escala X="1.5" Y="1.5" Z="1.5"/>
-				<cor_orbita R="0.25" G="0.25" B="0.25"/>
+				<cor_orbita R="0.2" G="0.2" B="0.2"/>
 				<modelos>
 					<modelo ficheiro="esfera.3d" textura="urano.jpg"/>
 				</modelos>
@@ -468,7 +468,7 @@
 				</translacao>
 				<rotacao tempo="16" eixoX="0" eixoY="0.5" eixoZ="0" />
 				<escala X="1.5" Y="1.5" Z="1.5"/>
-				<cor_orbita R="0.25" G="0.25" B="0.25"/>
+				<cor_orbita R="0.2" G="0.2" B="0.2"/>
 				<modelos>
 					<modelo ficheiro="esfera.3d" textura="neptuno.jpg"/>
 				</modelos>

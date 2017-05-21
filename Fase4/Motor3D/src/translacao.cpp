@@ -8,24 +8,25 @@ Translacao::Translacao(float t){
 	time = t;
 }
 
-Translacao::Translacao(float t, vector<Ponto> vtp, int num) {
+Translacao::Translacao(float t, vector<Ponto> vtp, int num){
 	time = t;
 	pontosTrans = vtp;
 	tam = num;
 }
 
-bool Translacao::isEmpty() {
+bool Translacao::isEmpty(){
 	return (time == 0 && pontosTrans.size() == 0) ? true : false;
 }
 
 
-void getCatmullRomPoint(float t, int *indices, float *res, vector<Ponto> transpontos) {
+void getCatmullRomPoint(float t, int *indices, float *res, vector<Ponto> transpontos){
 	float res_aux[4];
 
 	float m[4][4] = { { -0.5f, 1.5f, -1.5f, 0.5f },
-	{ 1.0f, -2.5f, 2.0f, -0.5f },
-	{ -0.5f, 0.0f, 0.5f, 0.0f },
-	{ 0.0f, 1.0f, 0.0f, 0.0f } };
+					  { 1.0f, -2.5f, 2.0f, -0.5f },
+					  { -0.5f, 0.0f, 0.5f, 0.0f },
+					  { 0.0f, 1.0f, 0.0f, 0.0f } };
+
 
 	res[0] = 0.0; res[1] = 0.0; res[2] = 0.0;
 	float t3 = t*t*t, t2 = t*t;
@@ -47,11 +48,11 @@ void getCatmullRomPoint(float t, int *indices, float *res, vector<Ponto> transpo
 	res[2] = res_aux[0] * p0.getZ() + res_aux[1] * p1.getZ() + res_aux[2] * p2.getZ() + res_aux[3] * p3.getZ();
 }
 
-void Translacao::getGlobalCatmullRomPoint(float gt, float *res, vector<Ponto> transpontos) {
+void Translacao::getGlobalCatmullRomPoint(float gt, float *res, vector<Ponto> transpontos){
 	int tamanho = transpontos.size();
-	float t = gt * tamanho; // this is the real global t
+	float t = gt * tamanho; // the real global t
 	int index = floor(t);  // which segment
-	t = t - index; // where within  the segment
+	t = t - index; // where within the segment
 
 	// indices store the points
 	int indices[4];
